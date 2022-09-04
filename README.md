@@ -1,15 +1,10 @@
-<p align="center">
-    <a href="#" target="_blank">
-      <img alt="Litepie Datepicker" width="100" style="border-radius: 100%;" src="https://raw.githubusercontent.com/kenhyuwa/litepie-datepicker/main/assets/logo.png">
-    </a><br><br>
-    Litepie Datepicker is a date range picker component for Vue.js and Tailwind CSS, dependent to day.js.
-</p>
+
 
 ---
 
 ## Documentation
 
-For full documentation, visit [litepie.com](https://litepie.com).
+
 
 ## Simple Usage
 
@@ -18,7 +13,7 @@ How it works,
 ```vue
 <template>
   <div>
-    <litepie-datepicker
+    <vue-tailwind-datepicker
       ref="myRef"
       :formatter="formatter"
       v-model="dateValue"
@@ -28,11 +23,11 @@ How it works,
 
 <script>
 import { ref } from 'vue';
-import LitepieDatepicker from 'litepie-datepicker';
+import VueTailwindDatepicker from 'vue-tailwind-datepicker';
 
 export default {
   components: {
-    LitepieDatepicker
+    VueTailwindDatepicker
   },
   setup() {
     const myRef = ref(null);
@@ -53,16 +48,6 @@ export default {
 ```
 
 ## Theming options
-- Light mode
-
-  <p align="center">
-      <img src="https://raw.githubusercontent.com/kenhyuwa/litepie-datepicker/main/assets/light-mode.png" alt="Light mode" />
-  </p>
-
-- Dark mode
-  <p align="center">
-      <img src="https://raw.githubusercontent.com/kenhyuwa/litepie-datepicker/main/assets/dark-mode.png" alt="Dark mode" />
-  </p>
 
 ## Changelog
 All notable changes to this project will be documented in this file, [Read](CHANGELOG.md).
