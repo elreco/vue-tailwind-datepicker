@@ -1,6 +1,4 @@
 <script setup>
-import { defineEmits } from 'vue'
-
 defineProps({
   asPrevOrNext: Boolean,
   years: Array
