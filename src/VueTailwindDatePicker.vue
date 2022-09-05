@@ -1017,7 +1017,9 @@ watch(
   () => VtdRef.value,
   () => {
     nextTick(() => {
-      placement.value = useVisibleViewport(VtdRef.value)
+      if (VtdRef.value) {
+        placement.value = useVisibleViewport(VtdRef.value)
+      }
     })
   }
 )
@@ -1188,20 +1190,23 @@ provide('setToCustomShortcut', setToCustomShortcut)
 </script>
 
 <template>
-  <Popover id="vtd" class="relative w-full" :class="[{ 'vtd-datepicker-overlay': props.overlay }]">
+  <Popover
+    id="vtd"
+    class="relative w-full"
+    :class="[{ 'vtd-datepicker-overlay': props.overlay }]"
+    @click="clickInput"
+  >
     <slot :value="pickerValue" :placeholder="givenPlaceholder" :clear="clearPicker">
       <PopoverButton as="label" class="relative block">
         <input
           ref="VtdInputRef"
           type="text"
-          :class="
-            inputClasses ||
-            'relative block w-full pl-3 pr-12 py-2.5 rounded-lg overflow-hidden text-sm text-vtd-secondary-700 placeholder-vtd-secondary-400 transition-colors bg-white border border-vtd-secondary-300 focus:border-vtd-primary-300 focus:ring focus:ring-vtd-primary-500 focus:ring-opacity-10 focus:outline-none dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700 dark:text-vtd-secondary-100 dark:placeholder-vtd-secondary-500 dark:focus:border-vtd-primary-500 dark:focus:ring-opacity-20'
-          "
+          :class="inputClasses || 'relative block w-full pl-3 pr-12 py-2.5 rounded-lg overflow-hidden text-sm text-vtd-secondary-700 placeholder-vtd-secondary-400 transition-colors bg-white border border-vtd-secondary-300 focus:border-vtd-primary-300 focus:ring focus:ring-vtd-primary-500 focus:ring-opacity-10 focus:outline-none dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700 dark:text-vtd-secondary-100 dark:placeholder-vtd-secondary-500 dark:focus:border-vtd-primary-500 dark:focus:ring-opacity-20'"
           v-bind="$attrs"
           v-model="pickerValue"
           :placeholder="givenPlaceholder"
           @keyup="keyUp"
+          @focus="clickInput"
         />
         <div class="absolute inset-y-0 right-0 inline-flex items-center rounded-md overflow-hidden">
           <button
@@ -1353,6 +1358,7 @@ provide('setToCustomShortcut', setToCustomShortcut)
                   <div class="mt-1.5 sm:flex sm:flex-row-reverse">
                     <button
                       type="button"
+                      @click="close()"
                       class="away-cancel-picker w-full transition ease-out duration-300 inline-flex justify-center rounded-md border border-vtd-secondary-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-vtd-secondary-700 hover:bg-vtd-secondary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-vtd-primary-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm dark:ring-offset-vtd-secondary-800"
                       v-text="props.options.footer.cancel"
                     ></button>
