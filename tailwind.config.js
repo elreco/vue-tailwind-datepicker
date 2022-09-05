@@ -5,6 +5,7 @@ const { fontFamily } = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -13,7 +14,7 @@ module.exports = {
         lime: colors.lime,
         orange: colors.orange,
         "light-blue": colors.sky,
-        "vtd-primary": colors.emerald,
+        "vtd-primary": colors.orange,
         "vtd-secondary": colors.coolGray,
       },
       fontFamily: {
@@ -24,5 +25,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 };

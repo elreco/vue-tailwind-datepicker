@@ -1,29 +1,61 @@
 {
   "name": "vue-tailwind-datepicker",
-  "version": "0.0.0",
+  "description": "A date range picker component for Vue.js 3 using Tailwind CSS",
+  "version": "0.0.1",
+  "keywords": [
+    "vue-tailwind-datepicker",
+    "vue-datepicker",
+    "vue-daterangepicker",
+    "vue-daterange-picker",
+    "tailwind-datepicker",
+    "tailwind-daterange-picker"
+  ],
+  "contributors": [],
+  "author": {
+    "name": "elreco",
+    "email": "alexandre@heypongo.com",
+    "url": "https://github.com/elreco"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elreco/vue-tailwind-datepicker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/elreco/vue-tailwind-datepicker/issues",
+    "email": "alexandre@heypongo.com"
+  },
+  "private": false,
+  "homepage": "https://elreco.fr",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "node exec.js && vite",
+    "build": "vite build && npm run locale",
     "preview": "vite preview --port 4173",
     "lint": "eslint src --ext=.ts,.js,.vue",
     "lint:fix": "eslint src --ext=.ts,.js,.vue --fix",
     "format": "prettier src --ignore-unknown --check",
-    "format:fix": "prettier src --ignore-unknown --write"
-  },
-  "dependencies": {
-    "@headlessui/vue": "^1.6.7",
-    "dayjs": "^1.11.5",
-    "vue": "^3.2.38"
+    "format:fix": "prettier src --ignore-unknown --write",
+    "locale": "node exec.js && rm -rf ./dist/locale && cp -r ./src/locale ./dist/locale"
   },
   "devDependencies": {
+    "@headlessui/vue": "^1.6.7",
     "@rushstack/eslint-patch": "^1.1.4",
+    "@tailwindcss/forms": "^0.5.3",
     "@vitejs/plugin-vue": "^3.0.3",
     "autoprefixer": "^10.4.8",
+    "dayjs": "^1.11.5",
     "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-vue": "^9.3.0",
+    "fs-extra": "^10.1.0",
     "postcss": "^8.4.16",
     "prettier": "^2.7.1",
     "tailwindcss": "^3.1.8",
-    "vite": "^3.0.9"
+    "vite": "^3.0.9",
+    "vue": "^3.2.38"
+  },
+  "peerDependencies": {
+    "dayjs": "^1.11.5",
+    "tailwindcss": "^3.1.8",
+    "vue": "^3.2.38"
   }
 }

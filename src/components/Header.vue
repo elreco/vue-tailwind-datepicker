@@ -7,9 +7,7 @@ defineProps({
 </script>
 
 <template>
-  <div
-    class="flex justify-between items-center px-2 py-1.5 rounded-md border border-black/[.1] dark:border-vtd-secondary-700/[1]"
-  >
+  <div class="flex justify-between items-center px-2 py-1.5">
     <div class="flex-shrink-0">
       <span v-show="panel.calendar || panel.year" class="inline-flex rounded-full">
         <button

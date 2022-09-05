@@ -27,7 +27,7 @@ const {
   useToValueFromString
 } = useDate()
 
-const { useDirective, useVisibleViewport } = useDom()
+const { useVisibleViewport } = useDom()
 
 dayjs.extend(localeData)
 dayjs.extend(localizedFormat)
@@ -35,15 +35,6 @@ dayjs.extend(customParseFormat)
 dayjs.extend(isToday)
 dayjs.extend(isBetween)
 dayjs.extend(duration)
-
-const vVtd = {
-  mounted: (el, binding) => {
-    nextTick(() => useDirective(binding, isShow))
-  },
-  updated: (el, binding) => {
-    nextTick(() => useDirective(binding, isShow))
-  }
-}
 
 const props = defineProps({
   overlay: Boolean,
@@ -56,6 +47,10 @@ const props = defineProps({
   i18n: {
     type: String,
     default: 'en'
+  },
+  inputClasses: {
+    type: String,
+    default: ''
   },
   disableInRange: {
     type: Boolean,
@@ -112,7 +107,6 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 const VtdRef = ref(null)
 const VtdInputRef = ref(null)
-const isShow = ref(false)
 const placement = ref(true)
 const givenPlaceholder = ref('')
 const selection = ref(null)
@@ -511,15 +505,13 @@ const setDate = (date, asNext, close) => {
             )
           )
         }
-        isShow.value = false
+        close()
         applyValue.value = []
         if (!dayjs(s, props.formatter.date, true).isSame(dayjs(e, props.formatter.date, true), 'month')) {
           datepicker.value.previous = dayjs(s, props.formatter.date, true)
           datepicker.value.next = dayjs(e, props.formatter.date, true)
         }
         force()
-
-        close()
       } else {
         if (previous.value.isAfter(date, 'month')) {
           applyValue.value = [date, previous.value]
@@ -569,10 +561,9 @@ const setDate = (date, asNext, close) => {
       } else {
         emit('update:modelValue', pickerValue.value)
       }
-      isShow.value = false
+      close()
       applyValue.value = []
       force()
-      close()
     } else {
       applyValue.value = [date]
       force()
@@ -1023,7 +1014,7 @@ const setToCustomShortcut = (item) => {
 }
 
 watch(
-  () => isShow.value,
+  () => VtdRef.value,
   () => {
     nextTick(() => {
       placement.value = useVisibleViewport(VtdRef.value)
@@ -1197,17 +1188,16 @@ provide('setToCustomShortcut', setToCustomShortcut)
 </script>
 
 <template>
-  <Popover
-    id="vtd"
-    class="relative w-full"
-    :class="[{ 'vtd-datepicker-overlay': props.overlay }, { open: isShow && props.overlay }]"
-  >
+  <Popover id="vtd" class="relative w-full" :class="[{ 'vtd-datepicker-overlay': props.overlay }]">
     <slot :value="pickerValue" :placeholder="givenPlaceholder" :clear="clearPicker">
       <PopoverButton as="label" class="relative block">
         <input
           ref="VtdInputRef"
           type="text"
-          class="relative block w-full pl-3 pr-12 py-2.5 rounded-lg overflow-hidden text-sm text-vtd-secondary-700 placeholder-vtd-secondary-400 transition-colors bg-white border border-vtd-secondary-300 focus:border-vtd-primary-300 focus:ring focus:ring-vtd-primary-500 focus:ring-opacity-10 focus:outline-none dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700 dark:text-vtd-secondary-100 dark:placeholder-vtd-secondary-500 dark:focus:border-vtd-primary-500 dark:focus:ring-opacity-20"
+          :class="
+            inputClasses ||
+            'relative block w-full pl-3 pr-12 py-2.5 rounded-lg overflow-hidden text-sm text-vtd-secondary-700 placeholder-vtd-secondary-400 transition-colors bg-white border border-vtd-secondary-300 focus:border-vtd-primary-300 focus:ring focus:ring-vtd-primary-500 focus:ring-opacity-10 focus:outline-none dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700 dark:text-vtd-secondary-100 dark:placeholder-vtd-secondary-500 dark:focus:border-vtd-primary-500 dark:focus:ring-opacity-20'
+          "
           v-bind="$attrs"
           v-model="pickerValue"
           :placeholder="givenPlaceholder"
@@ -1264,7 +1254,7 @@ provide('setToCustomShortcut', setToCustomShortcut)
             class="fixed inset-0 z-50 overflow-y-auto sm:overflow-visible sm:static sm:z-auto bg-white dark:bg-vtd-secondary-800 sm:rounded-lg shadow-sm"
           >
             <div
-              class="vtd-datepicker static sm:relative w-full bg-white sm:rounded-lg sm:shadow-sm border-0 sm:border border-black/[.1] px-3 py-3 sm:px-1 sm:py-1.5 dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700/[1]"
+              class="vtd-datepicker static sm:relative w-full bg-white sm:rounded-lg sm:shadow-sm border-0 sm:border border-black/[.1] px-3 py-3 sm:px-4 sm:py-4 dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700/[1]"
               :class="placement ? 'place-left' : 'place-right'"
             >
               <div class="flex flex-wrap lg:flex-nowrap">
@@ -1278,9 +1268,9 @@ provide('setToCustomShortcut', setToCustomShortcut)
                 <div class="relative flex flex-wrap sm:flex-nowrap p-1">
                   <div
                     v-if="asRange() && !props.asSingle"
-                    class="hidden absolute inset-0 sm:flex justify-center items-center"
+                    class="hidden h-full absolute inset-0 sm:flex justify-center items-center"
                   >
-                    <div class="w-8 sm:w-1 h-1 sm:h-8 bg-vtd-primary-500 rounded-xl shadow-inner"></div>
+                    <div class="h-full border-r border-black/[.1] dark:border-vtd-secondary-700/[1]"></div>
                   </div>
                   <div
                     class="relative w-full sm:w-80"
