@@ -1015,10 +1015,10 @@ const setToCustomShortcut = (item) => {
 
 watch(
   () => VtdRef.value,
-  () => {
+  (currentValue, oldValue) => {
     nextTick(() => {
       if (VtdRef.value) {
-        placement.value = useVisibleViewport(VtdRef.value)
+        placement.value = useVisibleViewport(currentValue, oldValue)
       }
     })
   }
@@ -1253,6 +1253,7 @@ provide('setToCustomShortcut', setToCustomShortcut)
         <div
           ref="VtdRef"
           class="absolute z-50 top-full sm:mt-2.5"
+          style="z-index: 99999999!important;"
           :class="placement ? 'left-0 right-auto' : 'left-auto right-0'"
         >
           <div

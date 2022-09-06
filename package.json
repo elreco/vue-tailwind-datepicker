@@ -1,7 +1,7 @@
 {
   "name": "vue-tailwind-datepicker",
   "description": "A date range picker component for Vue.js 3 using Tailwind CSS",
-  "version": "0.0.13",
+  "version": "0.0.1",
   "files": [
     "dist"
   ],
@@ -45,7 +45,8 @@
     "lint:fix": "eslint src --ext=.ts,.js,.vue --fix",
     "format": "prettier src --ignore-unknown --check",
     "format:fix": "prettier src --ignore-unknown --write",
-    "locale": "node exec.js && rm -rf ./dist/locale && cp -r ./src/locale ./dist/locale"
+    "locale": "node exec.js && rm -rf ./dist/locale && cp -r ./src/locale ./dist/locale",
+    "publish": "npm run build && npm publish"
   },
   "devDependencies": {
     "@headlessui/vue": "^1.6.7",
@@ -62,6 +63,7 @@
     "prettier": "^2.7.1",
     "tailwindcss": "^3.1.8",
     "vite": "^3.1.0",
+    "vitepress": "^1.0.0-alpha.13",
     "vue": "^3.2.38"
   },
   "peerDependencies": {

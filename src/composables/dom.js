@@ -1,8 +1,8 @@
 export default function useDom() {
   const useVisibleViewport = (el) => {
-    const { right } = el.getBoundingClientRect()
+    const { right, x, left } = el.getBoundingClientRect()
     const vWidth = window.innerWidth || document.documentElement.clientWidth
-    return right < vWidth
+    return Math.abs(right) + Math.abs(x) + Math.abs(left) < vWidth
   }
 
   return {
