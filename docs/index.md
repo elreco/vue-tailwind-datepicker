@@ -13,7 +13,7 @@ hero:
       link: /installation
     - theme: alt
       text: View on GitHub
-      link: https://github.com/heypongo/pongo-components-vue
+      link: https://github.com/elreco/vue-tailwind-datepicker
 features:
   - icon: ⚡️
     title: Vite, The DX that can't be beat
