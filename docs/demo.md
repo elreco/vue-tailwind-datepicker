@@ -9,7 +9,7 @@
 # Demo
 
 ::: tip
-You can also test it with [the playground](https://stackblitz.com/edit/vue-58nly1?file=src/components/Playground.vue)!
+You can also test it with [the playground](https://stackblitz.com/edit/vuepic-vue-datepicker-pkdbxu?file=src/components/Playground.vue)!
 :::
 
 <DemoLayout>

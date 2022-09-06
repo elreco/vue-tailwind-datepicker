@@ -14,6 +14,9 @@ hero:
     - theme: alt
       text: View on GitHub
       link: https://github.com/elreco/vue-tailwind-datepicker
+    - theme: alt
+      text: Playground
+      link: https://stackblitz.com/edit/vuepic-vue-datepicker-pkdbxu?file=src/components/Playground.vue
 features:
   - icon: ⚡️
     title: Powerful
