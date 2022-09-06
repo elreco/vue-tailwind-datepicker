@@ -14,7 +14,7 @@ module.exports = {
         lime: colors.lime,
         orange: colors.orange,
         "light-blue": colors.sky,
-        "vtd-primary": colors.orange,
+        "vtd-primary": colors.sky,
         "vtd-secondary": colors.coolGray,
       },
       fontFamily: {
