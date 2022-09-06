@@ -1,10 +1,6 @@
-
-
----
-
 ## Documentation
 
-
+Go to [full documentation](https://vue-tailwind-datepicker.com)
 
 ## Simple Usage
 
@@ -56,6 +52,7 @@ All notable changes to this project will be documented in this file, [Read](CHAN
 The [MIT](LICENSE) License. Please [see](http://opensource.org/licenses/MIT) for more information.
 
 ## Thanks to
+- [kenhyuwa](https://github.com/kenhyuwa)
 - [Vue](https://v3.vuejs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [day.js](https://day.js.org/)
