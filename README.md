@@ -45,6 +45,14 @@ export default {
 
 ## Theming options
 
+**Light Mode**
+
+![Light Mode](https://github.com/elreco/vue-tailwind-datepicker/blob/main/docs/light.png?raw=true)
+
+**Dark Mode**
+
+![Dark Mode](https://github.com/elreco/vue-tailwind-datepicker/blob/main/docs/dark.png?raw=true)
+
 ## Changelog
 All notable changes to this project will be documented in this file, [Read](CHANGELOG.md).
 

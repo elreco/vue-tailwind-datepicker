@@ -55,8 +55,7 @@ export default {
     ],
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Get Started', link: '/installation' },
-      { text: 'Components', link: '/components/album' }
+      { text: 'Get Started', link: '/installation' }
     ]
   }
 }

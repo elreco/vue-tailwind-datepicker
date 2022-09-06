@@ -1,8 +1,8 @@
 <template>
-  <div class="p-10 bg-sky-50 min-h-screen">
+  <div class="dark p-10 bg-sky-50 min-h-screen">
     <div class="w-1/4">
       <VueTailwindDatePicker
-        inputClasses="block w-full shadow-sm sm:text-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md"
+        inputClasses="block w-full shadow-sm bg-slate-800 text-white sm:text-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md"
         v-model="dateValue"
       ></VueTailwindDatePicker>
     </div>
