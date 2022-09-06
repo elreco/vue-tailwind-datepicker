@@ -1,7 +1,7 @@
 # Vue Tailwind Datepicker
 
 <p align="center">
-    <a href="https://www.vue-tailwind-datepicker.com" target="_blank">
+    <a href="https://vue-tailwind-datepicker.com" target="_blank">
       <img alt="Vue Tailwind Datepicker" width="100" style="border-radius: 100%;" src="https://github.com/elreco/vue-tailwind-datepicker/blob/main/docs/logo.png?raw=true">
     </a><br><br>
     A Datepicker component for Vue 3 using Tailwind and dayjs.
@@ -9,7 +9,7 @@
 
 ## Documentation
 
-Go to [full documentation](https://www.vue-tailwind-datepicker.com)
+Go to [full documentation](https://vue-tailwind-datepicker.com)
 
 ## Simple Usage
 
