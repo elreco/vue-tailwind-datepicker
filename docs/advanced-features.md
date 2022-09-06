@@ -165,7 +165,7 @@ const customShortcuts = () => {
 
 ## Localization (i18n)
 
-Litepie Datepicker extend to day.js<br>
+Vue Tailwind Datepicker extend to day.js<br>
 [List of supported locales](https://github.com/iamkun/dayjs/tree/dev/src/locale)
 
 <DemoLayout>

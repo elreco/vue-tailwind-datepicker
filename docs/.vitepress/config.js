@@ -1,3 +1,5 @@
+import { version } from '../../package.json'
+
 export default {
   title: 'Vue Tailwind Datepicker',
   description: 'Components, composables and configurations for Vue 3',
@@ -28,7 +30,16 @@ export default {
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Get Started', link: '/installation' },
-      { text: 'Demo', link: '/demo' }
+      { text: 'Demo', link: '/demo' },
+      {
+        text: version,
+        items: [
+          {
+            text: 'Changelog',
+            link: 'https://github.com/elreco/vue-tailwind-datepicker/releases'
+          },
+        ]
+      }
     ]
   }
 }

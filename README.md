@@ -16,40 +16,22 @@ Go to [full documentation](https://vue-tailwind-datepicker.com)
 How it works,
 
 ```vue
+<script setup>
+  import { ref } from 'vue'
+  import VueTailwindDatepicker from 'vue-tailwind-datepicker'
+
+  const dateValue = ref([])
+  const formatter = ref({
+    date: 'DD MMM YYYY',
+    month: 'MMM'
+  })
+</script>
+
 <template>
   <div>
-    <vue-tailwind-datepicker
-      ref="myRef"
-      :formatter="formatter"
-      v-model="dateValue"
-    />
+    <vue-tailwind-datepicker :formatter="formatter" v-model="dateValue" />
   </div>
 </template>
-
-<script>
-import { ref } from 'vue';
-import VueTailwindDatepicker from 'vue-tailwind-datepicker';
-
-export default {
-  components: {
-    VueTailwindDatepicker
-  },
-  setup() {
-    const myRef = ref(null);
-    const dateValue = ref([]);
-    const formatter = ref({
-      date: 'DD MMM YYYY',
-      month: 'MMM'
-    });
-
-    return {
-      myRef,
-      dateValue,
-      formatter
-    };
-  }
-};
-</script>
 ```
 
 ## Theming options
@@ -63,7 +45,7 @@ export default {
 ![Dark Mode](https://github.com/elreco/vue-tailwind-datepicker/blob/main/docs/dark.png?raw=true)
 
 ## Changelog
-All notable changes to this project will be documented in this file, [Read](CHANGELOG.md).
+All notable changes to this project will be documented in the [Releases Page](https://github.com/elreco/vue-tailwind-datepicker/releases).
 
 ## License
 The [MIT](LICENSE) License. Please [see](http://opensource.org/licenses/MIT) for more information.

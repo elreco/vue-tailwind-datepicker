@@ -7,13 +7,13 @@
 ## Install via npm
 
 ```
-$ npm install -S litepie-datepicker 
+$ npm install vue-tailwind-datepicker 
 ```
 
 ## Install via yarn
 
 ```
-$ yarn add litepie-datepicker 
+$ yarn add vue-tailwind-datepicker 
 ```
 
 ## How it works

@@ -377,7 +377,7 @@ const dateValue = ref([])
 
 <template>
   <div class="flex">
-    <litepie-datepicker
+    <vue-tailwind-datepicker
       v-model="dateValue"
       v-slot="{ value, placeholder, clear }"
     >
@@ -415,7 +415,7 @@ const dateValue = ref([])
           </button>
         </div>
       </div>
-    </litepie-datepicker>
+    </vue-tailwind-datepicker>
   </div>
 </template>
 ```
