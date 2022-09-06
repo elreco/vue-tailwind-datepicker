@@ -16,12 +16,12 @@ hero:
       link: https://github.com/elreco/vue-tailwind-datepicker
 features:
   - icon: ⚡️
-    title: Vite, The DX that can't be beat
-    details: Lorem ipsum...
+    title: Powerful
+    details: A Vue 3 components which offers a great range of features.
   - icon: 🖖
-    title: Power of Vue meets Markdown
-    details: Lorem ipsum...
+    title: Customizable
+    details: Supports multiple modes such as range, single date, various pickers, shortcuts and many more.
   - icon: 🛠️
-    title: Simple and minimal, always
-    details: Lorem ipsum...
+    title: Tailwind CSS
+    details: Get a modern datepicker component using Tailwind CSS.
 ---

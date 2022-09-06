@@ -4,7 +4,11 @@ const colors = require("tailwindcss/colors");
 const { fontFamily } = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+  content: [
+    "./index.html", 
+    "./src/**/*.{vue,js,ts,jsx,tsx}", 
+    "./docs/**/*.{js,ts,vue,md}"
+  ],
   darkMode: 'class',
   theme: {
     extend: {
@@ -15,7 +19,7 @@ module.exports = {
         orange: colors.orange,
         "light-blue": colors.sky,
         "vtd-primary": colors.sky,
-        "vtd-secondary": colors.coolGray,
+        "vtd-secondary": colors.gray,
       },
       fontFamily: {
         sans: ["Inter", ...fontFamily.sans],
