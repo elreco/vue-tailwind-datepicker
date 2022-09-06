@@ -1,6 +1,6 @@
 export default {
   title: 'Vue Tailwind Datepicker',
-  base: '/',
+  base: '/vue-tailwind-datepicker/',
   description: 'Components, composables and configurations for Vue 3',
   themeConfig: {
     logo: 'https://github.com/elreco/vue-tailwind-datepicker/blob/main/docs/logo.png?raw=true',

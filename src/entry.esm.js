@@ -1,5 +1,5 @@
 // Import vue component
-import component from '@/VueTailwindDatePicker.vue'
+import component from './VueTailwindDatePicker.vue'
 
 // Default export is installable instance of component.
 // IIFE injects install function into component, allowing component

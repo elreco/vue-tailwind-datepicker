@@ -1,5 +1,5 @@
 // iife/cjs usage extends esm default export - so import it all
-import component, * as namedExports from '@/entry.esm'
+import component, * as namedExports from './entry.esm'
 
 // Attach named exports directly to component. IIFE/CJS will
 // only expose one global var, with named exports exposed as properties of
