@@ -3,9 +3,9 @@ export default function useDom() {
     if (el) {
       const { right } = el.getBoundingClientRect()
       const vWidth = window.innerWidth || document.documentElement.clientWidth
-      console.log('right', right)
-      console.log('vWidth', vWidth)
       return right > vWidth
+    } else {
+      return false
     }
   }
 
