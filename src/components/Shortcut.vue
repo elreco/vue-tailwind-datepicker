@@ -3,6 +3,7 @@ import { inject } from 'vue'
 
 const props = defineProps({
   shortcuts: [Boolean, Function],
+  close: Function,
   asRange: Boolean,
   asSingle: Boolean,
   i18n: Object
@@ -37,7 +38,7 @@ const withShortcut = () => {
         <a
           href="#"
           class="vtd-shortcuts block text-sm lg:text-xs px-2 py-2 sm:leading-4 whitespace-nowrap font-medium rounded text-vtd-primary-600 hover:text-vtd-primary-700 transition-colors hover:bg-vtd-secondary-100 focus:bg-vtd-secondary-100 focus:text-vtd-primary-600 dark:hover:bg-vtd-secondary-700 dark:hover:text-vtd-primary-300 dark:text-vtd-primary-400 dark:focus:bg-vtd-secondary-700 dark:focus:text-vtd-primary-300"
-          @click.prevent="setToCustomShortcut(item)"
+          @click.prevent="setToCustomShortcut(item, close)"
           v-text="item.label"
         >
         </a>
@@ -51,7 +52,7 @@ const withShortcut = () => {
         <a
           href="#"
           class="vtd-shortcuts block text-sm lg:text-xs px-2 py-2 sm:leading-4 whitespace-nowrap font-medium rounded text-vtd-primary-600 hover:text-vtd-primary-700 transition-colors hover:bg-vtd-secondary-100 focus:bg-vtd-secondary-100 focus:text-vtd-primary-600 dark:hover:bg-vtd-secondary-700 dark:hover:text-vtd-primary-300 dark:text-vtd-primary-400 dark:focus:bg-vtd-secondary-700 dark:focus:text-vtd-primary-300"
-          @click.prevent="setToToday"
+          @click.prevent="setToToday(close)"
         >
           {{ props.i18n.today }}
         </a>
@@ -60,7 +61,7 @@ const withShortcut = () => {
         <a
           href="#"
           class="vtd-shortcuts block text-sm lg:text-xs px-2 py-2 sm:leading-4 whitespace-nowrap font-medium rounded text-vtd-primary-600 hover:text-vtd-primary-700 transition-colors hover:bg-vtd-secondary-100 focus:bg-vtd-secondary-100 focus:text-vtd-primary-600 dark:hover:bg-vtd-secondary-700 dark:hover:text-vtd-primary-300 dark:text-vtd-primary-400 dark:focus:bg-vtd-secondary-700 dark:focus:text-vtd-primary-300"
-          @click.prevent="setToYesterday"
+          @click.prevent="setToYesterday(close)"
         >
           {{ props.i18n.yesterday }}
         </a>
@@ -69,7 +70,7 @@ const withShortcut = () => {
         <a
           href="#"
           class="vtd-shortcuts block text-sm lg:text-xs px-2 py-2 sm:leading-4 whitespace-nowrap font-medium rounded text-vtd-primary-600 hover:text-vtd-primary-700 transition-colors hover:bg-vtd-secondary-100 focus:bg-vtd-secondary-100 focus:text-vtd-primary-600 dark:hover:bg-vtd-secondary-700 dark:hover:text-vtd-primary-300 dark:text-vtd-primary-400 dark:focus:bg-vtd-secondary-700 dark:focus:text-vtd-primary-300"
-          @click.prevent="setToLastDay(7)"
+          @click.prevent="setToLastDay(7, close)"
         >
           {{ props.i18n.past(7) }}
         </a>
@@ -78,7 +79,7 @@ const withShortcut = () => {
         <a
           href="#"
           class="vtd-shortcuts block text-sm lg:text-xs px-2 py-2 sm:leading-4 whitespace-nowrap font-medium rounded text-vtd-primary-600 hover:text-vtd-primary-700 transition-colors hover:bg-vtd-secondary-100 focus:bg-vtd-secondary-100 focus:text-vtd-primary-600 dark:hover:bg-vtd-secondary-700 dark:hover:text-vtd-primary-300 dark:text-vtd-primary-400 dark:focus:bg-vtd-secondary-700 dark:focus:text-vtd-primary-300"
-          @click.prevent="setToLastDay(30)"
+          @click.prevent="setToLastDay(30, close)"
         >
           {{ props.i18n.past(30) }}
         </a>
@@ -87,7 +88,7 @@ const withShortcut = () => {
         <a
           href="#"
           class="vtd-shortcuts block text-sm lg:text-xs px-2 py-2 sm:leading-4 whitespace-nowrap font-medium rounded text-vtd-primary-600 hover:text-vtd-primary-700 transition-colors hover:bg-vtd-secondary-100 focus:bg-vtd-secondary-100 focus:text-vtd-primary-600 dark:hover:bg-vtd-secondary-700 dark:hover:text-vtd-primary-300 dark:text-vtd-primary-400 dark:focus:bg-vtd-secondary-700 dark:focus:text-vtd-primary-300"
-          @click.prevent="setToThisMonth"
+          @click.prevent="setToThisMonth(close)"
         >
           {{ props.i18n.currentMonth }}
         </a>
@@ -96,7 +97,7 @@ const withShortcut = () => {
         <a
           href="#"
           class="vtd-shortcuts block text-sm lg:text-xs px-2 py-2 sm:leading-4 whitespace-nowrap font-medium rounded text-vtd-primary-600 hover:text-vtd-primary-700 transition-colors hover:bg-vtd-secondary-100 focus:bg-vtd-secondary-100 focus:text-vtd-primary-600 dark:hover:bg-vtd-secondary-700 dark:hover:text-vtd-primary-300 dark:text-vtd-primary-400 dark:focus:bg-vtd-secondary-700 dark:focus:text-vtd-primary-300"
-          @click.prevent="setToLastMonth"
+          @click.prevent="setToLastMonth(close)"
         >
           {{ props.i18n.pastMonth }}
         </a>
