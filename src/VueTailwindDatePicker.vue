@@ -1261,7 +1261,7 @@ provide('setToCustomShortcut', setToCustomShortcut)
       leave-from-class="opacity-100 translate-y-0"
       leave-to-class="opacity-0 translate-y-3"
     >
-      <PopoverPanel v-slot="{ close }">
+      <PopoverPanel as="div" class="relative z-50" v-slot="{ close }">
         <div class="absolute z-50 top-full sm:mt-2.5" :class="getAbsoluteParentClass(open)">
           <div
             ref="VtdRef"
