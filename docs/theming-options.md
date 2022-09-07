@@ -1,6 +1,6 @@
 # Theming options
 
-Theme of Vue Tailwind Datepicker is customable, so you can customize your theme with any color you want, via Tailwind CSS configuration. And all will work well.
+Theme of Vue Tailwind Datepicker is customizable, so you can customize your theme with any color you want, via Tailwind CSS configuration. And all will work well.
 
 ```js
 const colors = require("tailwindcss/colors")
