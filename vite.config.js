@@ -9,7 +9,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/entry.js'),
       name: 'VueTailwindDatepicker',
-      fileName: (format) => `vue-tailwind-datepicker.${format}.js`,
+      fileName: `vue-tailwind-datepicker`
     },
     rollupOptions: {
       external: ['vue'],
@@ -22,5 +22,8 @@ export default defineConfig({
       },
     },
   },
-  plugins: [vue(),cssInjectedByJsPlugin()],
+  plugins: [
+    vue(),
+    cssInjectedByJsPlugin()
+  ],
 });

@@ -1,16 +1,15 @@
 {
   "name": "vue-tailwind-datepicker",
   "description": "A date range picker component for Vue.js 3 using Tailwind CSS",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "files": [
-    "dist",
-    "dist/locale"
+    "dist"
   ],
   "main": "./dist/vue-tailwind-datepicker.umd.js",
-  "module": "./dist/vue-tailwind-datepicker.es.js",
+  "module": "./dist/vue-tailwind-datepicker.mjs",
   "exports": {
     ".": {
-      "import": "./dist/vue-tailwind-datepicker.es.js",
+      "import": "./dist/vue-tailwind-datepicker.mjs",
       "require": "./dist/vue-tailwind-datepicker.umd.js"
     }
   },

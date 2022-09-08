@@ -1045,8 +1045,9 @@ watchEffect(() => {
 watchEffect(() => {
   const locale = props.i18n
   nextTick(() => {
-    import(`./locale/${locale}.js`)
-      .then(() => {
+    const modules = import.meta.glob(`./locale/*.js`)
+    for (const path in modules) {
+      modules[path]().then(() => {
         dayjs.locale(locale)
         let s, e
         if (asRange()) {
@@ -1160,11 +1161,12 @@ watchEffect(() => {
         datepicker.value.weeks = dayjs.weekdaysShort()
         datepicker.value.months = props.formatter.month === 'MMM' ? dayjs.monthsShort() : dayjs.months()
       })
-      .catch(() => {
+      .catch((e) => {
         console.warn(
-          `[Vue Tailwind Datepicker]: List of supported locales https://github.com/iamkun/dayjs/tree/dev/src/locale`
+          e.message
         )
       })
+    }
   })
 })
 
