@@ -1,7 +1,8 @@
 # Installation
 
 ::: warning
-⚠️ Vue Tailwind Datepicker uses Tailwind CSS & Day.js under the hood, **you must install those packages** before.
+⚠️ Vue Tailwind Datepicker uses Tailwind CSS (with the @tailwindcss/forms plugin) & Day.js under the hood, **you must install those packages** before.
+You can follow [this tutorial](https://dev.to/elreco/add-a-tailwind-datepicker-to-your-vue-3-application-57j2).
 :::
 
 ## Install via npm
