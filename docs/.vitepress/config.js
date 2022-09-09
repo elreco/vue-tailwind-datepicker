@@ -8,7 +8,7 @@ export default {
     socialLinks: [{ icon: 'github', link: 'https://github.com/elreco/vue-tailwind-datepicker' }],
     footer: {
       message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2022'
+      copyright: 'Copyright © 2022 Alexandre Le Corre'
     },
     sidebar: [
       {
