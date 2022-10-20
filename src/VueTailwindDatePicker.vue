@@ -56,6 +56,10 @@ const props = defineProps({
     type: Boolean,
     default: true
   },
+  disableDate: {
+    type: [Boolean, Array, Function],
+    default: false
+  },
   autoApply: {
     type: Boolean,
     default: true
