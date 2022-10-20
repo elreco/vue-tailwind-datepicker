@@ -3,6 +3,7 @@
     <div class="w-1/4 absolute right-32">
       <VueTailwindDatePicker
         i18n="fr"
+        :disable-date="dDate"
         inputClasses="rounded-md bg-red-300 dark:bg-red-300 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         v-model="dateValue"
       ></VueTailwindDatePicker>
@@ -14,4 +15,7 @@
 import VueTailwindDatePicker from './VueTailwindDatePicker.vue'
 import { ref } from 'vue'
 const dateValue = ref('')
+const dDate = (date) => {
+  return date < new Date() || date > new Date(2023, 0, 8);
+}
 </script>
