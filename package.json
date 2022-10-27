@@ -47,7 +47,6 @@
     "format": "prettier src --ignore-unknown --check",
     "format:fix": "prettier src --ignore-unknown --write",
     "locale": "node exec.js && rm -rf ./dist/locale && cp -r ./src/locale ./dist/locale",
-    "publish": "npm run build && npm publish",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs"
