@@ -7,6 +7,7 @@
   ],
   "main": "./dist/vue-tailwind-datepicker.umd.js",
   "module": "./dist/vue-tailwind-datepicker.mjs",
+  "types": "./src/types.d.ts",
   "exports": {
     ".": {
       "import": "./dist/vue-tailwind-datepicker.mjs",
