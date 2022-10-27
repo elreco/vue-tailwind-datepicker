@@ -1,7 +1,5 @@
-
 import {ComponentOptionsMixin, ComputedOptions, DefineComponent, MethodOptions} from "vue";
 
-/* eslint-disable */
 declare namespace VueTailwindDatepicker {
     interface Formatter {
         date?: string;

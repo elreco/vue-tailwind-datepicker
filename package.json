@@ -1,13 +1,13 @@
 {
   "name": "vue-tailwind-datepicker",
   "description": "A date range picker component for Vue.js 3 using Tailwind CSS",
-  "version": "1.0.10",
+  "version": "1.1.0",
   "files": [
     "dist"
   ],
   "main": "./dist/vue-tailwind-datepicker.umd.js",
   "module": "./dist/vue-tailwind-datepicker.mjs",
-  "types": "./src/types.d.ts",
+  "types": "./dist/types.d.ts",
   "exports": {
     ".": {
       "import": "./dist/vue-tailwind-datepicker.mjs",
@@ -42,8 +42,8 @@
     "dev": "node exec.js && vite",
     "build": "vite build && npm run locale",
     "preview": "vite preview --port 4173",
-    "lint": "eslint src --ext=.ts,.js,.vue",
-    "lint:fix": "eslint src --ext=.ts,.js,.vue --fix",
+    "lint": "eslint src --ext=.js,.vue",
+    "lint:fix": "eslint src --ext=.js,.vue --fix",
     "format": "prettier src --ignore-unknown --check",
     "format:fix": "prettier src --ignore-unknown --write",
     "locale": "node exec.js && rm -rf ./dist/locale && cp -r ./src/locale ./dist/locale",
@@ -69,6 +69,7 @@
     "prettier": "^2.7.1",
     "tailwindcss": "^3.1.8",
     "vite": "^3.1.0",
+    "vite-plugin-dts": "^1.6.6",
     "vitepress": "^1.0.0-alpha.13",
     "vue": "^3.2.38"
   },
