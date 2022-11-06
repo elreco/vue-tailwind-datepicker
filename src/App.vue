@@ -13,8 +13,14 @@
 
 <script setup>
 import VueTailwindDatePicker from './VueTailwindDatePicker.vue'
+import dayjs from 'dayjs'
 import { ref } from 'vue'
-const dateValue = ref('')
+console.log(dayjs().format('YYYY-MM-DD HH:mm:ss'))
+const dateValue = ref({
+  startDate: "2022-11-06 18:08:49",
+  endDate: dayjs().format('YYYY-MM-DD HH:mm:ss')
+})
+
 const dDate = (date) => {
   return date < new Date() || date > new Date(2023, 0, 8);
 }
