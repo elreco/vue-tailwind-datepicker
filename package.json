@@ -1,7 +1,7 @@
 {
   "name": "vue-tailwind-datepicker",
   "description": "A date range picker component for Vue.js 3 using Tailwind CSS",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "files": [
     "dist"
   ],
@@ -40,7 +40,7 @@
   "homepage": "https://vue-tailwind-datepicker.com",
   "scripts": {
     "dev": "node exec.js && vite",
-    "build": "vite build && npm run locale",
+    "build": "vite build && npm run locale && cp ./src/types.d.ts ./dist/types.d.ts",
     "preview": "vite preview --port 4173",
     "lint": "eslint src --ext=.js,.vue",
     "lint:fix": "eslint src --ext=.js,.vue --fix",

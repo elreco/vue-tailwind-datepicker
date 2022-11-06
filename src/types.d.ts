@@ -26,15 +26,6 @@ declare namespace VueTailwindDatepicker {
     }
 }
 
-interface DateModelObject
-    { start: Date | string; end: Date | string }
-
-
-interface DateModelObjectAlternative {
-    startDate: Date | string;
-    endDate: Date | string
-}
-
 interface DatepickerProps {
     overlay?: boolean;
     asSingle?: boolean;
@@ -45,10 +36,13 @@ interface DatepickerProps {
     disableInRange?: boolean;
     disableDate?: false | ((date: Date) => boolean);
     autoApply?: boolean;
-    shortcuts: boolean | (() => boolean);
+    shortcuts?: boolean | (() => boolean);
     separator?: string;
     formatter?: VueTailwindDatepicker.Formatter;
-    modelValue: [Date, Date] | DateModelObject | DateModelObjectAlternative | string;
+    modelValue: [Date, Date] | { start: Date | string; end: Date | string } | {
+        startDate: Date | string;
+        endDate: Date | string
+    } | string;
     startFrom?: Date | string;
     options?: VueTailwindDatepicker.Options;
 }

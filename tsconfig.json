@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
-    "allowJs": true
+    "outDir": "dist"
   },
   "declaration": true
 }
