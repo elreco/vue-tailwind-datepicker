@@ -161,9 +161,10 @@ const calendar = computed(() => {
             v.hovered = () => {
               if (!asRange()) return false
               if (hoverValue.value.length > 1) {
+                console.log(previous.month() === v.month())
                 return (
                   (v.isBetween(hoverValue.value[0], hoverValue.value[1], 'date', '()') ||
-                    v.isBetween(hoverValue.value[1], hoverValue.value[0], 'date', '()')) &&
+                    v.isBetween(hoverValue.value[1], hoverValue.value[0], 'date', '(]')) &&
                   previous.month() === v.month()
                 )
               }
@@ -263,7 +264,7 @@ const calendar = computed(() => {
               if (hoverValue.value.length > 1) {
                 return (
                   (v.isBetween(hoverValue.value[0], hoverValue.value[1], 'date', '()') ||
-                    v.isBetween(hoverValue.value[1], hoverValue.value[0], 'date', '()')) &&
+                    v.isBetween(hoverValue.value[1], hoverValue.value[0], 'date', '(]')) &&
                   next.month() === v.month()
                 )
               }
