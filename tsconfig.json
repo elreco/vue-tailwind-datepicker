@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "dist",
+    "allowJs": true,
     "skipLibCheck": true
   },
   "declaration": true
