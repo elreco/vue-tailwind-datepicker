@@ -347,6 +347,16 @@ const calendar = computed(() => {
   }
 })
 
+const isFirstMonday = () => {
+  return dayjs().localeData().firstDayOfWeek()
+}
+
+const shuffleWeekdays = (days) => {
+  const daysArr = [...days]
+  const lastDay = daysArr.shift()
+  return [...daysArr, lastDay]
+}
+
 const useArray = () => Array.isArray(props.modelValue)
 
 const useObject = () => typeof props.modelValue === 'object'
@@ -1046,6 +1056,7 @@ watchEffect(() => {
   }
 })
 
+
 watchEffect(() => {
   const locale = props.i18n
   nextTick(() => {
@@ -1162,7 +1173,7 @@ watchEffect(() => {
             datepicker.value.year.next = datepicker.value.next.year()
           }
         }
-        datepicker.value.weeks = dayjs.weekdaysShort()
+        datepicker.value.weeks = isFirstMonday() ? shuffleWeekdays(dayjs.weekdaysShort()) : dayjs.weekdaysShort()
         datepicker.value.months = props.formatter.month === 'MMM' ? dayjs.monthsShort() : dayjs.months()
       })
       .catch((e) => {
