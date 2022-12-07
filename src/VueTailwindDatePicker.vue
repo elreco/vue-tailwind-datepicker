@@ -515,7 +515,9 @@ const setDate = (date, asNext, close) => {
             )
           )
         }
-        close()
+        if (close) {
+          close()
+        }
         applyValue.value = []
         if (!dayjs(s, props.formatter.date, true).isSame(dayjs(e, props.formatter.date, true), 'month')) {
           datepicker.value.previous = dayjs(s, props.formatter.date, true)
