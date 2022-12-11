@@ -15,6 +15,9 @@
   const dateValue10 = ref([])
   const dateValue11 = ref([])
   const dateValue12 = ref([])
+  const dateValue13 = ref([])
+  const dateValue14 = ref([])
+  const dateValue15 = ref([])
   const formatter = ref({
     date: 'DD MMM YYYY',
     month: 'MMM'
@@ -48,7 +51,7 @@ The datepicker if you don't set any `props`.
 
 <DemoLayout>
   <VueTailwindDatePicker
-    v-model="dateValue"
+    v-model="dateValue1"
   ></VueTailwindDatePicker>
 </DemoLayout>
 
@@ -92,7 +95,7 @@ You can apply apply your own input classes using Tailwind CSS.
 <DemoLayout>
   <VueTailwindDatePicker
     input-classes="text-sm bg-red-100 border-red-200 rounded-sm text-slate-800 font-medium dark:bg-red-800 dark:text-slate-800 border border-solid dark:border-red-200"
-    v-model="dateValue13"
+    v-model="dateValue15"
   ></VueTailwindDatePicker>
 </DemoLayout>
 
@@ -193,6 +196,29 @@ const dateValue = ref([])
 
 <template>
     <vue-tailwind-datepicker separator=" to " v-model="dateValue" />
+</template>
+```
+
+## Without Input
+
+Display Datepicker only without input
+
+<DemoLayout>
+  <VueTailwindDatePicker
+    :no-input="true"
+    :as-single="true"
+    v-model="dateValue13"
+  ></VueTailwindDatePicker>
+</DemoLayout>
+
+```vue
+<script setup>
+import { ref } from 'vue'
+const dateValue = ref([])
+</script>
+
+<template>
+    <vue-tailwind-datepicker no-input v-model="dateValue" />
 </template>
 ```
 
@@ -303,7 +329,7 @@ Disable some dates in range.
 <DemoLayout>
   <VueTailwindDatePicker
     :disable-date="dDate"
-    v-model="dateValue10"
+    v-model="dateValue14"
   />
 </DemoLayout>
 

@@ -1,7 +1,8 @@
 <template>
-  <div class="dark p-10 flex bg-sky-50 min-h-screen">
-    <div class="w-1/4 absolute right-32">
+  <div class=" p-10  bg-sky-50 min-h-screen">
+    <div>
       <VueTailwindDatePicker
+        :no-input="true"
         i18n="en"
         :disable-date="dDate"
         inputClasses="rounded-md bg-red-300 dark:bg-red-300 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
