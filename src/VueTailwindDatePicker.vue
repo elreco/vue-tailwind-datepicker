@@ -1500,18 +1500,6 @@ provide('setToCustomShortcut', setToCustomShortcut)
           </div>
         </div>
       </div>
-      <div v-else class="sm:hidden">
-        <div class="mt-2 mx-2 py-1.5 border-t border-black/[.1] dark:border-vtd-secondary-700/[1]">
-          <div class="mt-1.5 sm:flex sm:flex-row-reverse">
-            <button
-              type="button"
-              @click="close()"
-              class="away-cancel-picker w-full transition ease-out duration-300 inline-flex justify-center rounded-md border border-vtd-secondary-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-vtd-secondary-700 hover:bg-vtd-secondary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-vtd-primary-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm dark:ring-offset-vtd-secondary-800"
-              v-text="props.options.footer.cancel"
-            ></button>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
