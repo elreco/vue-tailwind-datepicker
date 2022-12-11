@@ -1413,7 +1413,7 @@ provide('setToCustomShortcut', setToCustomShortcut)
     </transition>
   </Popover>
   <div v-else-if="displayDatepicker" class="flex">
-    <div class="bg-white sm:rounded-lg sm:shadow-sm border-0 sm:border border-black/[.1] px-3 py-3 sm:px-4 sm:py-4 dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700/[1]">
+    <div class="bg-white rounded-lg shadow-sm border-0 border border-black/[.1] px-3 py-3 sm:px-4 sm:py-4 dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700/[1]">
       <div class="flex flex-wrap lg:flex-nowrap">
         <vtd-shortcut
           v-if="props.shortcuts"
