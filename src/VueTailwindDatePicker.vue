@@ -654,7 +654,9 @@ const applyDate = (close) => {
       emit('update:modelValue', pickerValue.value)
     }
   }
-  close()
+  if (close) {
+    close()
+  }
 }
 
 const atMouseOver = (date) => {
@@ -1421,7 +1423,6 @@ provide('setToCustomShortcut', setToCustomShortcut)
           :as-range="asRange()"
           :as-single="props.asSingle"
           :i18n="props.options.shortcuts"
-          :close="close"
         />
         <div class="relative flex flex-wrap sm:flex-nowrap p-1">
           <div
@@ -1454,7 +1455,7 @@ provide('setToCustomShortcut', setToCustomShortcut)
                   :calendar="calendar.previous"
                   :weeks="weeks"
                   :as-range="asRange()"
-                  @update:date="(date, asNext) => setDate(date, asNext, close)"
+                  @update:date="(date, asNext) => setDate(date, asNext)"
                 />
               </div>
             </div>
@@ -1480,7 +1481,7 @@ provide('setToCustomShortcut', setToCustomShortcut)
                   :calendar="calendar.next"
                   :weeks="weeks"
                   :as-range="asRange()"
-                  @update:date="(date, asNext) => setDate(date, asNext, close)"
+                  @update:date="(date, asNext) => setDate(date, asNext)"
                 />
               </div>
             </div>
@@ -1494,7 +1495,7 @@ provide('setToCustomShortcut', setToCustomShortcut)
               type="button"
               class="away-apply-picker w-full transition ease-out duration-300 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-vtd-primary-600 text-base font-medium text-white hover:bg-vtd-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-vtd-primary-500 sm:ml-3 sm:w-auto sm:text-sm dark:ring-offset-vtd-secondary-800 disabled:cursor-not-allowed"
               :disabled="props.asSingle ? applyValue.length < 1 : applyValue.length < 2"
-              @click="applyDate(close)"
+              @click="applyDate()"
               v-text="props.options.footer.apply"
             ></button>
           </div>
