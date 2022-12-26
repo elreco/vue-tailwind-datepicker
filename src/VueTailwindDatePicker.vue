@@ -1313,7 +1313,7 @@ provide('setToCustomShortcut', setToCustomShortcut)
                   :i18n="props.options.shortcuts"
                   :close="close"
                 />
-                <div class="relative flex flex-wrap sm:flex-nowrap p-1">
+                <div class="relative flex flex-wrap sm:flex-nowrap p-1 w-full">
                   <div
                     v-if="asRange() && !props.asSingle"
                     class="hidden h-full absolute inset-0 sm:flex justify-center items-center"
@@ -1424,7 +1424,7 @@ provide('setToCustomShortcut', setToCustomShortcut)
           :as-single="props.asSingle"
           :i18n="props.options.shortcuts"
         />
-        <div class="relative flex flex-wrap sm:flex-nowrap p-1">
+        <div class="relative flex flex-wrap sm:flex-nowrap p-1 w-full">
           <div
             v-if="asRange() && !props.asSingle"
             class="hidden h-full absolute inset-0 sm:flex justify-center items-center"
