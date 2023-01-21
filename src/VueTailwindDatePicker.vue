@@ -105,7 +105,17 @@ const props = defineProps({
     })
   }
 })
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits([
+  'update:modelValue',
+  'select:month',
+  'select:year',
+  'select:right:month',
+  'select:right:year',
+  'click:prev',
+  'click:next',
+  'click:right:prev',
+  'click:right:next',
+])
 const VtdRef = ref(null)
 const VtdInputRef = ref(null)
 const placement = ref(null)
@@ -188,12 +198,14 @@ const calendar = computed(() => {
       },
       onPrevious: () => {
         datepicker.value.previous = previous.subtract(1, 'month')
+        emit('click:prev', datepicker.value.previous)
       },
       onNext: () => {
         datepicker.value.previous = previous.add(1, 'month')
         if (previous.diff(next, 'month') === -1) {
           datepicker.value.next = next.add(1, 'month')
         }
+        emit('click:next', datepicker.value.previous)
       },
       onPreviousYear: () => {
         datepicker.value.year.previous = datepicker.value.year.previous - 12
@@ -211,6 +223,7 @@ const calendar = computed(() => {
         panel.previous.month = !panel.previous.month
         panel.previous.year = false
         panel.previous.calendar = !panel.previous.month
+        emit('select:month', datepicker.value.previous)
         nextTick(() => {
           if (
             datepicker.value.next.isSame(datepicker.value.previous, 'month') ||
@@ -231,6 +244,7 @@ const calendar = computed(() => {
           datepicker.value.previous = previous.year($event)
           panel.previous.year = !panel.previous.year
           panel.previous.calendar = !panel.previous.year
+          emit('select:year', datepicker.value.previous)
           nextTick(() => {
             if (
               datepicker.value.next.isSame(datepicker.value.previous, 'month') ||
@@ -291,9 +305,11 @@ const calendar = computed(() => {
         if (next.diff(previous, 'month') === 1) {
           datepicker.value.previous = previous.subtract(1, 'month')
         }
+        emit('click:right:prev', datepicker.value.next)
       },
       onNext: () => {
         datepicker.value.next = next.add(1, 'month')
+        emit('click:right:next', datepicker.value.next)
       },
       onPreviousYear: () => {
         datepicker.value.year.next = datepicker.value.year.next - 12
@@ -311,6 +327,7 @@ const calendar = computed(() => {
         panel.next.month = !panel.next.month
         panel.next.year = false
         panel.next.calendar = !panel.next.month
+        emit('select:right:month', datepicker.value.next)
         nextTick(() => {
           if (
             datepicker.value.previous.isSame(datepicker.value.next, 'month') ||
@@ -332,6 +349,7 @@ const calendar = computed(() => {
           panel.next.year = !panel.next.year
           panel.next.month = false
           panel.next.calendar = !panel.next.year
+          emit('select:right:year', datepicker.value.next)
           nextTick(() => {
             if (
               datepicker.value.previous.isSame(datepicker.value.next, 'month') ||
@@ -993,7 +1011,9 @@ const setToToday = (close) => {
   const e = dayjs().format(props.formatter.date)
 
   emitShortcut(s, e)
-  close()
+  if (close) {
+    close()
+  }
 }
 
 const setToYesterday = (close) => {
@@ -1001,7 +1021,9 @@ const setToYesterday = (close) => {
   const e = dayjs().subtract(1, 'day').format(props.formatter.date)
 
   emitShortcut(s, e)
-  close()
+  if (close) {
+    close()
+  }
 }
 
 const setToLastDay = (day, close) => {
@@ -1011,7 +1033,9 @@ const setToLastDay = (day, close) => {
   const e = dayjs().format(props.formatter.date)
 
   emitShortcut(s, e)
-  close()
+  if (close) {
+    close()
+  }
 }
 
 const setToThisMonth = (close) => {
@@ -1019,7 +1043,9 @@ const setToThisMonth = (close) => {
   const e = dayjs().date(dayjs().daysInMonth()).format(props.formatter.date)
 
   emitShortcut(s, e)
-  close()
+  if (close) {
+    close();
+  }
 }
 
 const setToLastMonth = (close) => {
@@ -1027,7 +1053,9 @@ const setToLastMonth = (close) => {
   const e = dayjs().date(0).format(props.formatter.date)
 
   emitShortcut(s, e)
-  close()
+  if (close) {
+    close()
+  }
 }
 
 const setToCustomShortcut = (item, close) => {

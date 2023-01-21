@@ -23,6 +23,7 @@ export default {
         items: [
           { text: 'Theming options', link: '/theming-options' },
           { text: 'Props', link: '/props' },
+          { text: 'Events', link: '/events' },
           { text: 'Advanced Features', link: '/advanced-features' },
         ]
       },
