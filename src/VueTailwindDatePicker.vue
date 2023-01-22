@@ -588,6 +588,11 @@ const setDate = (date, asNext, close) => {
   }
 }
 
+onBeforeMount(() => {
+  setDate(dayjs(props.modelValue[0]), false)
+  setDate(dayjs(props.modelValue[1]), false)
+})
+
 const applyDate = (close) => {
   if (applyValue.value.length < 1) return false
   let date
