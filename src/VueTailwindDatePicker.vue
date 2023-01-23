@@ -609,8 +609,10 @@ const setDate = (date, asNext, close) => {
 }
 
 onBeforeMount(() => {
-  setDate(dayjs(props.modelValue[0]), false)
-  setDate(dayjs(props.modelValue[1]), false)
+  if (props.modelValue[0] && props.modelValue[1]) {
+    setDate(dayjs(props.modelValue[0]), false)
+    setDate(dayjs(props.modelValue[1]), false)
+  }
 })
 
 const applyDate = (close) => {
@@ -1357,7 +1359,7 @@ provide('setToCustomShortcut', setToCustomShortcut)
                     <div class="h-full border-r border-black/[.1] dark:border-vtd-secondary-700/[1]"></div>
                   </div>
                   <div
-                    class="relative w-full sm:w-80"
+                    class="relative w-full md:w-1/2 lg:w-80"
                     :class="{
                       'mb-3 sm:mb-0 sm:mr-2': asRange() && !props.asSingle
                     }"
@@ -1388,7 +1390,7 @@ provide('setToCustomShortcut', setToCustomShortcut)
 
                   <div
                     v-if="asRange() && !props.asSingle"
-                    class="relative w-full sm:w-80 overflow-hidden mt-3 sm:mt-0 sm:ml-2"
+                    class="relative w-full md:w-1/2 lg:w-80 overflow-hidden mt-3 sm:mt-0 sm:ml-2"
                   >
                     <vtd-header as-prev-or-next :panel="panel.next" :calendar="calendar.next" />
                     <div class="px-0.5 sm:px-2">
@@ -1468,7 +1470,7 @@ provide('setToCustomShortcut', setToCustomShortcut)
             <div class="h-full border-r border-black/[.1] dark:border-vtd-secondary-700/[1]"></div>
           </div>
           <div
-            class="relative w-full sm:w-80"
+            class="relative w-full md:w-1/2 lg:w-80"
             :class="{
               'mb-3 sm:mb-0 sm:mr-2': asRange() && !props.asSingle
             }"
@@ -1499,7 +1501,7 @@ provide('setToCustomShortcut', setToCustomShortcut)
 
           <div
             v-if="asRange() && !props.asSingle"
-            class="relative w-full sm:w-80 overflow-hidden mt-3 sm:mt-0 sm:ml-2"
+            class="relative w-full md:w-1/2 lg:w-80 overflow-hidden mt-3 sm:mt-0 sm:ml-2"
           >
             <vtd-header as-prev-or-next :panel="panel.next" :calendar="calendar.next" />
             <div class="px-0.5 sm:px-2">
