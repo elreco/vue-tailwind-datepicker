@@ -13,7 +13,7 @@ import customParseFormat from 'dayjs/plugin/customParseFormat'
 import isToday from 'dayjs/plugin/isToday'
 import isBetween from 'dayjs/plugin/isBetween'
 import duration from 'dayjs/plugin/duration'
-import { ref, reactive, computed, provide, nextTick, isProxy, watchEffect, watch, unref } from 'vue'
+import { ref, reactive, computed, provide, nextTick, isProxy, watchEffect, watch, unref, onBeforeMount } from 'vue'
 import useDate from './composables/date'
 import useDom from './composables/dom'
 
@@ -596,7 +596,9 @@ const setDate = (date, asNext, close) => {
       } else {
         emit('update:modelValue', pickerValue.value)
       }
-      close()
+      if (close) {
+        close()
+      }
       applyValue.value = []
       force()
     } else {
@@ -1003,7 +1005,6 @@ const emitShortcut = (s, e) => {
         emit('update:modelValue', s)
       }
       pickerValue.value = s
-      close()
     } else {
       applyValue.value = [dayjs(s, props.formatter.date, true), dayjs(e, props.formatter.date, true)]
     }
@@ -1070,7 +1071,9 @@ const setToCustomShortcut = (item, close) => {
   e = dayjs(dd).format(props.formatter.date)
 
   emitShortcut(s, e)
-  close()
+  if (close) {
+    close()
+  }
 }
 
 watch(
