@@ -36,7 +36,7 @@ interface DatepickerProps {
     disableInRange?: boolean;
     disableDate?: false | ((date: Date) => boolean);
     autoApply?: boolean;
-    shortcuts?: boolean | (() => boolean);
+    shortcuts?: () => { label: string; atClick: () => Date[]; }[];
     separator?: string;
     formatter?: VueTailwindDatepicker.Formatter;
     modelValue: [Date, Date] | { start: Date | string; end: Date | string } | {
