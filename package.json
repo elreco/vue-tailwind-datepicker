@@ -58,6 +58,7 @@
     "@vitejs/plugin-vue": "^3.0.3",
     "autoprefixer": "^10.4.8",
     "dayjs": "^1.11.5",
+    "esbuild": "^0.17.4",
     "eslint": "^8.22.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-vue": "^9.3.0",
