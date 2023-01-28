@@ -1,7 +1,7 @@
 <template>
   <div class="vp-raw">
-    <div class="flex flex-col items-center justify-center">
-      <div class="w-full my-5">
+    <div class="tw-flex tw-flex-col tw-items-center tw-justify-center">
+      <div class="tw-w-full tw-my-5">
         <slot />
       </div>
     </div>

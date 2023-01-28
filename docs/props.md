@@ -352,30 +352,30 @@ const dDate = (date) => {
 Using slots.
 
 <DemoLayout>
-  <div class="flex">
+  <div class="tw-flex">
     <VueTailwindDatePicker
       v-model="dateValue11"
       v-slot="{ value, placeholder, clear }"
     >
-      <div class="flex">
-        <div class="flex-1">
+      <div class="tw-flex">
+        <div class="tw-flex-1">
           <button
             type="button"
-            class="block w-full bg-gray-50 text-gray-400 hover:text-gray-900 leading-6 py-3 sm:px-6 border border-gray-200 rounded-xl items-center justify-center space-x-2 sm:space-x-4 focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-gray-300 focus:outline-none transition ease-out duration-300"
+            class="tw-block tw-w-full tw-bg-gray-50 tw-text-gray-400 hover:tw-text-gray-900 tw-leading-6 tw-py-3 sm:tw-px-6 tw-border tw-border-gray-200 tw-rounded-xl tw-items-center tw-justify-center tw-space-x-2 sm:tw-space-x-4 focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-offset-white focus:tw-ring-gray-300 focus:tw-outline-none tw-transition tw-ease-out tw-duration-300"
           >
-            <span class="text-gray-900">
+            <span class="tw-text-gray-900">
               {{ value || placeholder }}
             </span>
           </button>
         </div>
-        <div class="flex-shrink-0">
+        <div class="tw-flex-shrink-0">
           <button
             type="button"
-            class="ml-4 block px-3 flex-none bg-indigo-50 text-indigo-400 hover:text-indigo-900 leading-6 py-3 sm:px-6 border border-indigo-200 rounded-xl items-center justify-center space-x-2 sm:space-x-4 focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-indigo-300 focus:outline-none transition ease-out duration-300"
+            class="tw-ml-4 tw-block tw-px-3 tw-flex-none tw-bg-indigo-50 tw-text-indigo-400 hover:tw-text-indigo-900 tw-leading-6 tw-py-3 sm:tw-px-6 tw-border tw-border-indigo-200 tw-rounded-xl tw-items-center tw-justify-center tw-space-x-2 sm:tw-space-x-4 focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-offset-white focus:tw-ring-indigo-300 focus:tw-outline-none tw-transition tw-ease-out tw-duration-300"
             @click="clear"
           >
             <svg
-              class="w-6 h-6"
+              class="tw-w-6 tw-h-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -402,30 +402,30 @@ const dateValue = ref([])
 </script>
 
 <template>
-  <div class="flex">
+  <div class="tw-flex">
     <vue-tailwind-datepicker
       v-model="dateValue"
       v-slot="{ value, placeholder, clear }"
     >
-      <div class="flex">
-        <div class="flex-1">
+      <div class="tw-flex">
+        <div class="tw-flex-1">
           <button
             type="button"
-            class="block w-full bg-gray-50 text-gray-400 hover:text-gray-900 leading-6 py-3 sm:px-6 border border-gray-200 rounded-xl items-center justify-center space-x-2 sm:space-x-4 focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-gray-300 focus:outline-none transition ease-out duration-300"
+            class="tw-block tw-w-full tw-bg-gray-50 tw-text-gray-400 hover:tw-text-gray-900 tw-leading-6 tw-py-3 sm:tw-px-6 tw-border tw-border-gray-200 tw-rounded-xl tw-items-center tw-justify-center tw-space-x-2 sm:tw-space-x-4 focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-offset-white focus:tw-ring-gray-300 focus:tw-outline-none tw-transition tw-ease-out tw-duration-300"
           >
-            <span class="text-gray-900">
+            <span class="tw-text-gray-900">
               {{ value || placeholder }}
             </span>
           </button>
         </div>
-        <div class="flex-shrink-0">
+        <div class="tw-flex-shrink-0">
           <button
             type="button"
-            class="ml-4 block px-3 flex-none bg-indigo-50 text-indigo-400 hover:text-indigo-900 leading-6 py-3 sm:px-6 border border-indigo-200 rounded-xl items-center justify-center space-x-2 sm:space-x-4 focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-indigo-300 focus:outline-none transition ease-out duration-300"
+            class="tw-ml-4 tw-block tw-px-3 tw-flex-none tw-bg-indigo-50 tw-text-indigo-400 hover:tw-text-indigo-900 tw-leading-6 tw-py-3 sm:tw-px-6 tw-border tw-border-indigo-200 tw-rounded-xl tw-items-center tw-justify-center tw-space-x-2 sm:tw-space-x-4 focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-offset-white focus:tw-ring-indigo-300 focus:tw-outline-none tw-transition tw-ease-out tw-duration-300"
             @click="clear"
           >
             <svg
-              class="w-6 h-6"
+              class="tw-w-6 tw-h-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
