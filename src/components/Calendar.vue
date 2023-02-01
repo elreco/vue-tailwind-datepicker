@@ -41,7 +41,6 @@ const emit = defineEmits(['update:date'])
           leave-from-class="opacity-100"
           leave-to-class="opacity-0"
         >
-
           <span
             v-if="isBetweenRange(date) || date.hovered()"
             class="absolute bg-vtd-primary-100 bg-opacity-60 dark:bg-vtd-secondary-700 dark:bg-opacity-50"
