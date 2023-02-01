@@ -1470,9 +1470,9 @@ provide('setToCustomShortcut', setToCustomShortcut)
             <div class="h-full border-r border-black/[.1] dark:border-vtd-secondary-700/[1]"></div>
           </div>
           <div
-            class="relative w-full md:w-1/2 lg:w-80"
+            class="relative w-full  lg:w-80"
             :class="{
-              'mb-3 sm:mb-0 sm:mr-2': asRange() && !props.asSingle
+              'mb-3 sm:mb-0 sm:mr-2 md:w-1/2': asRange() && !props.asSingle
             }"
           >
             <vtd-header :panel="panel.previous" :calendar="calendar.previous" />
