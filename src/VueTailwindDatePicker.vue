@@ -114,7 +114,7 @@ const emit = defineEmits([
   'click:prev',
   'click:next',
   'click:right:prev',
-  'click:right:next',
+  'click:right:next'
 ])
 const VtdRef = ref(null)
 const VtdInputRef = ref(null)
@@ -370,7 +370,7 @@ const displayDatepicker = ref(false)
 
 setTimeout(() => {
   displayDatepicker.value = true
-}, 250);
+}, 250)
 
 const isFirstMonday = () => {
   return dayjs().localeData().firstDayOfWeek()
@@ -1052,7 +1052,7 @@ const setToThisMonth = (close) => {
 
   emitShortcut(s, e)
   if (close) {
-    close();
+    close()
   }
 }
 
@@ -1105,131 +1105,129 @@ watchEffect(() => {
   }
 })
 
-
 watchEffect(() => {
   const locale = props.i18n
   nextTick(() => {
     const modules = import.meta.glob(`./locale/*.js`)
     for (const path in modules) {
-      modules[path]().then(() => {
-        dayjs.locale(locale)
-        let s, e
-        if (asRange()) {
-          if (useArray()) {
-            if (props.modelValue.length > 0) {
-              const [start, end] = props.modelValue
-              s = dayjs(start, props.formatter.date, true)
-              e = dayjs(end, props.formatter.date, true)
-            }
-          } else if (useObject()) {
-            if (!isProxy(props.modelValue)) {
-              try {
-                console.log(Object.keys(props.modelValue))
-              } catch (e) {
-                console.warn(
-                  '[Vue Tailwind Datepicker]: It looks like you want to use Object as the argument %cv-model',
-                  'font-style: italic; color: #42b883;',
-                  ', but you pass it undefined or null.'
-                )
-                console.warn(
-                  `[Vue Tailwind Datepicker]: We has replace with %c{ startDate: '', endDate: '' }`,
-                  'font-style: italic; color: #42b883;',
-                  ', but you can replace manually.'
-                )
-                emit('update:modelValue', {
-                  startDate: '',
-                  endDate: ''
-                })
+      modules[path]()
+        .then(() => {
+          dayjs.locale(locale)
+          let s, e
+          if (asRange()) {
+            if (useArray()) {
+              if (props.modelValue.length > 0) {
+                const [start, end] = props.modelValue
+                s = dayjs(start, props.formatter.date, true)
+                e = dayjs(end, props.formatter.date, true)
+              }
+            } else if (useObject()) {
+              if (!isProxy(props.modelValue)) {
+                try {
+                  console.log(Object.keys(props.modelValue))
+                } catch (e) {
+                  console.warn(
+                    '[Vue Tailwind Datepicker]: It looks like you want to use Object as the argument %cv-model',
+                    'font-style: italic; color: #42b883;',
+                    ', but you pass it undefined or null.'
+                  )
+                  console.warn(
+                    `[Vue Tailwind Datepicker]: We has replace with %c{ startDate: '', endDate: '' }`,
+                    'font-style: italic; color: #42b883;',
+                    ', but you can replace manually.'
+                  )
+                  emit('update:modelValue', {
+                    startDate: '',
+                    endDate: ''
+                  })
+                }
+              }
+              if (props.modelValue) {
+                const [start, end] = Object.values(props.modelValue)
+                s = start && dayjs(start, props.formatter.date, true)
+                e = end && dayjs(end, props.formatter.date, true)
+              }
+            } else {
+              if (props.modelValue) {
+                const [start, end] = props.modelValue.split(props.separator)
+                s = dayjs(start, props.formatter.date, true)
+                e = dayjs(end, props.formatter.date, true)
               }
             }
-            if (props.modelValue) {
-              const [start, end] = Object.values(props.modelValue)
-              s = start && dayjs(start, props.formatter.date, true)
-              e = end && dayjs(end, props.formatter.date, true)
+
+            if (s && e) {
+              pickerValue.value = useToValueFromArray(
+                {
+                  previous: s,
+                  next: e
+                },
+                props
+              )
+              if (e.isBefore(s, 'month')) {
+                datepicker.value.previous = e
+                datepicker.value.next = s
+                datepicker.value.year.previous = e.year()
+                datepicker.value.year.next = s.year()
+              } else if (e.isSame(s, 'month')) {
+                datepicker.value.previous = s
+                datepicker.value.next = e.add(1, 'month')
+                datepicker.value.year.previous = s.year()
+                datepicker.value.year.next = s.add(1, 'year').year()
+              } else {
+                datepicker.value.previous = s
+                datepicker.value.next = e
+                datepicker.value.year.previous = s.year()
+                datepicker.value.year.next = e.year()
+              }
+              if (!props.autoApply) {
+                applyValue.value = [s, e]
+              }
+            } else {
+              datepicker.value.previous = dayjs(props.startFrom)
+              datepicker.value.next = dayjs(props.startFrom).add(1, 'month')
+              datepicker.value.year.previous = datepicker.value.previous.year()
+              datepicker.value.year.next = datepicker.value.next.year()
             }
           } else {
-            if (props.modelValue) {
-              const [start, end] = props.modelValue.split(props.separator)
-              s = dayjs(start, props.formatter.date, true)
-              e = dayjs(end, props.formatter.date, true)
+            if (useArray()) {
+              if (props.modelValue.length > 0) {
+                const [start] = props.modelValue
+                s = dayjs(start, props.formatter.date, true)
+              }
+            } else if (useObject()) {
+              if (props.modelValue) {
+                const [start] = Object.values(props.modelValue)
+                s = dayjs(start, props.formatter.date, true)
+              }
+            } else {
+              if (props.modelValue.length) {
+                const [start] = props.modelValue.split(props.separator)
+                s = dayjs(start, props.formatter.date, true)
+              }
             }
-          }
 
-          if (s && e) {
-            pickerValue.value = useToValueFromArray(
-              {
-                previous: s,
-                next: e
-              },
-              props
-            )
-            if (e.isBefore(s, 'month')) {
-              datepicker.value.previous = e
-              datepicker.value.next = s
-              datepicker.value.year.previous = e.year()
-              datepicker.value.year.next = s.year()
-            } else if (e.isSame(s, 'month')) {
+            if (s && s.isValid()) {
+              pickerValue.value = useToValueFromString(s, props)
               datepicker.value.previous = s
-              datepicker.value.next = e.add(1, 'month')
+              datepicker.value.next = s.add(1, 'month')
               datepicker.value.year.previous = s.year()
               datepicker.value.year.next = s.add(1, 'year').year()
+              if (!props.autoApply) {
+                applyValue.value = [s]
+              }
             } else {
-              datepicker.value.previous = s
-              datepicker.value.next = e
-              datepicker.value.year.previous = s.year()
-              datepicker.value.year.next = e.year()
-            }
-            if (!props.autoApply) {
-              applyValue.value = [s, e]
-            }
-          } else {
-            datepicker.value.previous = dayjs(props.startFrom)
-            datepicker.value.next = dayjs(props.startFrom).add(1, 'month')
-            datepicker.value.year.previous = datepicker.value.previous.year()
-            datepicker.value.year.next = datepicker.value.next.year()
-          }
-        } else {
-          if (useArray()) {
-            if (props.modelValue.length > 0) {
-              const [start] = props.modelValue
-              s = dayjs(start, props.formatter.date, true)
-            }
-          } else if (useObject()) {
-            if (props.modelValue) {
-              const [start] = Object.values(props.modelValue)
-              s = dayjs(start, props.formatter.date, true)
-            }
-          } else {
-            if (props.modelValue.length) {
-              const [start] = props.modelValue.split(props.separator)
-              s = dayjs(start, props.formatter.date, true)
+              datepicker.value.previous = dayjs(props.startFrom)
+              datepicker.value.next = dayjs(props.startFrom).add(1, 'month')
+              datepicker.value.year.previous = datepicker.value.previous.year()
+              datepicker.value.year.next = datepicker.value.next.year()
             }
           }
-
-          if (s && s.isValid()) {
-            pickerValue.value = useToValueFromString(s, props)
-            datepicker.value.previous = s
-            datepicker.value.next = s.add(1, 'month')
-            datepicker.value.year.previous = s.year()
-            datepicker.value.year.next = s.add(1, 'year').year()
-            if (!props.autoApply) {
-              applyValue.value = [s]
-            }
-          } else {
-            datepicker.value.previous = dayjs(props.startFrom)
-            datepicker.value.next = dayjs(props.startFrom).add(1, 'month')
-            datepicker.value.year.previous = datepicker.value.previous.year()
-            datepicker.value.year.next = datepicker.value.next.year()
-          }
-        }
-        datepicker.value.weeks = isFirstMonday() ? shuffleWeekdays(dayjs.weekdaysShort()) : dayjs.weekdaysShort()
-        datepicker.value.months = props.formatter.month === 'MMM' ? dayjs.monthsShort() : dayjs.months()
-      })
-      .catch((e) => {
-        console.warn(
-          e.message
-        )
-      })
+          datepicker.value.weeks = isFirstMonday() ? shuffleWeekdays(dayjs.weekdaysShort()) : dayjs.weekdaysShort()
+          datepicker.value.months = props.formatter.month === 'MMM' ? dayjs.monthsShort() : dayjs.months()
+        })
+        .catch((e) => {
+          console.warn(e.message)
+        })
     }
   })
 })
@@ -1254,8 +1252,6 @@ const getAbsoluteParentClass = (open) => {
   }
   return 'left-0 right-auto'
 }
-
-
 
 provide('isBetweenRange', isBetweenRange)
 provide('betweenRangeClasses', betweenRangeClasses)
@@ -1453,7 +1449,9 @@ provide('setToCustomShortcut', setToCustomShortcut)
     </transition>
   </Popover>
   <div v-else-if="displayDatepicker" class="flex">
-    <div class="bg-white rounded-lg shadow-sm border-0 border border-black/[.1] px-3 py-3 sm:px-4 sm:py-4 dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700/[1]">
+    <div
+      class="bg-white rounded-lg shadow-sm border-0 border border-black/[.1] px-3 py-3 sm:px-4 sm:py-4 dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700/[1]"
+    >
       <div class="flex flex-wrap lg:flex-nowrap">
         <vtd-shortcut
           v-if="props.shortcuts"
@@ -1470,18 +1468,14 @@ provide('setToCustomShortcut', setToCustomShortcut)
             <div class="h-full border-r border-black/[.1] dark:border-vtd-secondary-700/[1]"></div>
           </div>
           <div
-            class="relative w-full  lg:w-80"
+            class="relative w-full lg:w-80"
             :class="{
               'mb-3 sm:mb-0 sm:mr-2 md:w-1/2': asRange() && !props.asSingle
             }"
           >
             <vtd-header :panel="panel.previous" :calendar="calendar.previous" />
             <div class="px-0.5 sm:px-2">
-              <vtd-month
-                v-show="panel.previous.month"
-                :months="months"
-                @update:month="calendar.previous.setMount"
-              />
+              <vtd-month v-show="panel.previous.month" :months="months" @update:month="calendar.previous.setMount" />
               <vtd-year
                 v-show="panel.previous.year"
                 :years="calendar.previous.years()"

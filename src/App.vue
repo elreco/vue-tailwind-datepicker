@@ -1,5 +1,5 @@
 <template>
-  <div class=" p-10  bg-sky-50 min-h-screen">
+  <div class="p-10 bg-sky-50 min-h-screen">
     <div class="grid grid-rows-2 gap-4">
       <VueTailwindDatePicker
         :no-input="true"
