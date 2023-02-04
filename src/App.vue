@@ -1,8 +1,7 @@
 <template>
-  <div class="tw-p-10  tw-bg-sky-50 tw-min-h-screen">
+  <div class="tw-p-10 tw-bg-sky-50 tw-min-h-screen">
     <div class="tw-grid tw-grid-rows-2 tw-gap-4">
       <VueTailwindDatePicker
-        :no-input="false"
         i18n="en"
         :disable-date="dDate"
         inputClasses="tw-rounded-md tw-bg-red-300 dark:tw-bg-red-300 tw-border-gray-300 tw-shadow-sm focus:tw-border-indigo-500 focus:tw-ring-indigo-500 sm:tw-text-sm"
@@ -18,7 +17,6 @@
       />
 
       <VueTailwindDatePicker
-        no-input
         as-single
         i18n="en"
         :disable-date="dDate"

@@ -9,10 +9,10 @@ defineProps({
 <template>
   <div class="tw-flex tw-justify-between tw-items-center tw-px-2 tw-py-1.5">
     <div class="tw-flex-shrink-0">
-      <span v-show="panel.calendar || panel.year" class="inline-flex rounded-full">
+      <span v-show="panel.calendar || panel.year" class="tw-inline-flex tw-rounded-full">
         <button
           type="button"
-          class="tw-p-1.5 tw-rounded-full tw-bg-white tw-text-vtd-secondary-600 tw-transition-colors tw-border tw-border-transparent hover:tw-bg-vtd-secondary-100 hover:tw-text-vtd-secondary-900 focus:tw-bg-vtd-primary-50 focus:tw-text-vtd-secondary-900 focus:tw-border-vtd-primary-300 focus:tw-ring focus:ring-vtd-primary-500 focus:tw-ring-opacity-10 focus:tw-outline-none dark:tw-bg-vtd-secondary-800 dark:tw-text-vtd-secondary-300 dark:hover:tw-bg-vtd-secondary-700 dark:hover:tw-text-vtd-secondary-300 dark:focus:tw-bg-vtd-secondary-600 dark:focus:tw-text-vtd-secondary-100 dark:focus:tw-border-vtd-primary-500 dark:focus:tw-ring-opacity-25 dark:focus:tw-bg-opacity-50"
+          class="tw-p-1.5 tw-rounded-full tw-bg-white tw-text-vtd-secondary-600 tw-transition-colors tw-border tw-border-transparent hover:tw-bg-vtd-secondary-100 hover:tw-text-vtd-secondary-900 focus:tw-bg-vtd-primary-50 focus:tw-text-vtd-secondary-900 focus:tw-border-vtd-primary-300 focus:tw-ring focus:tw-ring-vtd-primary-500 focus:tw-ring-opacity-10 focus:tw-outline-none dark:tw-bg-vtd-secondary-800 dark:tw-text-vtd-secondary-300 dark:hover:tw-bg-vtd-secondary-700 dark:hover:tw-text-vtd-secondary-300 dark:focus:tw-bg-vtd-secondary-600 dark:focus:tw-text-vtd-secondary-100 dark:focus:tw-border-vtd-primary-500 dark:focus:tw-ring-opacity-25 dark:focus:tw-bg-opacity-50"
           @click="panel.calendar ? calendar.onPrevious() : calendar.onPreviousYear()"
         >
           <svg

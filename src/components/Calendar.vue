@@ -49,7 +49,7 @@ const emit = defineEmits(['update:date'])
         </transition>
         <button
           type="button"
-          class="tw-vtd-datepicker-date tw-relative tw-w-[2.7rem] tw-h-[2.7rem] lg:tw-w-10 lg:tw-h-10 tw-flex tw-justify-center tw-items-center tw-text-xs 2xl:tw-text-sm"
+          class="vtd-datepicker-date tw-relative tw-w-[2.7rem] tw-h-[2.7rem] lg:tw-w-10 lg:tw-h-10 tw-flex tw-justify-center tw-items-center tw-text-xs 2xl:tw-text-sm"
           :class="[datepickerClasses(date), asRange ? 'tw-transition-all' : 'tw-transition-colors']"
           :disabled="date.disabled || date.inRange()"
           @click="emit('update:date', date, asPrevOrNext)"

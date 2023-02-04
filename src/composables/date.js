@@ -3,7 +3,7 @@ export default function useDate() {
     const display = []
     const firstDay = date.localeData().firstDayOfWeek()
     for (let i = 0; i <= date.date(0 - firstDay).day(); i++) {
-        display.push(date.date(0).subtract(i, 'day'))
+      display.push(date.date(0).subtract(i, 'day'))
     }
     return display.sort((a, b) => a.date() - b.date())
   }
