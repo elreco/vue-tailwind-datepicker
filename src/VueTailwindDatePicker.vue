@@ -13,7 +13,7 @@ import customParseFormat from 'dayjs/plugin/customParseFormat'
 import isToday from 'dayjs/plugin/isToday'
 import isBetween from 'dayjs/plugin/isBetween'
 import duration from 'dayjs/plugin/duration'
-import { ref, reactive, computed, provide, nextTick, isProxy, watchEffect, watch, unref, onBeforeMount } from 'vue'
+import { ref, reactive, computed, provide, nextTick, isProxy, watchEffect, watch, unref } from 'vue'
 import useDate from './composables/date'
 import useDom from './composables/dom'
 
@@ -608,12 +608,12 @@ const setDate = (date, asNext, close) => {
   }
 }
 
-onBeforeMount(() => {
-  if (props.modelValue[0] && props.modelValue[1]) {
-    setDate(dayjs(props.modelValue[0]), false)
-    setDate(dayjs(props.modelValue[1]), false)
-  }
-})
+// onBeforeMount(() => {
+//   if (props.modelValue[0] && props.modelValue[1]) {
+//     setDate(dayjs(props.modelValue[0]), false)
+//     setDate(dayjs(props.modelValue[1]), false)
+//   }
+// })
 
 const applyDate = (close) => {
   if (applyValue.value.length < 1) return false
