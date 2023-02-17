@@ -18,6 +18,7 @@
   const dateValue13 = ref([])
   const dateValue14 = ref([])
   const dateValue15 = ref([])
+  const dateValue16 = ref([])
   const formatter = ref({
     date: 'DD MMM YYYY',
     month: 'MMM'
@@ -297,6 +298,28 @@ const startFrom = new Date(2020, 0, 1)
 
 <template>
     <vue-tailwind-datepicker :start-from="startFrom" v-model="dateValue" />
+</template>
+```
+
+## Weekdays size
+
+If you need to use a minimum number of characters for the name of the days of the week (Sun -> Su, Mon -> Mo, etc.), use `min`, by default `weekdaysSize` is `short` (Sun, Mon, etc.).
+
+<DemoLayout>
+  <VueTailwindDatePicker
+    weekdays-size="min"
+    v-model="dateValue16"
+  />
+</DemoLayout>
+
+```vue
+<script setup>
+import { ref } from 'vue'
+const dateValue = ref([])
+</script>
+
+<template>
+    <vue-tailwind-datepicker weekdays-size="min" v-model="dateValue" />
 </template>
 ```
 
