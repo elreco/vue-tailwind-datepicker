@@ -88,6 +88,10 @@ const props = defineProps({
     type: [Object, String],
     default: () => new Date()
   },
+  weekdaysSize: {
+    type: String,
+    default: 'short'
+  },
   options: {
     type: Object,
     default: () => ({
@@ -145,7 +149,7 @@ const datepicker = ref({
     previous: dayjs().year(),
     next: dayjs().year()
   },
-  weeks: dayjs.weekdaysShort(),
+  weeks: props.weekdaysSize === 'min' ? dayjs.weekdaysMin() : dayjs.weekdaysShort(),
   months: props.formatter.month === 'MMM' ? dayjs.monthsShort() : dayjs.months()
 })
 const weeks = computed(() => datepicker.value.weeks)
@@ -1222,7 +1226,9 @@ watchEffect(() => {
               datepicker.value.year.next = datepicker.value.next.year()
             }
           }
-          datepicker.value.weeks = isFirstMonday() ? shuffleWeekdays(dayjs.weekdaysShort()) : dayjs.weekdaysShort()
+
+          const days = props.weekdaysSize === 'min' ? dayjs.weekdaysMin() : dayjs.weekdaysShort()
+          datepicker.value.weeks = isFirstMonday() ? shuffleWeekdays(days) : days
           datepicker.value.months = props.formatter.month === 'MMM' ? dayjs.monthsShort() : dayjs.months()
         })
         .catch((e) => {
