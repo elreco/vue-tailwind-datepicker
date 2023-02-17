@@ -26,7 +26,7 @@ declare namespace VueTailwindDatepicker {
   }
 }
 
-interface DatepickerProps {
+export interface DatepickerProps {
   overlay?: boolean
   asSingle?: boolean
   useRange?: boolean
