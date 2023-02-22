@@ -1128,7 +1128,7 @@ watchEffect(() => {
             } else if (useObject()) {
               if (!isProxy(props.modelValue)) {
                 try {
-                  console.log(Object.keys(props.modelValue))
+                  Object.keys(props.modelValue)
                 } catch (e) {
                   console.warn(
                     '[Vue Tailwind Datepicker]: It looks like you want to use Object as the argument %cv-model',
