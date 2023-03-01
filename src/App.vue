@@ -22,11 +22,7 @@
         :disable-date="dDate"
         inputClasses="tw-rounded-md tw-bg-red-300 dark:tw-bg-red-300 tw-border-gray-300 tw-shadow-sm focus:tw-border-indigo-500 focus:tw-ring-indigo-500 sm:tw-text-sm"
         v-model="dateValue.startDate"
-        @select:month="onSelectSomething($event)"
-        @select:year="onSelectSomething($event)"
-        @click:prev="onClickSomething($event)"
-        @click:next="onClickSomething($event)"
-      />
+      ></VueTailwindDatePicker>
     </div>
   </div>
 </template>
@@ -37,19 +33,11 @@ import dayjs from 'dayjs'
 import { ref } from 'vue'
 
 const dateValue = ref({
-  startDate: dayjs(),
-  endDate: dayjs().add(7, 'days').format('YYYY-MM-DD HH:mm:ss')
+  startDate: "2022-11-06 18:08:49",
+  endDate: dayjs().format('YYYY-MM-DD HH:mm:ss')
 })
 
-const dDate = (date) => dayjs(date).isBefore(dayjs().subtract(1, 'day'))
-
-const onSelectSomething = (newDate) => {
-  console.log(newDate instanceof dayjs)
-  console.log(newDate)
-}
-
-const onClickSomething = (newDate) => {
-  console.log(newDate instanceof dayjs)
-  console.log(newDate)
+const dDate = (date) => {
+  return date < new Date() || date > new Date(2023, 0, 8);
 }
 </script>
