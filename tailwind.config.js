@@ -29,6 +29,7 @@ module.exports = {
       },
     },
   },
+  prefix: "tw-",
   plugins: [
     require('@tailwindcss/forms'),
   ],

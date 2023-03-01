@@ -8,12 +8,12 @@ const emit = defineEmits(['update:year'])
 </script>
 
 <template>
-  <div class="flex flex-wrap">
-    <div v-for="(year, key) in years" :key="key" class="w-1/2 px-0.5">
-      <span class="flex rounded-md mt-1.5">
+  <div class="tw-flex tw-flex-wrap">
+    <div v-for="(year, key) in years" :key="key" class="tw-w-1/2 tw-px-0.5">
+      <span class="tw-flex tw-rounded-md tw-mt-1.5">
         <button
           type="button"
-          class="px-3 py-2 block w-full leading-6 rounded-md bg-white text-xs 2xl:text-sm tracking-wide text-vtd-secondary-600 font-medium transition-colors border border-transparent hover:bg-vtd-secondary-100 hover:text-vtd-secondary-900 focus:bg-vtd-primary-50 focus:text-vtd-secondary-900 focus:border-vtd-primary-300 focus:ring focus:ring-vtd-primary-500 focus:ring-opacity-10 focus:outline-none uppercase dark:bg-vtd-secondary-800 dark:hover:bg-vtd-secondary-700 dark:text-vtd-secondary-300 dark:hover:text-vtd-secondary-100 dark:focus:bg-vtd-secondary-700"
+          class="tw-px-3 tw-py-2 tw-block tw-w-full tw-leading-6 tw-rounded-md tw-bg-white tw-text-xs 2xl:tw-text-sm tw-tracking-wide tw-text-vtd-secondary-600 tw-font-medium tw-transition-colors tw-border tw-border-transparent hover:tw-bg-vtd-secondary-100 hover:tw-text-vtd-secondary-900 focus:tw-bg-vtd-primary-50 focus:tw-text-vtd-secondary-900 focus:tw-border-vtd-primary-300 focus:tw-ring focus:tw-ring-vtd-primary-500 focus:tw-ring-opacity-10 focus:tw-outline-none tw-uppercase dark:tw-bg-vtd-secondary-800 dark:hover:tw-bg-vtd-secondary-700 dark:tw-text-vtd-secondary-300 dark:hover:tw-text-vtd-secondary-100 dark:focus:tw-bg-vtd-secondary-700"
           v-text="year"
           @click="emit('update:year', year, asPrevOrNext)"
         ></button>
