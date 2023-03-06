@@ -19,13 +19,13 @@ You can follow [this tutorial](https://dev.to/elreco/add-a-tailwind-datepicker-t
 ### Install via npm
 
 ```
-$ npm install vue-tailwind-datepicker 
+npm install vue-tailwind-datepicker
 ```
 
 ### Install via yarn
 
 ```
-$ yarn add vue-tailwind-datepicker 
+yarn add vue-tailwind-datepicker
 ```
 
 ## Simple Usage
