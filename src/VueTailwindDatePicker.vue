@@ -446,6 +446,7 @@ const clearPicker = () => {
   applyValue.value = []
   VtdInputRef.value && VtdInputRef.value.focus()
 }
+defineExpose({clearPicker})
 
 /**
  * keyUp event
