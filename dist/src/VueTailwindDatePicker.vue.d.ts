@@ -73,10 +73,16 @@ declare namespace _sfc_main {
             function _default_10(): Date;
             export { _default_10 as default };
         }
-        namespace options {
-            const type_11: ObjectConstructor;
+        namespace weekdaysSize {
+            const type_11: StringConstructor;
             export { type_11 as type };
-            function _default_11(): {
+            const _default_11: string;
+            export { _default_11 as default };
+        }
+        namespace options {
+            const type_12: ObjectConstructor;
+            export { type_12 as type };
+            function _default_12(): {
                 shortcuts: {
                     today: string;
                     yesterday: string;
@@ -89,7 +95,7 @@ declare namespace _sfc_main {
                     cancel: string;
                 };
             };
-            export { _default_11 as default };
+            export { _default_12 as default };
         }
     }
     const emits: string[];
@@ -435,7 +441,6 @@ declare namespace _sfc_main {
         watchEffect: typeof watchEffect;
         watch: typeof watch;
         unref: typeof unref;
-        onBeforeMount: (hook: () => any, target?: import("vue").ComponentInternalInstance) => false | Function;
         readonly useDate: typeof useDate;
         readonly useDom: typeof useDom;
     };
@@ -781,7 +786,6 @@ declare namespace _sfc_main {
         watchEffect: typeof watchEffect;
         watch: typeof watch;
         unref: typeof unref;
-        onBeforeMount: (hook: () => any, target?: import("vue").ComponentInternalInstance) => false | Function;
         readonly useDate: typeof useDate;
         readonly useDom: typeof useDom;
     };
