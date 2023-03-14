@@ -840,36 +840,36 @@ const datepickerClasses = (date) => {
   }
   if (active) {
     classes = today
-      ? `tw-text-vtd-primary-500 tw-font-semibold dark:tw-text-vtd-primary-400 tw-rounded-full focus:tw-bg-vtd-primary-50 focus:tw-text-vtd-secondary-900 focus:tw-border-vtd-primary-300 tw-focus:ring focus:tw-ring-vtd-primary-500 focus:tw-ring-opacity-10 focus:tw-outline-none dark:tw-bg-vtd-secondary-800 dark:tw-text-vtd-secondary-300 dark:hover:tw-bg-vtd-secondary-700 dark:hover:tw-text-vtd-secondary-300 dark:focus:tw-bg-vtd-secondary-600 dark:focus:tw-text-vtd-secondary-100 dark:focus:tw-border-vtd-primary-500 dark:focus:tw-ring-opacity-25 dark:focus:tw-bg-opacity-50`
+      ? `text-vtd-primary-500 font-semibold dark:text-vtd-primary-400 rounded-full focus:bg-vtd-primary-50 focus:text-vtd-secondary-900 focus:border-vtd-primary-300 focus:ring focus:ring-vtd-primary-500 focus:ring-opacity-10 focus:outline-none dark:bg-vtd-secondary-800 dark:text-vtd-secondary-300 dark:hover:bg-vtd-secondary-700 dark:hover:text-vtd-secondary-300 dark:focus:bg-vtd-secondary-600 dark:focus:text-vtd-secondary-100 dark:focus:border-vtd-primary-500 dark:focus:ring-opacity-25 dark:focus:bg-opacity-50`
       : disabled
-      ? `tw-text-vtd-secondary-600 tw-font-normal disabled:tw-text-vtd-secondary-500 disabled:tw-cursor-not-allowed tw-rounded-full`
+      ? `text-vtd-secondary-600 font-normal disabled:text-vtd-secondary-500 disabled:cursor-not-allowed rounded-full`
       : date.isBetween(s, e, 'date', '()')
-      ? `tw-text-vtd-secondary-700 tw-font-medium dark:tw-text-vtd-secondary-100 tw-rounded-full`
-      : `tw-text-vtd-secondary-600 tw-font-medium dark:tw-text-vtd-secondary-200 tw-rounded-full`
+      ? `text-vtd-secondary-700 font-medium dark:text-vtd-secondary-100 rounded-full`
+      : `text-vtd-secondary-600 font-medium dark:text-vtd-secondary-200 rounded-full`
   }
   if (off) {
-    classes = `tw-text-vtd-secondary-400 tw-font-light disabled:tw-cursor-not-allowed`
+    classes = `text-vtd-secondary-400 font-light disabled:cursor-not-allowed`
   }
   if (s && e && !off) {
     if (date.isSame(s, 'date')) {
       classes = e.isAfter(s, 'date')
-        ? 'tw-bg-vtd-primary-500 tw-text-white tw-font-bold tw-rounded-l-full disabled:tw-cursor-not-allowed'
-        : 'tw-bg-vtd-primary-500 tw-text-white tw-font-bold tw-rounded-r-full disabled:tw-cursor-not-allowed'
+        ? 'bg-vtd-primary-500 text-white font-bold rounded-l-full disabled:cursor-not-allowed'
+        : 'bg-vtd-primary-500 text-white font-bold rounded-r-full disabled:cursor-not-allowed'
       if (s.isSame(e, 'date')) {
-        classes = `tw-bg-vtd-primary-500 tw-text-white tw-font-bold tw-rounded-full disabled:tw-cursor-not-allowed`
+        classes = `bg-vtd-primary-500 text-white font-bold rounded-full disabled:cursor-not-allowed`
       }
     }
     if (date.isSame(e, 'date')) {
       classes = e.isAfter(s, 'date')
-        ? 'tw-bg-vtd-primary-500 tw-text-white tw-font-bold tw-rounded-r-full disabled:tw-cursor-not-allowed'
-        : 'tw-bg-vtd-primary-500 tw-text-white tw-font-bold tw-rounded-l-full disabled:tw-cursor-not-allowed'
+        ? 'bg-vtd-primary-500 text-white font-bold rounded-r-full disabled:cursor-not-allowed'
+        : 'bg-vtd-primary-500 text-white font-bold rounded-l-full disabled:cursor-not-allowed'
       if (s.isSame(e, 'date')) {
-        classes = `tw-bg-vtd-primary-500 tw-text-white tw-font-bold tw-rounded-full disabled:tw-cursor-not-allowed`
+        classes = `bg-vtd-primary-500 text-white font-bold rounded-full disabled:cursor-not-allowed`
       }
     }
   } else if (s) {
     if (date.isSame(s, 'date') && !off) {
-      classes = `tw-bg-vtd-primary-500 tw-text-white tw-font-bold tw-rounded-full disabled:tw-cursor-not-allowed`
+      classes = `bg-vtd-primary-500 text-white font-bold rounded-full disabled:cursor-not-allowed`
     }
   }
 
@@ -935,20 +935,20 @@ const betweenRangeClasses = (date) => {
   if (s && e) {
     if (date.isSame(s, 'date')) {
       if (e.isBefore(s)) {
-        classes += ` tw-rounded-r-full tw-inset-0`
+        classes += ` rounded-r-full inset-0`
       }
       if (s.isBefore(e)) {
-        classes += ` tw-rounded-l-full tw-inset-0`
+        classes += ` rounded-l-full inset-0`
       }
     } else if (date.isSame(e, 'date')) {
       if (e.isBefore(s)) {
-        classes += ` tw-rounded-l-full tw-inset-0`
+        classes += ` rounded-l-full inset-0`
       }
       if (s.isBefore(e)) {
-        classes += ` tw-rounded-r-full tw-inset-0`
+        classes += ` rounded-r-full inset-0`
       }
     } else {
-      classes += ` tw-inset-0`
+      classes += ` inset-0`
     }
   }
   return classes
@@ -1254,9 +1254,9 @@ const getAbsoluteParentClass = (open) => {
   }
 
   if (placement.value) {
-    return 'tw-left-auto tw-right-0'
+    return 'left-auto right-0'
   }
-  return 'tw-left-0 tw-right-auto'
+  return 'left-0 right-auto'
 }
 
 provide('isBetweenRange', isBetweenRange)
@@ -1272,18 +1272,18 @@ provide('setToCustomShortcut', setToCustomShortcut)
 </script>
 
 <template>
-  <Popover v-if="!props.noInput" v-slot="{ open }" as="div" id="vtd" class="tw-relative tw-w-full">
-    <PopoverOverlay v-if="props.overlay" class="tw-fixed tw-inset-0 tw-bg-black tw-opacity-30" />
+  <Popover v-if="!props.noInput" v-slot="{ open }" as="div" id="vtd" class="relative w-full">
+    <PopoverOverlay v-if="props.overlay" class="fixed inset-0 bg-black opacity-30" />
 
-    <PopoverButton as="label" class="tw-relative tw-block">
+    <PopoverButton as="label" class="relative block">
       <slot :value="pickerValue" :placeholder="givenPlaceholder" :clear="clearPicker">
         <input
           ref="VtdInputRef"
           type="text"
-          class="tw-relative tw-block tw-w-full"
+          class="relative block w-full"
           :class="
             inputClasses ||
-            'tw-pl-3 tw-pr-12 tw-py-2.5 tw-rounded-lg tw-overflow-hidden tw-border-solid tw-text-sm tw-text-vtd-secondary-700 tw-placeholder-vtd-secondary-400 tw-transition-colors tw-bg-white tw-border tw-border-vtd-secondary-300 focus:tw-border-vtd-primary-300 focus:tw-ring focus:tw-ring-vtd-primary-500 focus:tw-ring-opacity-10 focus:tw-outline-none dark:tw-bg-vtd-secondary-800 dark:tw-border-vtd-secondary-700 dark:tw-text-vtd-secondary-100 dark:tw-placeholder-vtd-secondary-500 dark:focus:tw-border-vtd-primary-500 dark:focus:tw-ring-opacity-20'
+            'pl-3 pr-12 py-2.5 rounded-lg overflow-hidden border-solid text-sm text-vtd-secondary-700 placeholder-vtd-secondary-400 transition-colors bg-white border border-vtd-secondary-300 focus:border-vtd-primary-300 focus:ring focus:ring-vtd-primary-500 focus:ring-opacity-10 focus:outline-none dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700 dark:text-vtd-secondary-100 dark:placeholder-vtd-secondary-500 dark:focus:border-vtd-primary-500 dark:focus:ring-opacity-20'
           "
           autocomplete="off"
           data-lpignore="true"
@@ -1294,15 +1294,15 @@ provide('setToCustomShortcut', setToCustomShortcut)
           @keyup="keyUp"
         />
         <div
-          class="tw-absolute tw-inset-y-0 tw-right-0 tw-inline-flex tw-items-center tw-rounded-md tw-overflow-hidden"
+          class="absolute inset-y-0 right-0 inline-flex items-center rounded-md overflow-hidden"
         >
           <button
             type="button"
-            class="tw-px-2 tw-py-1 tw-mr-1 focus:tw-outline-none tw-text-vtd-secondary-400 dark:tw-text-opacity-70 tw-rounded-md"
+            class="px-2 py-1 mr-1 focus:outline-none text-vtd-secondary-400 dark:text-opacity-70 rounded-md"
             @click="pickerValue ? clearPicker() : $refs.VtdInputRef.focus()"
           >
             <svg
-              class="tw-w-5 tw-h-5"
+              class="w-5 h-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -1329,24 +1329,24 @@ provide('setToCustomShortcut', setToCustomShortcut)
     </PopoverButton>
 
     <transition
-      enter-from-class="tw-opacity-0 tw-translate-y-3"
-      enter-to-class="tw-opacity-100 tw-translate-y-0"
-      enter-active-class="tw-transform tw-transition tw-ease-out tw-duration-200"
-      leave-active-class="tw-transform tw-transition tw-ease-in tw-duration-150"
-      leave-from-class="tw-opacity-100 tw-translate-y-0"
-      leave-to-class="tw-opacity-0 tw-translate-y-3"
+      enter-from-class="opacity-0 translate-y-3"
+      enter-to-class="opacity-100 translate-y-0"
+      enter-active-class="transform transition ease-out duration-200"
+      leave-active-class="transform transition ease-in duration-150"
+      leave-from-class="opacity-100 translate-y-0"
+      leave-to-class="opacity-0 translate-y-3"
     >
-      <PopoverPanel as="div" class="tw-relative tw-z-50" v-slot="{ close }">
-        <div class="tw-absolute tw-z-50 tw-top-full sm:tw-mt-2.5" :class="getAbsoluteParentClass(open)">
+      <PopoverPanel as="div" class="relative z-50" v-slot="{ close }">
+        <div class="absolute z-50 top-full sm:mt-2.5" :class="getAbsoluteParentClass(open)">
           <div
             ref="VtdRef"
-            class="tw-fixed tw-inset-0 tw-z-50 tw-overflow-y-auto sm:tw-overflow-visible sm:tw-static sm:tw-z-auto tw-bg-white dark:tw-bg-vtd-secondary-800 sm:tw-rounded-lg tw-shadow-sm"
+            class="fixed inset-0 z-50 overflow-y-auto sm:overflow-visible sm:static sm:z-auto bg-white dark:bg-vtd-secondary-800 sm:rounded-lg shadow-sm"
           >
             <div
-              class="vtd-datepicker tw-static sm:tw-relative tw-w-full tw-bg-white sm:tw-rounded-lg sm:tw-shadow-sm tw-border-0 sm:tw-border tw-border-black/[.1] tw-px-3 tw-py-3 sm:tw-px-4 sm:tw-py-4 dark:tw-bg-vtd-secondary-800 dark:tw-border-vtd-secondary-700/[1]"
+              class="vtd-datepicker static sm:relative w-full bg-white sm:rounded-lg sm:shadow-sm border-0 sm:border border-black/[.1] px-3 py-3 sm:px-4 sm:py-4 dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700/[1]"
               :class="getAbsoluteClass(open)"
             >
-              <div class="tw-flex tw-flex-wrap lg:tw-flex-nowrap">
+              <div class="flex flex-wrap lg:flex-nowrap">
                 <vtd-shortcut
                   v-if="props.shortcuts"
                   :shortcuts="props.shortcuts"
@@ -1355,21 +1355,21 @@ provide('setToCustomShortcut', setToCustomShortcut)
                   :i18n="props.options.shortcuts"
                   :close="close"
                 />
-                <div class="tw-relative tw-flex tw-flex-wrap sm:tw-flex-nowrap tw-p-1 tw-w-full">
+                <div class="relative flex flex-wrap sm:flex-nowrap p-1 w-full">
                   <div
                     v-if="asRange() && !props.asSingle"
-                    class="tw-hidden tw-h-full tw-absolute tw-inset-0 sm:tw-flex tw-justify-center tw-items-center"
+                    class="hidden h-full absolute inset-0 sm:flex justify-center items-center"
                   >
-                    <div class="tw-h-full tw-border-r tw-border-black/[.1] dark:tw-border-vtd-secondary-700/[1]"></div>
+                    <div class="h-full border-r border-black/[.1] dark:border-vtd-secondary-700/[1]"></div>
                   </div>
                   <div
-                    class="tw-relative tw-w-full md:tw-w-1/2 lg:tw-w-80"
+                    class="relative w-full md:w-1/2 lg:w-80"
                     :class="{
-                      'tw-mb-3 sm:tw-mb-0 sm:tw-mr-2': asRange() && !props.asSingle
+                      'mb-3 sm:mb-0 sm:mr-2': asRange() && !props.asSingle
                     }"
                   >
                     <vtd-header :panel="panel.previous" :calendar="calendar.previous" />
-                    <div class="tw-px-0.5 sm:tw-px-2">
+                    <div class="px-0.5 sm:px-2">
                       <vtd-month
                         v-show="panel.previous.month"
                         :months="months"
@@ -1394,10 +1394,10 @@ provide('setToCustomShortcut', setToCustomShortcut)
 
                   <div
                     v-if="asRange() && !props.asSingle"
-                    class="tw-relative tw-w-full md:tw-w-1/2 lg:tw-w-80 tw-overflow-hidden tw-mt-3 sm:tw-mt-0 sm:tw-ml-2"
+                    class="relative w-full md:w-1/2 lg:w-80 overflow-hidden mt-3 sm:mt-0 sm:ml-2"
                   >
                     <vtd-header as-prev-or-next :panel="panel.next" :calendar="calendar.next" />
-                    <div class="tw-px-0.5 sm:tw-px-2">
+                    <div class="px-0.5 sm:px-2">
                       <vtd-month v-show="panel.next.month" :months="months" @update:month="calendar.next.setMount" />
                       <vtd-year
                         as-prev-or-next
@@ -1421,12 +1421,12 @@ provide('setToCustomShortcut', setToCustomShortcut)
               </div>
               <div v-if="!props.autoApply">
                 <div
-                  class="tw-mt-2 tw-mx-2 tw-py-1.5 tw-border-t tw-border-black/[.1] dark:tw-border-vtd-secondary-700/[1]"
+                  class="mt-2 mx-2 py-1.5 border-t border-black/[.1] dark:border-vtd-secondary-700/[1]"
                 >
-                  <div class="tw-mt-1.5 sm:tw-flex sm:tw-flex-row-reverse">
+                  <div class="mt-1.5 sm:flex sm:flex-row-reverse">
                     <button
                       type="button"
-                      class="away-apply-picker tw-w-full tw-transition tw-ease-out tw-duration-300 tw-inline-flex tw-justify-center tw-rounded-md tw-border tw-border-transparent tw-shadow-sm tw-px-4 tw-py-2 tw-bg-vtd-primary-600 tw-text-base tw-font-medium tw-text-white hover:tw-bg-vtd-primary-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-vtd-primary-500 sm:tw-ml-3 sm:tw-w-auto sm:tw-text-sm dark:tw-ring-offset-vtd-secondary-800 disabled:tw-cursor-not-allowed"
+                      class="away-apply-picker w-full transition ease-out duration-300 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-vtd-primary-600 text-base font-medium text-white hover:bg-vtd-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-vtd-primary-500 sm:ml-3 sm:w-auto sm:text-sm dark:ring-offset-vtd-secondary-800 disabled:cursor-not-allowed"
                       :disabled="props.asSingle ? applyValue.length < 1 : applyValue.length < 2"
                       @click="applyDate(close)"
                       v-text="props.options.footer.apply"
@@ -1434,21 +1434,21 @@ provide('setToCustomShortcut', setToCustomShortcut)
                     <button
                       type="button"
                       @click="close()"
-                      class="tw-mt-3 away-cancel-picker tw-w-full tw-transition tw-ease-out tw-duration-300 tw-inline-flex tw-justify-center tw-rounded-md tw-border tw-border-vtd-secondary-300 tw-shadow-sm tw-px-4 tw-py-2 tw-bg-white tw-text-base tw-font-medium tw-text-vtd-secondary-700 hover:tw-bg-vtd-secondary-50 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-vtd-primary-500 sm:tw-mt-0 sm:tw-ml-3 sm:tw-w-auto sm:tw-text-sm dark:tw-ring-offset-vtd-secondary-800"
+                      class="mt-3 away-cancel-picker w-full transition ease-out duration-300 inline-flex justify-center rounded-md border border-vtd-secondary-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-vtd-secondary-700 hover:bg-vtd-secondary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-vtd-primary-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm dark:ring-offset-vtd-secondary-800"
                       v-text="props.options.footer.cancel"
                     ></button>
                   </div>
                 </div>
               </div>
-              <div v-else class="sm:tw-hidden">
+              <div v-else class="sm:hidden">
                 <div
-                  class="tw-mt-2 tw-mx-2 tw-py-1.5 tw-border-t tw-border-black/[.1] dark:tw-border-vtd-secondary-700/[1]"
+                  class="mt-2 mx-2 py-1.5 border-t border-black/[.1] dark:border-vtd-secondary-700/[1]"
                 >
-                  <div class="tw-mt-1.5 sm:tw-flex sm:tw-flex-row-reverse">
+                  <div class="mt-1.5 sm:flex sm:flex-row-reverse">
                     <button
                       type="button"
                       @click="close()"
-                      class="away-cancel-picker tw-w-full tw-transition tw-ease-out tw-duration-300 tw-inline-flex tw-justify-center tw-rounded-md tw-border tw-border-vtd-secondary-300 tw-shadow-sm tw-px-4 tw-py-2 tw-bg-white tw-text-base tw-font-medium tw-text-vtd-secondary-700 hover:tw-bg-vtd-secondary-50 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-vtd-primary-500 sm:tw-mt-0 sm:tw-ml-3 sm:tw-w-auto sm:tw-text-sm dark:tw-ring-offset-vtd-secondary-800"
+                      class="away-cancel-picker w-full transition ease-out duration-300 inline-flex justify-center rounded-md border border-vtd-secondary-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-vtd-secondary-700 hover:bg-vtd-secondary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-vtd-primary-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm dark:ring-offset-vtd-secondary-800"
                       v-text="props.options.footer.cancel"
                     ></button>
                   </div>
@@ -1460,11 +1460,11 @@ provide('setToCustomShortcut', setToCustomShortcut)
       </PopoverPanel>
     </transition>
   </Popover>
-  <div v-else-if="displayDatepicker" class="tw-flex">
+  <div v-else-if="displayDatepicker" class="flex">
     <div
-      class="tw-bg-white tw-rounded-lg tw-shadow-sm tw-border-0 tw-border tw-border-black/[.1] tw-px-3 tw-py-3 sm:tw-px-4 sm:tw-py-4 dark:tw-bg-vtd-secondary-800 dark:tw-border-vtd-secondary-700/[1]"
+      class="bg-white rounded-lg shadow-sm border-0 border border-black/[.1] px-3 py-3 sm:px-4 sm:py-4 dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700/[1]"
     >
-      <div class="tw-flex tw-flex-wrap lg:tw-flex-nowrap">
+      <div class="flex flex-wrap lg:flex-nowrap">
         <vtd-shortcut
           v-if="props.shortcuts"
           :shortcuts="props.shortcuts"
@@ -1472,21 +1472,21 @@ provide('setToCustomShortcut', setToCustomShortcut)
           :as-single="props.asSingle"
           :i18n="props.options.shortcuts"
         />
-        <div class="tw-relative tw-flex tw-flex-wrap sm:tw-flex-nowrap tw-p-1 tw-w-full">
+        <div class="relative flex flex-wrap sm:flex-nowrap p-1 w-full">
           <div
             v-if="asRange() && !props.asSingle"
-            class="tw-hidden tw-h-full tw-absolute tw-inset-0 sm:tw-flex tw-justify-center tw-items-center"
+            class="hidden h-full absolute inset-0 sm:flex justify-center items-center"
           >
-            <div class="tw-h-full tw-border-r tw-border-black/[.1] dark:tw-border-vtd-secondary-700/[1]"></div>
+            <div class="h-full border-r border-black/[.1] dark:border-vtd-secondary-700/[1]"></div>
           </div>
           <div
-            class="tw-relative tw-w-full lg:tw-w-80"
+            class="relative w-full lg:w-80"
             :class="{
-              'tw-mb-3 sm:tw-mb-0 sm:tw-mr-2 md:tw-w-1/2': asRange() && !props.asSingle
+              'mb-3 sm:mb-0 sm:mr-2 md:w-1/2': asRange() && !props.asSingle
             }"
           >
             <vtd-header :panel="panel.previous" :calendar="calendar.previous" />
-            <div class="tw-px-0.5 sm:tw-px-2">
+            <div class="px-0.5 sm:px-2">
               <vtd-month v-show="panel.previous.month" :months="months" @update:month="calendar.previous.setMount" />
               <vtd-year
                 v-show="panel.previous.year"
@@ -1507,10 +1507,10 @@ provide('setToCustomShortcut', setToCustomShortcut)
 
           <div
             v-if="asRange() && !props.asSingle"
-            class="tw-relative tw-w-full md:tw-w-1/2 lg:tw-w-80 tw-overflow-hidden tw-mt-3 sm:tw-mt-0 sm:tw-ml-2"
+            class="relative w-full md:w-1/2 lg:w-80 overflow-hidden mt-3 sm:mt-0 sm:ml-2"
           >
             <vtd-header as-prev-or-next :panel="panel.next" :calendar="calendar.next" />
-            <div class="tw-px-0.5 sm:tw-px-2">
+            <div class="px-0.5 sm:px-2">
               <vtd-month v-show="panel.next.month" :months="months" @update:month="calendar.next.setMount" />
               <vtd-year
                 as-prev-or-next
@@ -1533,11 +1533,11 @@ provide('setToCustomShortcut', setToCustomShortcut)
         </div>
       </div>
       <div v-if="!props.autoApply">
-        <div class="tw-mt-2 tw-mx-2 tw-py-1.5 tw-border-t tw-border-black/[.1] dark:tw-border-vtd-secondary-700/[1]">
-          <div class="tw-mt-1.5 sm:tw-flex sm:tw-flex-row-reverse">
+        <div class="mt-2 mx-2 py-1.5 border-t border-black/[.1] dark:border-vtd-secondary-700/[1]">
+          <div class="mt-1.5 sm:flex sm:flex-row-reverse">
             <button
               type="button"
-              class="away-apply-picker tw-w-full tw-transition tw-ease-out tw-duration-300 tw-inline-flex tw-justify-center tw-rounded-md tw-border tw-border-transparent tw-shadow-sm tw-px-4 tw-py-2 tw-bg-vtd-primary-600 tw-text-base tw-font-medium tw-text-white hover:tw-bg-vtd-primary-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-vtd-primary-500 sm:tw-ml-3 sm:tw-w-auto sm:tw-text-sm dark:tw-ring-offset-vtd-secondary-800 disabled:tw-cursor-not-allowed"
+              class="away-apply-picker w-full transition ease-out duration-300 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-vtd-primary-600 text-base font-medium text-white hover:bg-vtd-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-vtd-primary-500 sm:ml-3 sm:w-auto sm:text-sm dark:ring-offset-vtd-secondary-800 disabled:cursor-not-allowed"
               :disabled="props.asSingle ? applyValue.length < 1 : applyValue.length < 2"
               @click="applyDate()"
               v-text="props.options.footer.apply"
@@ -1551,12 +1551,12 @@ provide('setToCustomShortcut', setToCustomShortcut)
 
 <style>
 .vtd-datepicker-overlay.open::before {
-  @apply tw-block tw-opacity-50;
+  @apply block opacity-50;
 }
 .vtd-datepicker::before {
   --vtd-datepicker: 0px;
   content: '';
-  @apply tw-absolute tw-top-0 tw-w-4 tw-h-4 tw-bg-white tw-shadow tw-border tw-border-black/[.1] dark:tw-bg-vtd-secondary-800 dark:tw-border-vtd-secondary-700;
+  @apply absolute top-0 w-4 h-4 bg-white shadow border border-black/[.1] dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700;
   transform: translate(50%, -50%) rotate(-45deg);
   clip-path: polygon(
     calc(var(--vtd-datepicker) * -1) calc(var(--vtd-datepicker) * -1),
@@ -1565,9 +1565,9 @@ provide('setToCustomShortcut', setToCustomShortcut)
   );
 }
 .vtd-datepicker.place-left::before {
-  @apply tw-left-1;
+  @apply left-1;
 }
 .vtd-datepicker.place-right::before {
-  @apply tw-right-5;
+  @apply right-5;
 }
 </style>

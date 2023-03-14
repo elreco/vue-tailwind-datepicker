@@ -215,7 +215,7 @@ declare namespace _sfc_main {
         setToLastMonth: (close: any) => void;
         setToCustomShortcut: (item: any, close: any) => void;
         getAbsoluteClass: (open: any) => "place-right" | "place-left";
-        getAbsoluteParentClass: (open: any) => "tw-left-auto tw-right-0" | "tw-left-0 tw-right-auto";
+        getAbsoluteParentClass: (open: any) => "left-auto right-0" | "left-0 right-auto";
         VtdHeader: {
             props: {
                 asPrevOrNext: BooleanConstructor;
@@ -560,7 +560,7 @@ declare namespace _sfc_main {
         setToLastMonth: (close: any) => void;
         setToCustomShortcut: (item: any, close: any) => void;
         getAbsoluteClass: (open: any) => "place-right" | "place-left";
-        getAbsoluteParentClass: (open: any) => "tw-left-auto tw-right-0" | "tw-left-0 tw-right-auto";
+        getAbsoluteParentClass: (open: any) => "left-auto right-0" | "left-0 right-auto";
         VtdHeader: {
             props: {
                 asPrevOrNext: BooleanConstructor;

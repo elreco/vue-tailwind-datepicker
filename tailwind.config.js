@@ -5,8 +5,8 @@ const { fontFamily } = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: [
-    "./index.html", 
-    "./src/**/*.{vue,js,ts,jsx,tsx}", 
+    "./index.html",
+    "./src/**/*.{vue,js,ts,jsx,tsx}",
     "./docs/**/*.{js,ts,vue,md}"
   ],
   darkMode: 'class',
@@ -29,7 +29,6 @@ module.exports = {
       },
     },
   },
-  prefix: "tw-",
   plugins: [
     require('@tailwindcss/forms'),
   ],
