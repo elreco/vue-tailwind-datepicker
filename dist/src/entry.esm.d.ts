@@ -51,6 +51,10 @@ declare const _default: {
             type: (StringConstructor | ObjectConstructor)[];
             default: () => Date;
         };
+        weekdaysSize: {
+            type: StringConstructor;
+            default: string;
+        };
         options: {
             type: ObjectConstructor;
             default: () => {
@@ -411,7 +415,6 @@ declare const _default: {
         watchEffect: typeof import("vue").watchEffect;
         watch: typeof import("vue").watch;
         unref: typeof import("vue").unref;
-        onBeforeMount: (hook: () => any, target?: import("vue").ComponentInternalInstance) => false | Function;
         readonly useDate: typeof import("./composables/date").default;
         readonly useDom: typeof import("./composables/dom").default;
     };
