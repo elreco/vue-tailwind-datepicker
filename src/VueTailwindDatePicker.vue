@@ -1565,9 +1565,9 @@ provide('setToCustomShortcut', setToCustomShortcut)
   );
 }
 .vtd-datepicker.place-left::before {
-  @apply left-1;
+  @apply left-1 dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700;
 }
 .vtd-datepicker.place-right::before {
-  @apply right-5;
+  @apply right-5 dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700;
 }
 </style>
