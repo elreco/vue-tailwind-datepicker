@@ -53,6 +53,10 @@ const props = defineProps({
     type: String,
     default: ''
   },
+  disabled: {
+    type: Boolean,
+    default: false
+  },
   disableInRange: {
     type: Boolean,
     default: true
@@ -1273,7 +1277,7 @@ provide('setToCustomShortcut', setToCustomShortcut)
 
 <template>
   <Popover v-if="!props.noInput" v-slot="{ open }" as="div" id="vtd" class="relative w-full">
-    <PopoverOverlay v-if="props.overlay" class="fixed inset-0 bg-black opacity-30" />
+    <PopoverOverlay v-if="props.overlay && !props.disabled" class="fixed inset-0 bg-black opacity-30" />
 
     <PopoverButton as="label" class="relative block">
       <slot :value="pickerValue" :placeholder="givenPlaceholder" :clear="clearPicker">
@@ -1281,10 +1285,12 @@ provide('setToCustomShortcut', setToCustomShortcut)
           ref="VtdInputRef"
           type="text"
           class="relative block w-full"
-          :class="
+          :disabled="props.disabled"
+          :class="[
+            props.disabled ? 'cursor-default opacity-50' : 'opacity-100',
             inputClasses ||
-            'pl-3 pr-12 py-2.5 rounded-lg overflow-hidden border-solid text-sm text-vtd-secondary-700 placeholder-vtd-secondary-400 transition-colors bg-white border border-vtd-secondary-300 focus:border-vtd-primary-300 focus:ring focus:ring-vtd-primary-500 focus:ring-opacity-10 focus:outline-none dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700 dark:text-vtd-secondary-100 dark:placeholder-vtd-secondary-500 dark:focus:border-vtd-primary-500 dark:focus:ring-opacity-20'
-          "
+              'pl-3 pr-12 py-2.5 rounded-lg overflow-hidden border-solid text-sm text-vtd-secondary-700 placeholder-vtd-secondary-400 transition-colors bg-white border border-vtd-secondary-300 focus:border-vtd-primary-300 focus:ring focus:ring-vtd-primary-500 focus:ring-opacity-10 focus:outline-none dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700 dark:text-vtd-secondary-100 dark:placeholder-vtd-secondary-500 dark:focus:border-vtd-primary-500 dark:focus:ring-opacity-20'
+          ]"
           autocomplete="off"
           data-lpignore="true"
           data-form-type="other"
@@ -1298,8 +1304,10 @@ provide('setToCustomShortcut', setToCustomShortcut)
         >
           <button
             type="button"
+            :disabled="props.disabled"
+            :class="props.disabled ? 'cursor-default opacity-50' : 'opacity-100'"
             class="px-2 py-1 mr-1 focus:outline-none text-vtd-secondary-400 dark:text-opacity-70 rounded-md"
-            @click="pickerValue ? clearPicker() : $refs.VtdInputRef.focus()"
+            @click="props.disabled ? false : pickerValue ? clearPicker() : $refs.VtdInputRef.focus()"
           >
             <svg
               class="w-5 h-5"
@@ -1336,7 +1344,7 @@ provide('setToCustomShortcut', setToCustomShortcut)
       leave-from-class="opacity-100 translate-y-0"
       leave-to-class="opacity-0 translate-y-3"
     >
-      <PopoverPanel as="div" class="relative z-50" v-slot="{ close }">
+      <PopoverPanel v-if="!props.disabled" as="div" class="relative z-50" v-slot="{ close }">
         <div class="absolute z-50 top-full sm:mt-2.5" :class="getAbsoluteParentClass(open)">
           <div
             ref="VtdRef"
@@ -1462,7 +1470,7 @@ provide('setToCustomShortcut', setToCustomShortcut)
   </Popover>
   <div v-else-if="displayDatepicker" class="flex">
     <div
-      class="bg-white rounded-lg shadow-sm border-0 border border-black/[.1] px-3 py-3 sm:px-4 sm:py-4 dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700/[1]"
+      class="bg-white rounded-lg shadow-sm border border-black/[.1] px-3 py-3 sm:px-4 sm:py-4 dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700/[1]"
     >
       <div class="flex flex-wrap lg:flex-nowrap">
         <vtd-shortcut
