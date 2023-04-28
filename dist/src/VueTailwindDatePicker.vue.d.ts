@@ -22,67 +22,73 @@ declare namespace _sfc_main {
             const _default_2: string;
             export { _default_2 as default };
         }
-        namespace disableInRange {
+        namespace disabled {
             const type_3: BooleanConstructor;
             export { type_3 as type };
             const _default_3: boolean;
             export { _default_3 as default };
         }
-        namespace disableDate {
-            const type_4: (BooleanConstructor | ArrayConstructor | FunctionConstructor)[];
+        namespace disableInRange {
+            const type_4: BooleanConstructor;
             export { type_4 as type };
             const _default_4: boolean;
             export { _default_4 as default };
         }
-        namespace autoApply {
-            const type_5: BooleanConstructor;
+        namespace disableDate {
+            const type_5: (BooleanConstructor | ArrayConstructor | FunctionConstructor)[];
             export { type_5 as type };
             const _default_5: boolean;
             export { _default_5 as default };
         }
-        namespace shortcuts {
-            const type_6: (BooleanConstructor | FunctionConstructor)[];
+        namespace autoApply {
+            const type_6: BooleanConstructor;
             export { type_6 as type };
             const _default_6: boolean;
             export { _default_6 as default };
         }
-        namespace separator {
-            const type_7: StringConstructor;
+        namespace shortcuts {
+            const type_7: (BooleanConstructor | FunctionConstructor)[];
             export { type_7 as type };
-            const _default_7: string;
+            const _default_7: boolean;
             export { _default_7 as default };
         }
-        namespace formatter {
-            const type_8: ObjectConstructor;
+        namespace separator {
+            const type_8: StringConstructor;
             export { type_8 as type };
-            function _default_8(): {
+            const _default_8: string;
+            export { _default_8 as default };
+        }
+        namespace formatter {
+            const type_9: ObjectConstructor;
+            export { type_9 as type };
+            function _default_9(): {
                 date: string;
                 month: string;
             };
-            export { _default_8 as default };
-        }
-        namespace modelValue {
-            const type_9: (StringConstructor | ArrayConstructor | ObjectConstructor)[];
-            export { type_9 as type };
-            function _default_9(): any[];
             export { _default_9 as default };
         }
-        namespace startFrom {
-            const type_10: (StringConstructor | ObjectConstructor)[];
+        namespace modelValue {
+            const type_10: (StringConstructor | ArrayConstructor | ObjectConstructor)[];
             export { type_10 as type };
-            function _default_10(): Date;
+            function _default_10(): any[];
             export { _default_10 as default };
         }
-        namespace weekdaysSize {
-            const type_11: StringConstructor;
+        namespace startFrom {
+            const type_11: (StringConstructor | ObjectConstructor)[];
             export { type_11 as type };
-            const _default_11: string;
+            function _default_11(): Date;
             export { _default_11 as default };
         }
-        namespace options {
-            const type_12: ObjectConstructor;
+        namespace weekdaysSize {
+            const type_12: StringConstructor;
             export { type_12 as type };
-            function _default_12(): {
+            const _default_12: string;
+            export { _default_12 as default };
+        }
+        namespace options {
+            const type_13: ObjectConstructor;
+            export { type_13 as type };
+            function _default_13(): {
                 shortcuts: {
                     today: string;
                     yesterday: string;
@@ -95,7 +101,7 @@ declare namespace _sfc_main {
                     cancel: string;
                 };
             };
-            export { _default_12 as default };
+            export { _default_13 as default };
         }
     }
     const emits: string[];
@@ -103,7 +109,7 @@ declare namespace _sfc_main {
         expose: any;
         emit: any;
     }): {
-        useCurrentDate: (date: any) => any[];
+        useCurrentDate: (date: any) => any;
         useDisableDate: (date: any, { disableDate }: {
             disableDate: any;
         }) => any;
@@ -165,7 +171,7 @@ declare namespace _sfc_main {
                 date: () => any[];
                 month: any;
                 year: any;
-                years: () => any[];
+                years: () => any;
                 onPrevious: () => void;
                 onNext: () => void;
                 onPreviousYear: () => void;
@@ -179,7 +185,7 @@ declare namespace _sfc_main {
                 date: () => any[];
                 month: any;
                 year: any;
-                years: () => any[];
+                years: () => any;
                 onPrevious: () => void;
                 onNext: () => void;
                 onPreviousYear: () => void;
@@ -331,6 +337,10 @@ declare namespace _sfc_main {
                 type: BooleanConstructor[];
                 default: boolean;
             };
+            id: {
+                type: StringConstructor;
+                default: () => string;
+            };
         }, () => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
             [key: string]: any;
         }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
@@ -342,9 +352,14 @@ declare namespace _sfc_main {
                 type: BooleanConstructor[];
                 default: boolean;
             };
+            id: {
+                type: StringConstructor;
+                default: () => string;
+            };
         }>>, {
             as: string | Record<string, any>;
             disabled: boolean;
+            id: string;
         }>;
         readonly PopoverPanel: import("vue").DefineComponent<{
             as: {
@@ -362,6 +377,10 @@ declare namespace _sfc_main {
             focus: {
                 type: BooleanConstructor;
                 default: boolean;
+            };
+            id: {
+                type: StringConstructor;
+                default: () => string;
             };
         }, () => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
             [key: string]: any;
@@ -384,10 +403,15 @@ declare namespace _sfc_main {
                 type: BooleanConstructor;
                 default: boolean;
             };
+            id: {
+                type: StringConstructor;
+                default: () => string;
+            };
         }>>, {
             as: string | Record<string, any>;
             unmount: boolean;
             static: boolean;
+            id: string;
             focus: boolean;
         }>;
         readonly PopoverOverlay: import("vue").DefineComponent<{
@@ -448,7 +472,7 @@ declare namespace _sfc_main {
         expose: any;
         emit: any;
     }): {
-        useCurrentDate: (date: any) => any[];
+        useCurrentDate: (date: any) => any;
         useDisableDate: (date: any, { disableDate }: {
             disableDate: any;
         }) => any;
@@ -510,7 +534,7 @@ declare namespace _sfc_main {
                 date: () => any[];
                 month: any;
                 year: any;
-                years: () => any[];
+                years: () => any;
                 onPrevious: () => void;
                 onNext: () => void;
                 onPreviousYear: () => void;
@@ -524,7 +548,7 @@ declare namespace _sfc_main {
                 date: () => any[];
                 month: any;
                 year: any;
-                years: () => any[];
+                years: () => any;
                 onPrevious: () => void;
                 onNext: () => void;
                 onPreviousYear: () => void;
@@ -676,6 +700,10 @@ declare namespace _sfc_main {
                 type: BooleanConstructor[];
                 default: boolean;
             };
+            id: {
+                type: StringConstructor;
+                default: () => string;
+            };
         }, () => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
             [key: string]: any;
         }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
@@ -687,9 +715,14 @@ declare namespace _sfc_main {
                 type: BooleanConstructor[];
                 default: boolean;
             };
+            id: {
+                type: StringConstructor;
+                default: () => string;
+            };
         }>>, {
             as: string | Record<string, any>;
             disabled: boolean;
+            id: string;
         }>;
         readonly PopoverPanel: import("vue").DefineComponent<{
             as: {
@@ -707,6 +740,10 @@ declare namespace _sfc_main {
             focus: {
                 type: BooleanConstructor;
                 default: boolean;
+            };
+            id: {
+                type: StringConstructor;
+                default: () => string;
             };
         }, () => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
             [key: string]: any;
@@ -729,10 +766,15 @@ declare namespace _sfc_main {
                 type: BooleanConstructor;
                 default: boolean;
             };
+            id: {
+                type: StringConstructor;
+                default: () => string;
+            };
         }>>, {
             as: string | Record<string, any>;
             unmount: boolean;
             static: boolean;
+            id: string;
             focus: boolean;
         }>;
         readonly PopoverOverlay: import("vue").DefineComponent<{

@@ -111,6 +111,28 @@ const dateValue = ref([])
 </template>
 ```
 
+## Disabled
+
+The datepicker can be fully disabled as well.
+
+<DemoLayout>
+  <VueTailwindDatePicker
+    v-model="dateValue1"
+		:disabled="true"
+  ></VueTailwindDatePicker>
+</DemoLayout>
+
+```vue
+<script setup>
+import { ref } from 'vue'
+const dateValue = ref([])
+</script>
+
+<template>
+    <vue-tailwind-datepicker :disabled="true" v-model="dateValue" />
+</template>
+```
+
 ## Single Date
 
 Using date picker as single date.
