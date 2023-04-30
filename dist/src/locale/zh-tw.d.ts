@@ -34,4 +34,5 @@ declare namespace locale {
         const y: string;
         const yy: string;
     }
+    function meridiem(hour: any, minute: any): "凌晨" | "早上" | "上午" | "中午" | "下午" | "晚上";
 }

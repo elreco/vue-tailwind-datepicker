@@ -1,6 +1,6 @@
 export default function useDate(): {
     usePreviousDate: (date: any) => any[];
-    useCurrentDate: (date: any) => any[];
+    useCurrentDate: (date: any) => any;
     useNextDate: (date: any) => any[];
     useDisableDate: (date: any, { disableDate }: {
         disableDate: any;
