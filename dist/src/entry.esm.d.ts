@@ -81,7 +81,7 @@ declare const _default: {
         expose: any;
         emit: any;
     }): {
-        useCurrentDate: (date: any) => any;
+        useCurrentDate: (date: any) => any[];
         useDisableDate: (date: any, { disableDate }: {
             disableDate: any;
         }) => any;
@@ -143,7 +143,7 @@ declare const _default: {
                 date: () => any[];
                 month: any;
                 year: any;
-                years: () => any;
+                years: () => any[];
                 onPrevious: () => void;
                 onNext: () => void;
                 onPreviousYear: () => void;
@@ -157,7 +157,7 @@ declare const _default: {
                 date: () => any[];
                 month: any;
                 year: any;
-                years: () => any;
+                years: () => any[];
                 onPrevious: () => void;
                 onNext: () => void;
                 onPreviousYear: () => void;
@@ -309,10 +309,6 @@ declare const _default: {
                 type: BooleanConstructor[];
                 default: boolean;
             };
-            id: {
-                type: StringConstructor;
-                default: () => string;
-            };
         }, () => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
             [key: string]: any;
         }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
@@ -324,14 +320,9 @@ declare const _default: {
                 type: BooleanConstructor[];
                 default: boolean;
             };
-            id: {
-                type: StringConstructor;
-                default: () => string;
-            };
         }>>, {
             as: string | Record<string, any>;
             disabled: boolean;
-            id: string;
         }>;
         readonly PopoverPanel: import("vue").DefineComponent<{
             as: {
@@ -349,10 +340,6 @@ declare const _default: {
             focus: {
                 type: BooleanConstructor;
                 default: boolean;
-            };
-            id: {
-                type: StringConstructor;
-                default: () => string;
             };
         }, () => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
             [key: string]: any;
@@ -375,15 +362,10 @@ declare const _default: {
                 type: BooleanConstructor;
                 default: boolean;
             };
-            id: {
-                type: StringConstructor;
-                default: () => string;
-            };
         }>>, {
             as: string | Record<string, any>;
             unmount: boolean;
             static: boolean;
-            id: string;
             focus: boolean;
         }>;
         readonly PopoverOverlay: import("vue").DefineComponent<{
