@@ -64,13 +64,13 @@ You can also access to advanced features like if you need different `model` valu
 
 ```vue
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 // use Array as model
-const dateValue = ref([])
+const dateValue = ref([]);
 </script>
 
 <template>
-    <vue-tailwind-datepicker v-model="dateValue" />
+  <vue-tailwind-datepicker v-model="dateValue" />
 </template>
 ```
 
@@ -84,16 +84,16 @@ const dateValue = ref([])
 
 ```vue
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 // use Object as model
 const dateValue = ref({
-    startDate: '',
-    endDate: ''
-})
+  startDate: "",
+  endDate: "",
+});
 </script>
 
 <template>
-    <vue-tailwind-datepicker v-model="dateValue" />
+  <vue-tailwind-datepicker v-model="dateValue" />
 </template>
 ```
 
@@ -107,13 +107,13 @@ const dateValue = ref({
 
 ```vue
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 // use String as model
-const dateValue = ref('')
+const dateValue = ref("");
 </script>
 
 <template>
-    <vue-tailwind-datepicker v-model="dateValue" />
+  <vue-tailwind-datepicker v-model="dateValue" />
 </template>
 ```
 
@@ -130,36 +130,30 @@ Create your custom shortcuts.
 
 ```vue
 <script setup>
-import { ref } from 'vue'
-const dateValue = ref([])
+import { ref } from "vue";
+const dateValue = ref([]);
 const customShortcuts = () => {
   return [
     {
-      label: 'Last 15 Days',
+      label: "Last 15 Days",
       atClick: () => {
         const date = new Date();
-        return [
-          new Date(date.setDate(date.getDate() + 1)), 
-          date
-        ];
-      }
+        return [new Date(date.setDate(date.getDate() + 1)), date];
+      },
     },
     {
-      label: 'Last Years',
+      label: "Last Years",
       atClick: () => {
         const date = new Date();
-        return [
-          new Date(date.setFullYear(date.getFullYear() - 1)),
-          new Date()
-        ];
-      }
-    }
-  ]
-}
+        return [new Date(date.setFullYear(date.getFullYear() - 1)), new Date()];
+      },
+    },
+  ];
+};
 </script>
 
 <template>
-    <vue-tailwind-datepicker :shortcuts="customShortcuts" v-model="dateValue" />
+  <vue-tailwind-datepicker :shortcuts="customShortcuts" v-model="dateValue" />
 </template>
 ```
 
@@ -179,24 +173,29 @@ Vue Tailwind Datepicker extend to day.js<br>
 
 ```vue
 <script setup>
-import { ref } from 'vue'
-const dateValue = ref([])
+import { ref } from "vue";
+const dateValue = ref([]);
 const options = ref({
   shortcuts: {
-    today: 'Hari ini',
-    yesterday: 'Kemarin',
-    past: period => period + ' hari terakhir',
-    currentMonth: 'Bulan ini',
-    pastMonth: 'Bulan lalu'
+    today: "Hari ini",
+    yesterday: "Kemarin",
+    past: (period) => period + " hari terakhir",
+    currentMonth: "Bulan ini",
+    pastMonth: "Bulan lalu",
   },
   footer: {
-    apply: 'Terapkan',
-    cancel: 'Batal'
-  }
-})
+    apply: "Terapkan",
+    cancel: "Batal",
+  },
+});
 </script>
 
 <template>
-    <vue-tailwind-datepicker i18n="id" :auto-apply="false" :options="options" v-model="dateValue" />
+  <vue-tailwind-datepicker
+    i18n="id"
+    :auto-apply="false"
+    :options="options"
+    v-model="dateValue"
+  />
 </template>
 ```

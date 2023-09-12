@@ -52,24 +52,24 @@ Changed month event from dropdown for left/single calendar.
 
 ```vue
 <script setup>
-import { ref } from 'vue'
-const dateValue = ref([])
+import { ref } from "vue";
+const dateValue = ref([]);
 
 const onSelectSomething = (newDate) => {
-  console.log(newDate) // newDate instanceof dayjs
-}
+  console.log(newDate); // newDate instanceof dayjs
+};
 </script>
 
 <template>
-    <vue-tailwind-datepicker 
-        v-model="dateValue"
-        @select:month="onSelectSomething($event)"
-    />
-    <vue-tailwind-datepicker
-        v-model="dateValue"
-        as-single
-        @select:month="onSelectSomething($event)"
-    />
+  <vue-tailwind-datepicker
+    v-model="dateValue"
+    @select:month="onSelectSomething($event)"
+  />
+  <vue-tailwind-datepicker
+    v-model="dateValue"
+    as-single
+    @select:month="onSelectSomething($event)"
+  />
 </template>
 ```
 
@@ -97,23 +97,23 @@ Changed year event from dropdown for left/single calendar.
 
 ```vue
 <script setup>
-import { ref } from 'vue'
-const dateValue = ref([])
+import { ref } from "vue";
+const dateValue = ref([]);
 
 const onSelectSomething = (newDate) => {
-  console.log(newDate) // newDate instanceof dayjs
-}
+  console.log(newDate); // newDate instanceof dayjs
+};
 </script>
 
 <template>
   <vue-tailwind-datepicker
-      v-model="dateValue"
-      @select:year="onSelectSomething($event)"
+    v-model="dateValue"
+    @select:year="onSelectSomething($event)"
   />
   <vue-tailwind-datepicker
-      v-model="dateValue"
-      as-single
-      @select:year="onSelectSomething($event)"
+    v-model="dateValue"
+    as-single
+    @select:year="onSelectSomething($event)"
   />
 </template>
 ```
@@ -135,19 +135,19 @@ Changed month event from dropdown for right calendar.
 
 ```vue
 <script setup>
-import { ref } from 'vue'
-const dateValue = ref([])
+import { ref } from "vue";
+const dateValue = ref([]);
 
 const onClickSomething = (newDate) => {
-  console.log(newDate) // newDate instanceof dayjs
-}
+  console.log(newDate); // newDate instanceof dayjs
+};
 </script>
 
 <template>
-    <vue-tailwind-datepicker
-        v-model="dateValue"
-        @select:right:month="onSelectSomething($event)"
-    />
+  <vue-tailwind-datepicker
+    v-model="dateValue"
+    @select:right:month="onSelectSomething($event)"
+  />
 </template>
 ```
 
@@ -168,18 +168,18 @@ Changed year event from dropdown for right calendar.
 
 ```vue
 <script setup>
-import { ref } from 'vue'
-const dateValue = ref([])
+import { ref } from "vue";
+const dateValue = ref([]);
 
 const onSelectSomething = (newDate) => {
-  console.log(newDate) // newDate instanceof dayjs
-}
+  console.log(newDate); // newDate instanceof dayjs
+};
 </script>
 
 <template>
   <vue-tailwind-datepicker
-      v-model="dateValue"
-      @select:right:year="onSelectSomething($event)"
+    v-model="dateValue"
+    @select:right:year="onSelectSomething($event)"
   />
 </template>
 ```
@@ -208,24 +208,24 @@ Click previous button event for left/single calendar.
 
 ```vue
 <script setup>
-import { ref } from 'vue'
-const dateValue = ref([])
+import { ref } from "vue";
+const dateValue = ref([]);
 
 const onClickSomething = (newDate) => {
-  console.log(newDate) // newDate instanceof dayjs
-}
+  console.log(newDate); // newDate instanceof dayjs
+};
 </script>
 
 <template>
-    <vue-tailwind-datepicker 
-        v-model="dateValue"
-        @click:prev="onClickSomething($event)"
-    />
-    <vue-tailwind-datepicker
-        v-model="dateValue"
-        as-single
-        @click:prev="onClickSomething($event)"
-    />
+  <vue-tailwind-datepicker
+    v-model="dateValue"
+    @click:prev="onClickSomething($event)"
+  />
+  <vue-tailwind-datepicker
+    v-model="dateValue"
+    as-single
+    @click:prev="onClickSomething($event)"
+  />
 </template>
 ```
 
@@ -253,24 +253,24 @@ Click next button event for left/single calendar.
 
 ```vue
 <script setup>
-import { ref } from 'vue'
-const dateValue = ref([])
+import { ref } from "vue";
+const dateValue = ref([]);
 
 const onClickSomething = (newDate) => {
-  console.log(newDate) // newDate instanceof dayjs
-}
+  console.log(newDate); // newDate instanceof dayjs
+};
 </script>
 
 <template>
-    <vue-tailwind-datepicker 
-        v-model="dateValue"
-        @click:next="onClickSomething($event)"
-    />
-    <vue-tailwind-datepicker
-        v-model="dateValue"
-        as-single
-        @click:next="onClickSomething($event)"
-    />
+  <vue-tailwind-datepicker
+    v-model="dateValue"
+    @click:next="onClickSomething($event)"
+  />
+  <vue-tailwind-datepicker
+    v-model="dateValue"
+    as-single
+    @click:next="onClickSomething($event)"
+  />
 </template>
 ```
 
@@ -291,19 +291,19 @@ Click previous button event for right calendar.
 
 ```vue
 <script setup>
-import { ref } from 'vue'
-const dateValue = ref([])
+import { ref } from "vue";
+const dateValue = ref([]);
 
 const onClickSomething = (newDate) => {
-  console.log(newDate) // newDate instanceof dayjs
-}
+  console.log(newDate); // newDate instanceof dayjs
+};
 </script>
 
 <template>
-    <vue-tailwind-datepicker 
-        v-model="dateValue"
-        @click:right:prev="onClickSomething($event)"
-    />
+  <vue-tailwind-datepicker
+    v-model="dateValue"
+    @click:right:prev="onClickSomething($event)"
+  />
 </template>
 ```
 
@@ -324,19 +324,19 @@ Click next button event for right calendar.
 
 ```vue
 <script setup>
-import { ref } from 'vue'
-const dateValue = ref([])
+import { ref } from "vue";
+const dateValue = ref([]);
 
 const onClickSomething = (newDate) => {
-  console.log(newDate) // newDate instanceof dayjs
-}
+  console.log(newDate); // newDate instanceof dayjs
+};
 </script>
 
 <template>
-    <vue-tailwind-datepicker 
-        v-model="dateValue"
-        @click:right:next="onClickSomething($event)"
-    />
+  <vue-tailwind-datepicker
+    v-model="dateValue"
+    @click:right:next="onClickSomething($event)"
+  />
 </template>
 ```
 

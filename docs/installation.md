@@ -8,13 +8,13 @@ You can follow [this tutorial](https://dev.to/elreco/add-a-tailwind-datepicker-t
 ## Install via npm
 
 ```
-$ npm install vue-tailwind-datepicker 
+$ npm install vue-tailwind-datepicker
 ```
 
 ## Install via yarn
 
 ```
-$ yarn add vue-tailwind-datepicker 
+$ yarn add vue-tailwind-datepicker
 ```
 
 ## How it works
@@ -23,15 +23,15 @@ Setup the component globally
 
 ```js
 // main.js
-import { createApp } from 'vue'
-import App from '@/App.vue'
-import VueTailwindDatepicker from 'vue-tailwind-datepicker'
+import { createApp } from "vue";
+import App from "@/App.vue";
+import VueTailwindDatepicker from "vue-tailwind-datepicker";
 // ...
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.use(VueTailwindDatepicker)
-app.mount('#app')
+app.use(VueTailwindDatepicker);
+app.mount("#app");
 ```
 
 Setup as a single component
@@ -39,10 +39,10 @@ Setup as a single component
 ```vue
 <!-- SFC file -->
 <script setup>
-  import { ref } from 'vue'
-  import VueTailwindDatepicker from 'vue-tailwind-datepicker'
+import { ref } from "vue";
+import VueTailwindDatepicker from "vue-tailwind-datepicker";
 
-  const dateValue = ref([])
+const dateValue = ref([]);
 </script>
 
 <template>
@@ -54,13 +54,13 @@ Setup as a single component
 
 ```js
 // tailwind.config.js
-const colors = require("tailwindcss/colors")
+const colors = require("tailwindcss/colors");
 
 module.exports = {
   content: [
-    "./index.html", 
+    "./index.html",
     "./src/**/*.{vue,js,ts,jsx,tsx}",
-    "./node_modules/vue-tailwind-datepicker/**/*.js"
+    "./node_modules/vue-tailwind-datepicker/**/*.js",
   ],
   theme: {
     extend: {
@@ -70,8 +70,6 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-  ]
-}
+  plugins: [require("@tailwindcss/forms")],
+};
 ```

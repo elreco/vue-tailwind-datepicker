@@ -1,9 +1,13 @@
-<script setup>
-defineProps({
-  months: Array
-})
+<script setup lang="ts">
+import type { LengthArray } from "../types";
 
-const emit = defineEmits(['update:month'])
+defineProps<{
+  months: LengthArray<string, 12>;
+}>();
+
+const emit = defineEmits<{
+  (e: "updateMonth", value: number): void;
+}>();
 </script>
 
 <template>
@@ -13,9 +17,9 @@ const emit = defineEmits(['update:month'])
         <button
           type="button"
           class="px-3 py-2 block w-full leading-6 rounded-md bg-white text-xs 2xl:text-sm tracking-wide text-vtd-secondary-600 font-medium transition-colors border border-transparent hover:bg-vtd-secondary-100 hover:text-vtd-secondary-900 focus:bg-vtd-primary-50 focus:text-vtd-secondary-900 focus:border-vtd-primary-300 focus:ring focus:ring-vtd-primary-500 focus:ring-opacity-10 focus:outline-none uppercase dark:bg-vtd-secondary-800 dark:hover:bg-vtd-secondary-700 dark:text-vtd-secondary-300 dark:hover:text-vtd-secondary-100 dark:focus:bg-vtd-secondary-700"
+          @click="emit('updateMonth', key)"
           v-text="month"
-          @click="emit('update:month', key)"
-        ></button>
+        />
       </span>
     </div>
   </div>

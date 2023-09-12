@@ -1,17 +1,19 @@
 {
+  "private": true,
   "name": "vue-tailwind-datepicker",
   "description": "A date range picker component for Vue.js 3 using Tailwind CSS",
   "version": "1.4.6",
+  "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/vue-tailwind-datepicker.umd.js",
-  "module": "./dist/vue-tailwind-datepicker.mjs",
+  "main": "./dist/vue-tailwind-datepicker.umd.cjs",
+  "module": "./dist/vue-tailwind-datepicker.js",
   "types": "./dist/types.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/vue-tailwind-datepicker.mjs",
-      "require": "./dist/vue-tailwind-datepicker.umd.js"
+      "import": "./dist/vue-tailwind-datepicker.js",
+      "require": "./dist/vue-tailwind-datepicker.umd.cjs"
     }
   },
   "keywords": [
@@ -36,49 +38,55 @@
     "url": "https://github.com/elreco/vue-tailwind-datepicker/issues",
     "email": "alexandre@heypongo.com"
   },
-  "private": false,
   "homepage": "https://vue-tailwind-datepicker.com",
   "scripts": {
-    "dev": "node exec.js && vite",
-    "build": "vite build && npm run locale && cp ./src/types.d.ts ./dist/types.d.ts",
+    "dev": "ts-node --transpileOnly exec.ts && vite",
+    "build": "vite build",
     "preview": "vite preview --port 4173",
-    "lint": "eslint src --ext=.js,.vue",
-    "lint:fix": "eslint src --ext=.js,.vue --fix",
-    "format": "prettier src --ignore-unknown --check",
-    "format:fix": "prettier src --ignore-unknown --write",
-    "locale": "node exec.js && rm -rf ./dist/locale && cp -r ./src/locale ./dist/locale",
+    "lint": "eslint --cache",
+    "lint:fix": "eslint --cache --fix",
+    "format": "prettier --check --cache --cache-strategy metadata **/*.{js,ts,json,css,vue,html,md}",
+    "format:fix": "prettier --check --write --cache --cache-strategy metadata **/*.{js,ts,json,css,vue,html,md}",
+    "locale": "ts-node --transpileOnly exec.ts && rm -rf ./dist/locale && cp -r ./src/locale ./dist/locale",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs"
+    "docs:serve": "vitepress serve docs",
+    "typecheck": "vue-tsc --noEmit"
   },
   "devDependencies": {
-    "@headlessui/vue": "^1.6.7",
-    "@rushstack/eslint-patch": "^1.1.4",
-    "@tailwindcss/forms": "^0.5.3",
-    "@vitejs/plugin-vue": "^3.0.3",
-    "autoprefixer": "^10.4.8",
-    "dayjs": "^1.11.5",
-    "esbuild": "^0.17.4",
-    "eslint": "^8.22.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-vue": "^9.3.0",
-    "fs-extra": "^10.1.0",
-    "postcss": "^8.4.16",
+    "@antfu/eslint-config": "^0.41.0",
+    "@headlessui/vue": "^1.7.16",
+    "@rushstack/eslint-patch": "^1.3.3",
+    "@tailwindcss/forms": "^0.5.6",
+    "@types/fs-extra": "^11.0.1",
+    "@types/node": "^18.17.6",
+    "@vitejs/plugin-vue": "^4.3.4",
+    "autoprefixer": "^10.4.15",
+    "dayjs": "^1.11.9",
+    "esbuild": "^0.19.2",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-vue": "^9.17.0",
+    "fs-extra": "^11.1.1",
+    "postcss": "^8.4.29",
     "postcss-prefix-selector": "^1.16.0",
-    "postcss-preset-env": "^7.8.0",
-    "prettier": "^2.7.1",
-    "tailwindcss": "^3.1.8",
-    "vite": "^3.1.0",
-    "vite-plugin-dts": "1.6.6",
-    "vitepress": "^1.0.0-alpha.13",
-    "vue": "^3.2.38"
+    "postcss-preset-env": "^9.1.3",
+    "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.4",
+    "tailwindcss": "^3.3.3",
+    "vite": "^4.4.9",
+    "vite-plugin-dts": "3.5.3",
+    "vitepress": "^1.0.0-rc.12",
+    "vue": "^3.3.4",
+    "vue-tsc": "^1.8.10"
   },
   "peerDependencies": {
-    "dayjs": "^1.11.5",
-    "tailwindcss": "^3.1.8",
-    "vue": "^3.2.38"
+    "dayjs": "^1.11.9",
+    "tailwindcss": "^3.3.3",
+    "vue": "^3.3.4"
   },
   "dependencies": {
-    "vite-plugin-css-injected-by-js": "^2.0.4"
+    "ts-node": "^10.9.1",
+    "vite-plugin-css-injected-by-js": "^3.3.0"
   }
 }
