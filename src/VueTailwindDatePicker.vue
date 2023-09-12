@@ -146,6 +146,11 @@ const {
 
 const { useVisibleViewport } = useDom()
 
+const localesMap = Object.fromEntries(
+  Object.entries(import.meta.glob('./locale/*.js'))
+    .map(([path, loadLocale]) => [path.match(/([\w-]*)\.js$/)?.[1], loadLocale]),
+) as Record<string, () => Promise<{ default: Dayjs['localeData'] }>>
+
 dayjs.extend(localeData)
 dayjs.extend(localizedFormat)
 dayjs.extend(customParseFormat)
@@ -1261,145 +1266,142 @@ watchEffect(() => {
 
 watchEffect(() => {
   const locale = props.i18n
-  nextTick(() => {
-    const modules = import.meta.glob('./locale/*.js')
-    for (const path in modules) {
-      modules[path]()
-        .then(() => {
-          dayjs.locale(locale)
-          let s, e
-          if (asRange()) {
-            if (Array.isArray(props.modelValue)) {
-              if (props.modelValue.length > 0) {
-                const [start, end] = props.modelValue
-                s = dayjs(start, props.formatter.date, true)
-                e = dayjs(end, props.formatter.date, true)
-              }
+  nextTick(async () => {
+    if (locale in localesMap) {
+      await localesMap[locale]()
+      dayjs.locale(locale)
+      let s, e
+      if (asRange()) {
+        if (Array.isArray(props.modelValue)) {
+          if (props.modelValue.length > 0) {
+            const [start, end] = props.modelValue
+            s = dayjs(start, props.formatter.date, true)
+            e = dayjs(end, props.formatter.date, true)
+          }
+        }
+        else if (typeof props.modelValue === 'object') {
+          if (!isProxy(props.modelValue)) {
+            try {
+              Object.keys(props.modelValue)
             }
-            else if (typeof props.modelValue === 'object') {
-              if (!isProxy(props.modelValue)) {
-                try {
-                  Object.keys(props.modelValue)
-                }
-                catch (e) {
-                  console.warn(
-                    '[Vue Tailwind Datepicker]: It looks like you want to use Object as the argument %cv-model',
-                    'font-style: italic; color: #42b883;',
-                    ', but you pass it undefined or null.',
-                  )
-                  console.warn(
-                    '[Vue Tailwind Datepicker]: We has replace with %c{ startDate: \'\', endDate: \'\' }',
-                    'font-style: italic; color: #42b883;',
-                    ', but you can replace manually.',
-                  )
-                  emit('update:modelValue', {
-                    startDate: '',
-                    endDate: '',
-                  })
-                }
-              }
-              if (props.modelValue) {
-                const [start, end] = Object.values(props.modelValue)
-                s = start && dayjs(start, props.formatter.date, true)
-                e = end && dayjs(end, props.formatter.date, true)
-              }
-            }
-            else {
-              if (props.modelValue) {
-                const [start, end] = props.modelValue.split(props.separator)
-                s = dayjs(start, props.formatter.date, true)
-                e = dayjs(end, props.formatter.date, true)
-              }
-            }
-
-            if (s && e) {
-              pickerValue.value = useToValueFromArray(
-                {
-                  previous: s,
-                  next: e,
-                },
-                props,
+            catch (e) {
+              console.warn(
+                '[Vue Tailwind Datepicker]: It looks like you want to use Object as the argument %cv-model',
+                'font-style: italic; color: #42b883;',
+                ', but you pass it undefined or null.',
               )
-              if (e.isBefore(s, 'month')) {
-                datepicker.value.previous = e
-                datepicker.value.next = s
-                datepicker.value.year.previous = e.year()
-                datepicker.value.year.next = s.year()
-              }
-              else if (e.isSame(s, 'month')) {
-                datepicker.value.previous = s
-                datepicker.value.next = e.add(1, 'month')
-                datepicker.value.year.previous = s.year()
-                datepicker.value.year.next = s.add(1, 'year').year()
-              }
-              else {
-                datepicker.value.previous = s
-                datepicker.value.next = e
-                datepicker.value.year.previous = s.year()
-                datepicker.value.year.next = e.year()
-              }
-              if (!props.autoApply)
-                applyValue.value = [s, e]
+              console.warn(
+                '[Vue Tailwind Datepicker]: We has replace with %c{ startDate: \'\', endDate: \'\' }',
+                'font-style: italic; color: #42b883;',
+                ', but you can replace manually.',
+              )
+              emit('update:modelValue', {
+                startDate: '',
+                endDate: '',
+              })
             }
-            else {
-              datepicker.value.previous = dayjs(props.startFrom)
-              datepicker.value.next = dayjs(props.startFrom).add(1, 'month')
-              datepicker.value.year.previous = datepicker.value.previous.year()
-              datepicker.value.year.next = datepicker.value.next.year()
-            }
+          }
+          if (props.modelValue) {
+            const [start, end] = Object.values(props.modelValue)
+            s = start && dayjs(start, props.formatter.date, true)
+            e = end && dayjs(end, props.formatter.date, true)
+          }
+        }
+        else {
+          if (props.modelValue) {
+            const [start, end] = props.modelValue.split(props.separator)
+            s = dayjs(start, props.formatter.date, true)
+            e = dayjs(end, props.formatter.date, true)
+          }
+        }
+
+        if (s && e) {
+          pickerValue.value = useToValueFromArray(
+            {
+              previous: s,
+              next: e,
+            },
+            props,
+          )
+          if (e.isBefore(s, 'month')) {
+            datepicker.value.previous = e
+            datepicker.value.next = s
+            datepicker.value.year.previous = e.year()
+            datepicker.value.year.next = s.year()
+          }
+          else if (e.isSame(s, 'month')) {
+            datepicker.value.previous = s
+            datepicker.value.next = e.add(1, 'month')
+            datepicker.value.year.previous = s.year()
+            datepicker.value.year.next = s.add(1, 'year').year()
           }
           else {
-            if (Array.isArray(props.modelValue)) {
-              if (props.modelValue.length > 0) {
-                const [start] = props.modelValue
-                s = dayjs(start, props.formatter.date, true)
-              }
-            }
-            else if (typeof props.modelValue === 'object') {
-              if (props.modelValue) {
-                const [start] = Object.values(props.modelValue)
-                s = dayjs(start, props.formatter.date, true)
-              }
-            }
-            else {
-              if (props.modelValue.length) {
-                const [start] = props.modelValue.split(props.separator)
-                s = dayjs(start, props.formatter.date, true)
-              }
-            }
-
-            if (s && s.isValid()) {
-              pickerValue.value = useToValueFromString(s, props)
-              datepicker.value.previous = s
-              datepicker.value.next = s.add(1, 'month')
-              datepicker.value.year.previous = s.year()
-              datepicker.value.year.next = s.add(1, 'year').year()
-              if (!props.autoApply)
-                applyValue.value = [s]
-            }
-            else {
-              datepicker.value.previous = dayjs(props.startFrom)
-              datepicker.value.next = dayjs(props.startFrom).add(1, 'month')
-              datepicker.value.year.previous = datepicker.value.previous.year()
-              datepicker.value.year.next = datepicker.value.next.year()
-            }
+            datepicker.value.previous = s
+            datepicker.value.next = e
+            datepicker.value.year.previous = s.year()
+            datepicker.value.year.next = e.year()
           }
-          const days
-            = props.weekdaysSize === 'min'
-              ? dayjs.weekdaysMin()
-              : dayjs.weekdaysShort()
-          datepicker.value.weeks = isFirstMonday()
-            ? shuffleWeekdays(days)
-            : days
-          datepicker.value.months
-            = props.formatter.month === 'MMM'
-              ? dayjs.monthsShort()
-              : dayjs.months()
-        })
-        .catch((e: Error) => {
-          console.warn(e.message)
-        })
+          if (!props.autoApply)
+            applyValue.value = [s, e]
+        }
+        else {
+          datepicker.value.previous = dayjs(props.startFrom)
+          datepicker.value.next = dayjs(props.startFrom).add(1, 'month')
+          datepicker.value.year.previous = datepicker.value.previous.year()
+          datepicker.value.year.next = datepicker.value.next.year()
+        }
+      }
+      else {
+        if (Array.isArray(props.modelValue)) {
+          if (props.modelValue.length > 0) {
+            const [start] = props.modelValue
+            s = dayjs(start, props.formatter.date, true)
+          }
+        }
+        else if (typeof props.modelValue === 'object') {
+          if (props.modelValue) {
+            const [start] = Object.values(props.modelValue)
+            s = dayjs(start, props.formatter.date, true)
+          }
+        }
+        else {
+          if (props.modelValue.length) {
+            const [start] = props.modelValue.split(props.separator)
+            s = dayjs(start, props.formatter.date, true)
+          }
+        }
+
+        if (s && s.isValid()) {
+          pickerValue.value = useToValueFromString(s, props)
+          datepicker.value.previous = s
+          datepicker.value.next = s.add(1, 'month')
+          datepicker.value.year.previous = s.year()
+          datepicker.value.year.next = s.add(1, 'year').year()
+          if (!props.autoApply)
+            applyValue.value = [s]
+        }
+        else {
+          datepicker.value.previous = dayjs(props.startFrom)
+          datepicker.value.next = dayjs(props.startFrom).add(1, 'month')
+          datepicker.value.year.previous = datepicker.value.previous.year()
+          datepicker.value.year.next = datepicker.value.next.year()
+        }
+      }
+      const days
+        = props.weekdaysSize === 'min'
+          ? dayjs.weekdaysMin()
+          : dayjs.weekdaysShort()
+      datepicker.value.weeks = isFirstMonday()
+        ? shuffleWeekdays(days)
+        : days
+      datepicker.value.months
+        = props.formatter.month === 'MMM'
+          ? dayjs.monthsShort()
+          : dayjs.months()
     }
+
+
+
   })
 })
 
@@ -1436,237 +1438,120 @@ provide(setToCustomShortcutKey, setToCustomShortcut)
 </script>
 
 <template>
-  <Popover
-    v-if="!props.noInput"
-    id="vtd"
-    v-slot="{ open }: { open: boolean }"
-    as="div"
-    class="relative w-full"
-  >
-    <PopoverOverlay
-      v-if="props.overlay && !props.disabled"
-      class="fixed inset-0 bg-black opacity-30"
-    />
+  <Popover v-if="!props.noInput" id="vtd" v-slot="{ open }: { open: boolean }" as="div" class="relative w-full">
+    <PopoverOverlay v-if=" props.overlay && !props.disabled " class="fixed inset-0 bg-black opacity-30" />
 
     <PopoverButton as="label" class="relative block">
-      <slot
-        :value="pickerValue"
-        :placeholder="givenPlaceholder"
-        :clear="clearPicker"
-      >
-        <input
-          ref="VtdInputRef"
-          v-bind="$attrs"
-          v-model="pickerValue"
-          type="text"
-          class="relative block w-full"
-          :disabled="props.disabled"
-          :class="[
-            props.disabled ? 'cursor-default opacity-50' : 'opacity-100',
-            inputClasses
+      <slot :value=" pickerValue " :placeholder=" givenPlaceholder " :clear=" clearPicker ">
+        <input ref="VtdInputRef" v-bind=" $attrs " v-model=" pickerValue " type="text" class="relative block w-full"
+          :disabled=" props.disabled " :class="
+            [
+              props.disabled ? 'cursor-default opacity-50' : 'opacity-100',
+              inputClasses
               || 'pl-3 pr-12 py-2.5 rounded-lg overflow-hidden border-solid text-sm text-vtd-secondary-700 placeholder-vtd-secondary-400 transition-colors bg-white border border-vtd-secondary-300 focus:border-vtd-primary-300 focus:ring focus:ring-vtd-primary-500 focus:ring-opacity-10 focus:outline-none dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700 dark:text-vtd-secondary-100 dark:placeholder-vtd-secondary-500 dark:focus:border-vtd-primary-500 dark:focus:ring-opacity-20',
-          ]"
-          autocomplete="off"
-          data-lpignore="true"
-          data-form-type="other"
-          :placeholder="givenPlaceholder"
-          @keyup="keyUp"
-        >
-        <div
-          class="absolute inset-y-0 right-0 inline-flex items-center rounded-md overflow-hidden"
-        >
-          <button
-            type="button"
-            :disabled="props.disabled"
-            :class="
-              props.disabled ? 'cursor-default opacity-50' : 'opacity-100'
-            "
-            class="px-2 py-1 mr-1 focus:outline-none text-vtd-secondary-400 dark:text-opacity-70 rounded-md"
-            @click="
+            ]
+          " autocomplete="off" data-lpignore="true" data-form-type="other" :placeholder=" givenPlaceholder "
+          @keyup=" keyUp ">
+        <div class="absolute inset-y-0 right-0 inline-flex items-center rounded-md overflow-hidden">
+          <button type="button" :disabled=" props.disabled " :class="
+            props.disabled ? 'cursor-default opacity-50' : 'opacity-100'
+          " class="px-2 py-1 mr-1 focus:outline-none text-vtd-secondary-400 dark:text-opacity-70 rounded-md" @click="
               props.disabled
                 ? false
                 : pickerValue
                   ? clearPicker()
                   : VtdInputRef?.focus()
-            "
-          >
-            <svg
-              class="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                v-if="pickerValue"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1.5"
-                d="M6 18L18 6M6 6l12 12"
-              />
-              <path
-                v-else
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1.5"
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-              />
+            ">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path v-if=" pickerValue " stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="M6 18L18 6M6 6l12 12" />
+              <path v-else stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
           </button>
         </div>
       </slot>
     </PopoverButton>
 
-    <transition
-      enter-from-class="opacity-0 translate-y-3"
-      enter-to-class="opacity-100 translate-y-0"
+    <transition enter-from-class="opacity-0 translate-y-3" enter-to-class="opacity-100 translate-y-0"
       enter-active-class="transform transition ease-out duration-200"
-      leave-active-class="transform transition ease-in duration-150"
-      leave-from-class="opacity-100 translate-y-0"
-      leave-to-class="opacity-0 translate-y-3"
-    >
-      <PopoverPanel
-        v-if="!props.disabled"
-        v-slot="{ close }: { close: (ref?: Ref | HTMLElement) => void }"
-        as="div"
-        class="relative z-50"
-      >
-        <div
-          class="absolute z-50 top-full sm:mt-2.5"
-          :class="getAbsoluteParentClass(open)"
-        >
-          <div
-            ref="VtdRef"
-            class="fixed inset-0 z-50 overflow-y-auto sm:overflow-visible sm:static sm:z-auto bg-white dark:bg-vtd-secondary-800 sm:rounded-lg shadow-sm"
-          >
+      leave-active-class="transform transition ease-in duration-150" leave-from-class="opacity-100 translate-y-0"
+      leave-to-class="opacity-0 translate-y-3">
+      <PopoverPanel v-if=" !props.disabled " v-slot=" { close }: { close: (ref?: Ref | HTMLElement) => void } " as="div"
+        class="relative z-50">
+        <div class="absolute z-50 top-full sm:mt-2.5" :class=" getAbsoluteParentClass(open) ">
+          <div ref="VtdRef"
+            class="fixed inset-0 z-50 overflow-y-auto sm:overflow-visible sm:static sm:z-auto bg-white dark:bg-vtd-secondary-800 sm:rounded-lg shadow-sm">
             <div
               class="vtd-datepicker static sm:relative w-full bg-white sm:rounded-lg sm:shadow-sm border-0 sm:border border-black/[.1] px-3 py-3 sm:px-4 sm:py-4 dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700/[1]"
-              :class="getAbsoluteClass(open)"
-            >
+              :class=" getAbsoluteClass(open) ">
               <div class="flex flex-wrap lg:flex-nowrap">
-                <VtdShortcut
-                  v-if="props.shortcuts"
-                  :shortcuts="props.shortcuts"
-                  :as-range="asRange()"
-                  :as-single="props.asSingle"
-                  :i18n="props.options.shortcuts"
-                  :close="close"
-                />
+                <VtdShortcut v-if=" props.shortcuts " :shortcuts=" props.shortcuts " :as-range=" asRange() "
+                  :as-single=" props.asSingle " :i18n=" props.options.shortcuts " :close=" close " />
                 <div class="relative flex flex-wrap sm:flex-nowrap p-1 w-full">
-                  <div
-                    v-if="asRange() && !props.asSingle"
-                    class="hidden h-full absolute inset-0 sm:flex justify-center items-center"
-                  >
-                    <div
-                      class="h-full border-r border-black/[.1] dark:border-vtd-secondary-700/[1]"
-                    />
+                  <div v-if=" asRange() && !props.asSingle "
+                    class="hidden h-full absolute inset-0 sm:flex justify-center items-center">
+                    <div class="h-full border-r border-black/[.1] dark:border-vtd-secondary-700/[1]" />
                   </div>
-                  <div
-                    class="relative"
-                    :class="{
+                  <div class="relative" :class="
+                    {
                       'mb-3 sm:mb-0 sm:mr-2 w-full md:w-1/2 lg:w-80':
-                        asRange() && !props.asSingle,
-                      'w-full': !asRange() && props.asSingle,
-                    }"
-                  >
-                    <VtdHeader
-                      :panel="panel.previous"
-                      :calendar="calendar.previous"
-                    />
+                      asRange() && !props.asSingle,
+                        'w-full': !asRange() && props.asSingle,
+                                                        }
+                  ">
+                    <VtdHeader :panel=" panel.previous " :calendar=" calendar.previous " />
                     <div class="px-0.5 sm:px-2">
-                      <VtdMonth
-                        v-show="panel.previous.month"
-                        :months="months"
-                        @update-month="calendar.previous.setMonth"
-                      />
-                      <VtdYear
-                        v-show="panel.previous.year"
-                        :years="calendar.previous.years()"
-                        @update-year="calendar.previous.setYear"
-                      />
-                      <div v-show="panel.previous.calendar">
-                        <VtdWeek :weeks="weeks" />
-                        <VtdCalendar
-                          :calendar="calendar.previous"
-                          :weeks="weeks"
-                          :as-range="asRange()"
-                          @update-date="(date) => setDate(date, close)"
-                        />
+                      <VtdMonth v-show=" panel.previous.month " :months=" months "
+                        @update-month="calendar.previous.setMonth" />
+                      <VtdYear v-show=" panel.previous.year " :years=" calendar.previous.years() "
+                        @update-year="calendar.previous.setYear" />
+                      <div v-show=" panel.previous.calendar ">
+                        <VtdWeek :weeks=" weeks " />
+                        <VtdCalendar :calendar=" calendar.previous " :weeks=" weeks " :as-range=" asRange() "
+                          @update-date=" (date) => setDate(date, close) " />
                       </div>
                     </div>
                   </div>
 
-                  <div
-                    v-if="asRange() && !props.asSingle"
-                    class="relative w-full md:w-1/2 lg:w-80 overflow-hidden mt-3 sm:mt-0 sm:ml-2"
-                  >
-                    <VtdHeader
-                      as-prev-or-next
-                      :panel="panel.next"
-                      :calendar="calendar.next"
-                    />
+                  <div v-if=" asRange() && !props.asSingle "
+                    class="relative w-full md:w-1/2 lg:w-80 overflow-hidden mt-3 sm:mt-0 sm:ml-2">
+                    <VtdHeader as-prev-or-next :panel=" panel.next " :calendar=" calendar.next " />
                     <div class="px-0.5 sm:px-2">
-                      <VtdMonth
-                        v-show="panel.next.month"
-                        :months="months"
-                        @update-month="calendar.next.setMonth"
-                      />
-                      <VtdYear
-                        v-show="panel.next.year"
-                        as-prev-or-next
-                        :years="calendar.next.years()"
-                        @update-year="calendar.next.setYear"
-                      />
-                      <div v-show="panel.next.calendar">
-                        <VtdWeek :weeks="weeks" />
-                        <VtdCalendar
-                          as-prev-or-next
-                          :calendar="calendar.next"
-                          :weeks="weeks"
-                          :as-range="asRange()"
-                          @update-date="(date) => setDate(date, close)"
-                        />
+                      <VtdMonth v-show=" panel.next.month " :months=" months " @update-month="calendar.next.setMonth" />
+                      <VtdYear v-show=" panel.next.year " as-prev-or-next :years=" calendar.next.years() "
+                        @update-year="calendar.next.setYear" />
+                      <div v-show=" panel.next.calendar ">
+                        <VtdWeek :weeks=" weeks " />
+                        <VtdCalendar as-prev-or-next :calendar=" calendar.next " :weeks=" weeks " :as-range=" asRange() "
+                          @update-date=" (date) => setDate(date, close) " />
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div v-if="!props.autoApply">
-                <div
-                  class="mt-2 mx-2 py-1.5 border-t border-black/[.1] dark:border-vtd-secondary-700/[1]"
-                >
+              <div v-if=" !props.autoApply ">
+                <div class="mt-2 mx-2 py-1.5 border-t border-black/[.1] dark:border-vtd-secondary-700/[1]">
                   <div class="mt-1.5 sm:flex sm:flex-row-reverse">
-                    <button
-                      type="button"
+                    <button type="button"
                       class="away-apply-picker w-full transition ease-out duration-300 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-vtd-primary-600 text-base font-medium text-white hover:bg-vtd-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-vtd-primary-500 sm:ml-3 sm:w-auto sm:text-sm dark:ring-offset-vtd-secondary-800 disabled:cursor-not-allowed"
                       :disabled="
                         props.asSingle
                           ? applyValue.length < 1
                           : applyValue.length < 2
-                      "
-                      @click="applyDate(close)"
-                      v-text="props.options.footer.apply"
-                    />
-                    <button
-                      type="button"
+                      " @click="applyDate(close)" v-text=" props.options.footer.apply " />
+                    <button type="button"
                       class="mt-3 away-cancel-picker w-full transition ease-out duration-300 inline-flex justify-center rounded-md border border-vtd-secondary-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-vtd-secondary-700 hover:bg-vtd-secondary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-vtd-primary-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm dark:ring-offset-vtd-secondary-800"
-                      @click="close()"
-                      v-text="props.options.footer.cancel"
-                    />
+                      @click="close()" v-text=" props.options.footer.cancel " />
                   </div>
                 </div>
               </div>
               <div v-else class="sm:hidden">
-                <div
-                  class="mt-2 mx-2 py-1.5 border-t border-black/[.1] dark:border-vtd-secondary-700/[1]"
-                >
+                <div class="mt-2 mx-2 py-1.5 border-t border-black/[.1] dark:border-vtd-secondary-700/[1]">
                   <div class="mt-1.5 sm:flex sm:flex-row-reverse">
-                    <button
-                      type="button"
+                    <button type="button"
                       class="away-cancel-picker w-full transition ease-out duration-300 inline-flex justify-center rounded-md border border-vtd-secondary-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-vtd-secondary-700 hover:bg-vtd-secondary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-vtd-primary-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm dark:ring-offset-vtd-secondary-800"
-                      @click="close()"
-                      v-text="props.options.footer.cancel"
-                    />
+                      @click="close()" v-text=" props.options.footer.cancel " />
                   </div>
                 </div>
               </div>
@@ -1676,106 +1561,59 @@ provide(setToCustomShortcutKey, setToCustomShortcut)
       </PopoverPanel>
     </transition>
   </Popover>
-  <div v-else-if="displayDatepicker" class="flex">
+  <div v-else-if=" displayDatepicker " class="flex">
     <div
-      class="bg-white rounded-lg shadow-sm border border-black/[.1] px-3 py-3 sm:px-4 sm:py-4 dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700/[1]"
-    >
+      class="bg-white rounded-lg shadow-sm border border-black/[.1] px-3 py-3 sm:px-4 sm:py-4 dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700/[1]">
       <div class="flex flex-wrap lg:flex-nowrap">
-        <VtdShortcut
-          v-if="props.shortcuts"
-          :shortcuts="props.shortcuts"
-          :as-range="asRange()"
-          :as-single="props.asSingle"
-          :i18n="props.options.shortcuts"
-        />
+        <VtdShortcut v-if=" props.shortcuts " :shortcuts=" props.shortcuts " :as-range=" asRange() "
+          :as-single=" props.asSingle " :i18n=" props.options.shortcuts " />
         <div class="relative flex flex-wrap sm:flex-nowrap p-1 w-full">
-          <div
-            v-if="asRange() && !props.asSingle"
-            class="hidden h-full absolute inset-0 sm:flex justify-center items-center"
-          >
-            <div
-              class="h-full border-r border-black/[.1] dark:border-vtd-secondary-700/[1]"
-            />
+          <div v-if=" asRange() && !props.asSingle "
+            class="hidden h-full absolute inset-0 sm:flex justify-center items-center">
+            <div class="h-full border-r border-black/[.1] dark:border-vtd-secondary-700/[1]" />
           </div>
-          <div
-            class="relative w-full lg:w-80"
-            :class="{
+          <div class="relative w-full lg:w-80" :class="
+            {
               'mb-3 sm:mb-0 sm:mr-2 md:w-1/2': asRange() && !props.asSingle,
-            }"
-          >
-            <VtdHeader :panel="panel.previous" :calendar="calendar.previous" />
+                                }
+          ">
+            <VtdHeader :panel=" panel.previous " :calendar=" calendar.previous " />
             <div class="px-0.5 sm:px-2">
-              <VtdMonth
-                v-show="panel.previous.month"
-                :months="months"
-                @update-month="calendar.previous.setMonth"
-              />
-              <VtdYear
-                v-show="panel.previous.year"
-                :years="calendar.previous.years()"
-                @update-year="calendar.previous.setYear"
-              />
-              <div v-show="panel.previous.calendar">
-                <VtdWeek :weeks="weeks" />
-                <VtdCalendar
-                  :calendar="calendar.previous"
-                  :weeks="weeks"
-                  :as-range="asRange()"
-                  @update-date="(date) => setDate(date)"
-                />
+              <VtdMonth v-show=" panel.previous.month " :months=" months " @update-month="calendar.previous.setMonth" />
+              <VtdYear v-show=" panel.previous.year " :years=" calendar.previous.years() "
+                @update-year="calendar.previous.setYear" />
+              <div v-show=" panel.previous.calendar ">
+                <VtdWeek :weeks=" weeks " />
+                <VtdCalendar :calendar=" calendar.previous " :weeks=" weeks " :as-range=" asRange() "
+                  @update-date=" (date) => setDate(date) " />
               </div>
             </div>
           </div>
 
-          <div
-            v-if="asRange() && !props.asSingle"
-            class="relative w-full md:w-1/2 lg:w-80 overflow-hidden mt-3 sm:mt-0 sm:ml-2"
-          >
-            <VtdHeader
-              as-prev-or-next
-              :panel="panel.next"
-              :calendar="calendar.next"
-            />
+          <div v-if=" asRange() && !props.asSingle "
+            class="relative w-full md:w-1/2 lg:w-80 overflow-hidden mt-3 sm:mt-0 sm:ml-2">
+            <VtdHeader as-prev-or-next :panel=" panel.next " :calendar=" calendar.next " />
             <div class="px-0.5 sm:px-2">
-              <VtdMonth
-                v-show="panel.next.month"
-                :months="months"
-                @update-month="calendar.next.setMonth"
-              />
-              <VtdYear
-                v-show="panel.next.year"
-                as-prev-or-next
-                :years="calendar.next.years()"
-                @update-year="calendar.next.setYear"
-              />
-              <div v-show="panel.next.calendar">
-                <VtdWeek :weeks="weeks" />
-                <VtdCalendar
-                  as-prev-or-next
-                  :calendar="calendar.next"
-                  :weeks="weeks"
-                  :as-range="asRange()"
-                  @update-date="(date) => setDate(date)"
-                />
+              <VtdMonth v-show=" panel.next.month " :months=" months " @update-month="calendar.next.setMonth" />
+              <VtdYear v-show=" panel.next.year " as-prev-or-next :years=" calendar.next.years() "
+                @update-year="calendar.next.setYear" />
+              <div v-show=" panel.next.calendar ">
+                <VtdWeek :weeks=" weeks " />
+                <VtdCalendar as-prev-or-next :calendar=" calendar.next " :weeks=" weeks " :as-range=" asRange() "
+                  @update-date=" (date) => setDate(date) " />
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div v-if="!props.autoApply">
-        <div
-          class="mt-2 mx-2 py-1.5 border-t border-black/[.1] dark:border-vtd-secondary-700/[1]"
-        >
+      <div v-if=" !props.autoApply ">
+        <div class="mt-2 mx-2 py-1.5 border-t border-black/[.1] dark:border-vtd-secondary-700/[1]">
           <div class="mt-1.5 sm:flex sm:flex-row-reverse">
-            <button
-              type="button"
+            <button type="button"
               class="away-apply-picker w-full transition ease-out duration-300 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-vtd-primary-600 text-base font-medium text-white hover:bg-vtd-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-vtd-primary-500 sm:ml-3 sm:w-auto sm:text-sm dark:ring-offset-vtd-secondary-800 disabled:cursor-not-allowed"
               :disabled="
                 props.asSingle ? applyValue.length < 1 : applyValue.length < 2
-              "
-              @click="applyDate()"
-              v-text="props.options.footer.apply"
-            />
+              " @click="applyDate()" v-text=" props.options.footer.apply " />
           </div>
         </div>
       </div>
@@ -1793,11 +1631,9 @@ provide(setToCustomShortcutKey, setToCustomShortcut)
   content: "";
   @apply absolute top-0 w-4 h-4 bg-white shadow border border-black/[.1] dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700;
   transform: translate(50%, -50%) rotate(-45deg);
-  clip-path: polygon(
-    calc(var(--vtd-datepicker) * -1) calc(var(--vtd-datepicker) * -1),
-    calc(100% + var(--vtd-datepicker)) calc(var(--vtd-datepicker) * -1),
-    calc(100% + var(--vtd-datepicker)) calc(100% + var(--vtd-datepicker))
-  );
+  clip-path: polygon(calc(var(--vtd-datepicker) * -1) calc(var(--vtd-datepicker) * -1),
+      calc(100% + var(--vtd-datepicker)) calc(var(--vtd-datepicker) * -1),
+      calc(100% + var(--vtd-datepicker)) calc(100% + var(--vtd-datepicker)));
 }
 
 .vtd-datepicker.place-left::before {
