@@ -1,11 +1,11 @@
 <script setup lang="ts">
 defineProps<{
-  years: number[];
-}>();
+  years: number[]
+}>()
 
 const emit = defineEmits<{
-  (e: "updateYear", value: number): void;
-}>();
+  (e: 'updateYear', value: number): void
+}>()
 </script>
 
 <template>

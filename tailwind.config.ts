@@ -25,7 +25,7 @@ export default {
         sans: ["Inter", ...fontFamily.sans],
       },
       opacity: {
-        85: "0.85",
+        85: '0.85',
       },
     },
   },

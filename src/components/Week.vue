@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { LengthArray } from "../types";
+import type { LengthArray } from '../types'
 
 defineProps<{
-  weeks: LengthArray<string, 7>;
-}>();
+  weeks: LengthArray<string, 7>
+}>()
 </script>
 
 <template>
