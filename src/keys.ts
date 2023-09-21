@@ -1,38 +1,38 @@
-import type { InjectionKey, Ref } from "vue";
-import type { Dayjs } from "dayjs";
-import type { DatePickerDay } from "./types";
+import type { InjectionKey, Ref } from 'vue'
+import type { Dayjs } from 'dayjs'
+import type { DatePickerDay } from './types'
 
 const isBetweenRangeKey: InjectionKey<(date: DatePickerDay) => boolean> =
-  Symbol("isBetweenRange");
+  Symbol('isBetweenRange')
 const betweenRangeClassesKey: InjectionKey<(date: Dayjs) => string> = Symbol(
-  "betweenRangeClasses",
-);
+  'betweenRangeClasses',
+)
 const datepickerClassesKey: InjectionKey<
   (date: DatePickerDay) => string | undefined
-> = Symbol("datepickerClasses");
+> = Symbol('datepickerClasses')
 const atMouseOverKey: InjectionKey<(date: Dayjs) => false | undefined> =
-  Symbol("atMouseOver");
+  Symbol('atMouseOver')
 const setToTodayKey: InjectionKey<
   (close?: ((ref?: Ref | HTMLElement) => void) | undefined) => void
-> = Symbol("setToToday");
+> = Symbol('setToToday')
 const setToYesterdayKey: InjectionKey<
   (close?: ((ref?: Ref | HTMLElement) => void) | undefined) => void
-> = Symbol("setToYesterday");
+> = Symbol('setToYesterday')
 const setToLastDayKey: InjectionKey<
   (day: number, close?: ((ref?: Ref | HTMLElement) => void) | undefined) => void
-> = Symbol("setToLastDay");
+> = Symbol('setToLastDay')
 const setToThisMonthKey: InjectionKey<
   (close?: ((ref?: Ref | HTMLElement) => void) | undefined) => void
-> = Symbol("setToThisMonth");
+> = Symbol('setToThisMonth')
 const setToLastMonthKey: InjectionKey<
   (close?: ((ref?: Ref | HTMLElement) => void) | undefined) => void
-> = Symbol("setToLastMonth");
+> = Symbol('setToLastMonth')
 const setToCustomShortcutKey: InjectionKey<
   (
     item: { label: string; atClick: () => Date[] },
     close?: (ref?: Ref | HTMLElement) => void,
   ) => void
-> = Symbol("setToCustomShortcut");
+> = Symbol('setToCustomShortcut')
 
 export {
   isBetweenRangeKey,
@@ -45,4 +45,4 @@ export {
   setToThisMonthKey,
   setToLastMonthKey,
   setToCustomShortcutKey,
-};
+}
