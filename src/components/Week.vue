@@ -1,7 +1,9 @@
-<script setup>
-defineProps({
-  weeks: Array
-})
+<script setup lang="ts">
+import type { LengthArray } from '../types'
+
+defineProps<{
+  weeks: LengthArray<string, 7>
+}>()
 </script>
 
 <template>
@@ -11,7 +13,7 @@ defineProps({
       :key="keyDay"
       class="text-vtd-secondary-500 text-xs 2xl:text-sm tracking-wide font-medium text-center cursor-default dark:text-vtd-secondary-400"
     >
-      <span v-text="day"> </span>
+      <span v-text="day" />
     </div>
   </div>
 </template>

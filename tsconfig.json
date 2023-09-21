@@ -1,8 +1,34 @@
 {
+  "ts-node": {
+    "esm": true
+  },
   "compilerOptions": {
-    "outDir": "dist",
+    "target": "ESNext",
+    "lib": ["DOM", "ESNext"],
+    "jsx": "preserve",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/*"]
+    },
+    "types": ["node", "vite/client"],
+    "resolveJsonModule": true,
     "allowJs": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
     "skipLibCheck": true
   },
-  "declaration": true
+  "exclude": [
+    "dist",
+    "node_modules",
+    "cypress",
+    "postcss.config.cjs",
+    "src/locale/*",
+    "tailwind.config.ts"
+  ]
 }

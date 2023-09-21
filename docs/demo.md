@@ -20,10 +20,10 @@ You can also test it with [the playground](https://stackblitz.com/edit/vue-tailw
 
 ```vue
 <script setup>
-import VueTailwindDatePicker from 'vue-tailwind-datepicker'
-import { ref } from 'vue'
+import VueTailwindDatePicker from "vue-tailwind-datepicker";
+import { ref } from "vue";
 
-const dateValue = ref('')
+const dateValue = ref("");
 </script>
 
 <template>

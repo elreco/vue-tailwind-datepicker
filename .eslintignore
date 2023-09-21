@@ -1,1 +1,3 @@
-**/*.ts
+dist
+node_modules
+src/locale/*

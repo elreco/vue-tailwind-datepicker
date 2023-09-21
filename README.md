@@ -42,14 +42,14 @@ How it works,
 
 ```vue
 <script setup>
-  import { ref } from 'vue'
-  import VueTailwindDatepicker from 'vue-tailwind-datepicker'
+import { ref } from "vue";
+import VueTailwindDatepicker from "vue-tailwind-datepicker";
 
-  const dateValue = ref([])
-  const formatter = ref({
-    date: 'DD MMM YYYY',
-    month: 'MMM'
-  })
+const dateValue = ref([]);
+const formatter = ref({
+  date: "DD MMM YYYY",
+  month: "MMM",
+});
 </script>
 
 <template>
@@ -70,12 +70,15 @@ How it works,
 ![Dark Mode](https://github.com/elreco/vue-tailwind-datepicker/blob/main/docs/dark.png?raw=true)
 
 ## Changelog
+
 All notable changes to this project will be documented in the [Releases Page](https://github.com/elreco/vue-tailwind-datepicker/releases).
 
 ## License
+
 The [MIT](LICENSE) License. Please [see](http://opensource.org/licenses/MIT) for more information.
 
 ## Thanks to
+
 - [kenhyuwa](https://github.com/kenhyuwa)
 - [Vue](https://v3.vuejs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
