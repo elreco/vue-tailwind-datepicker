@@ -19,6 +19,7 @@
   const dateValue14 = ref([])
   const dateValue15 = ref([])
   const dateValue16 = ref([])
+  const dateValue17 = ref([])
   const formatter = ref({
     date: 'DD MMM YYYY',
     month: 'MMM'
@@ -58,8 +59,9 @@ The datepicker if you don't set any `props`.
 
 ```vue
 <script setup>
-import { ref } from "vue";
-const dateValue = ref([]);
+import { ref } from 'vue'
+
+const dateValue = ref([])
 </script>
 
 <template>
@@ -80,12 +82,13 @@ Using datepicker with backdrop, by default `overlay` is false.
 
 ```vue
 <script setup>
-import { ref } from "vue";
-const dateValue = ref([]);
+import { ref } from 'vue'
+
+const dateValue = ref([])
 </script>
 
 <template>
-  <vue-tailwind-datepicker overlay v-model="dateValue" />
+  <vue-tailwind-datepicker v-model="dateValue" overlay />
 </template>
 ```
 
@@ -102,14 +105,15 @@ You can apply apply your own input classes using Tailwind CSS.
 
 ```vue
 <script setup>
-import { ref } from "vue";
-const dateValue = ref([]);
+import { ref } from 'vue'
+
+const dateValue = ref([])
 </script>
 
 <template>
   <vue-tailwind-datepicker
-    input-classes="block mb-2 text-sm font-medium text-green-700 dark:text-green-500"
     v-model="dateValue"
+    input-classes="block mb-2 text-sm font-medium text-green-700 dark:text-green-500"
   />
 </template>
 ```
@@ -127,12 +131,13 @@ The datepicker can be fully disabled as well.
 
 ```vue
 <script setup>
-import { ref } from "vue";
-const dateValue = ref([]);
+import { ref } from 'vue'
+
+const dateValue = ref([])
 </script>
 
 <template>
-  <vue-tailwind-datepicker :disabled="true" v-model="dateValue" />
+  <vue-tailwind-datepicker v-model="dateValue" :disabled="true" />
 </template>
 ```
 
@@ -149,12 +154,13 @@ Using date picker as single date.
 
 ```vue
 <script setup>
-import { ref } from "vue";
-const dateValue = ref([]);
+import { ref } from 'vue'
+
+const dateValue = ref([])
 </script>
 
 <template>
-  <vue-tailwind-datepicker as-single v-model="dateValue" />
+  <vue-tailwind-datepicker v-model="dateValue" as-single />
 </template>
 ```
 
@@ -172,12 +178,13 @@ Using date picker as single date, but datepicker with range.
 
 ```vue
 <script setup>
-import { ref } from "vue";
-const dateValue = ref([]);
+import { ref } from 'vue'
+
+const dateValue = ref([])
 </script>
 
 <template>
-  <vue-tailwind-datepicker as-single use-range v-model="dateValue" />
+  <vue-tailwind-datepicker v-model="dateValue" as-single use-range />
 </template>
 ```
 
@@ -194,12 +201,13 @@ Change placeholder, by default placeholder use `formatter.date` object.
 
 ```vue
 <script setup>
-import { ref } from "vue";
-const dateValue = ref([]);
+import { ref } from 'vue'
+
+const dateValue = ref([])
 </script>
 
 <template>
-  <vue-tailwind-datepicker placeholder="My Placeholder" v-model="dateValue" />
+  <vue-tailwind-datepicker v-model="dateValue" placeholder="My Placeholder" />
 </template>
 ```
 
@@ -216,12 +224,13 @@ Change placeholder, by default placeholder use `formatter.date` object.
 
 ```vue
 <script setup>
-import { ref } from "vue";
-const dateValue = ref([]);
+import { ref } from 'vue'
+
+const dateValue = ref([])
 </script>
 
 <template>
-  <vue-tailwind-datepicker separator=" to " v-model="dateValue" />
+  <vue-tailwind-datepicker v-model="dateValue" separator=" to " />
 </template>
 ```
 
@@ -239,12 +248,13 @@ Display Datepicker only without input
 
 ```vue
 <script setup>
-import { ref } from "vue";
-const dateValue = ref([]);
+import { ref } from 'vue'
+
+const dateValue = ref([])
 </script>
 
 <template>
-  <vue-tailwind-datepicker no-input v-model="dateValue" />
+  <vue-tailwind-datepicker v-model="dateValue" no-input />
 </template>
 ```
 
@@ -268,16 +278,17 @@ Change formatter, default `formatter`:
 
 ```vue
 <script setup>
-import { ref } from "vue";
-const dateValue = ref([]);
+import { ref } from 'vue'
+
+const dateValue = ref([])
 const formatter = ref({
-  date: "DD MMM YYYY",
-  month: "MMM",
-});
+  date: 'DD MMM YYYY',
+  month: 'MMM',
+})
 </script>
 
 <template>
-  <vue-tailwind-datepicker :formatter="formatter" v-model="dateValue" />
+  <vue-tailwind-datepicker v-model="dateValue" :formatter="formatter" />
 </template>
 ```
 
@@ -294,12 +305,13 @@ Change auto apply, by default `autoApply` is true.
 
 ```vue
 <script setup>
-import { ref } from "vue";
-const dateValue = ref([]);
+import { ref } from 'vue'
+
+const dateValue = ref([])
 </script>
 
 <template>
-  <vue-tailwind-datepicker :auto-apply="false" v-model="dateValue" />
+  <vue-tailwind-datepicker v-model="dateValue" :auto-apply="false" />
 </template>
 ```
 
@@ -316,13 +328,14 @@ Change start from of datepicker, by default `startFrom` is new Date().
 
 ```vue
 <script setup>
-import { ref } from "vue";
-const dateValue = ref([]);
-const startFrom = new Date(2020, 0, 1);
+import { ref } from 'vue'
+
+const dateValue = ref([])
+const startFrom = new Date(2020, 0, 1)
 </script>
 
 <template>
-  <vue-tailwind-datepicker :start-from="startFrom" v-model="dateValue" />
+  <vue-tailwind-datepicker v-model="dateValue" :start-from="startFrom" />
 </template>
 ```
 
@@ -339,12 +352,13 @@ If you need to use a minimum number of characters for the name of the days of th
 
 ```vue
 <script setup>
-import { ref } from "vue";
-const dateValue = ref([]);
+import { ref } from 'vue'
+
+const dateValue = ref([])
 </script>
 
 <template>
-  <vue-tailwind-datepicker weekdays-size="min" v-model="dateValue" />
+  <vue-tailwind-datepicker v-model="dateValue" weekdays-size="min" />
 </template>
 ```
 
@@ -361,12 +375,13 @@ Display or not the dates shortcuts, default value is true.
 
 ```vue
 <script setup>
-import { ref } from "vue";
-const dateValue = ref([]);
+import { ref } from 'vue'
+
+const dateValue = ref([])
 </script>
 
 <template>
-  <vue-tailwind-datepicker :shortcuts="false" v-model="dateValue" />
+  <vue-tailwind-datepicker v-model="dateValue" :shortcuts="false" />
 </template>
 ```
 
@@ -383,21 +398,24 @@ Disable some dates in range.
 
 ```vue
 <script setup>
-import { ref } from "vue";
-const dateValue = ref([]);
-const dDate = (date) => {
-  return date < new Date() || date > new Date(2023, 0, 8);
-};
+import { ref } from 'vue'
+
+const dateValue = ref([])
+function dDate(date) {
+  return date < new Date() || date > new Date(2023, 0, 8)
+}
 </script>
 
 <template>
-  <vue-tailwind-datepicker :disable-date="dDate" v-model="dateValue" />
+  <vue-tailwind-datepicker v-model="dateValue" :disable-date="dDate" />
 </template>
 ```
 
 ## Slot
 
-Using slots.
+Two slot are available, a global one that surround the full input and a smaller one just for the icon in the input
+
+### Global slot
 
 <DemoLayout>
   <div class="flex">
@@ -445,15 +463,16 @@ Using slots.
 
 ```vue
 <script setup>
-import { ref } from "vue";
-const dateValue = ref([]);
+import { ref } from 'vue'
+
+const dateValue = ref([])
 </script>
 
 <template>
   <div class="flex">
     <vue-tailwind-datepicker
-      v-model="dateValue"
       v-slot="{ value, placeholder, clear }"
+      v-model="dateValue"
     >
       <div class="flex">
         <div class="flex-1">
@@ -484,7 +503,7 @@ const dateValue = ref([]);
                 stroke-linejoin="round"
                 stroke-width="2"
                 d="M6 18L18 6M6 6l12 12"
-              ></path>
+              />
             </svg>
           </button>
         </div>
@@ -493,6 +512,29 @@ const dateValue = ref([]);
   </div>
 </template>
 ```
+
+### inputIcon slot
+
+<DemoLayout>
+  <div class="flex">
+    <VueTailwindDatePicker v-model="dateValue17">
+      <template #inputIcon="{ value }">
+        {{ value ? 'delete icon' : "calendar icon" }}
+      </template>
+    </VueTailwindDatePicker>
+  </div>
+</DemoLayout>
+
+```vue
+  <VueTailwindDatePicker
+    v-model="dateValue"
+  >
+    <template #inputIcon="{ value }">
+      {{ value ? 'delete icon' : "calendar icon" }}
+    </template>
+  </VueTailwindDatePicker>
+```
+
 
 ## Options
 
@@ -507,28 +549,29 @@ Change default options
 
 ```vue
 <script setup>
-import { ref } from "vue";
-const dateValue = ref([]);
+import { ref } from 'vue'
+
+const dateValue = ref([])
 const options = ref({
   shortcuts: {
-    today: "Hari ini",
-    yesterday: "Kemarin",
-    past: (period) => period + " hari terakhir",
-    currentMonth: "Bulan ini",
-    pastMonth: "Bulan lalu",
+    today: 'Hari ini',
+    yesterday: 'Kemarin',
+    past: period => `${period  } hari terakhir`,
+    currentMonth: 'Bulan ini',
+    pastMonth: 'Bulan lalu',
   },
   footer: {
-    apply: "Terapkan",
-    cancel: "Batal",
+    apply: 'Terapkan',
+    cancel: 'Batal',
   },
-});
+})
 </script>
 
 <template>
   <vue-tailwind-datepicker
+    v-model="dateValue"
     :options="options"
     :auto-apply="false"
-    v-model="dateValue"
   />
 </template>
 ```
