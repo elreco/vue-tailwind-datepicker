@@ -215,7 +215,7 @@ const calendar = computed(() => {
                   return previous.month() !== v.month()
               },
               hovered: () => {
-                if (!asRange()) 
+                if (!asRange())
                   return false
                 if (hoverValue.value.length > 1) {
                   return (
@@ -457,19 +457,19 @@ function shuffleWeekdays(days: dayjs.WeekdayNames): dayjs.WeekdayNames {
 }
 
 function asRange() {
-  if (!props.useRange && !props.asSingle) 
+  if (!props.useRange && !props.asSingle)
     return true
-  else if (!props.useRange && props.asSingle) 
+  else if (!props.useRange && props.asSingle)
     return false
-  else if (props.useRange && !props.asSingle) 
+  else if (props.useRange && !props.asSingle)
     return true
   else return !!(props.useRange && props.asSingle)
 }
 
 function inRangeDate(date: Dayjs) {
-  if (props.disableInRange) 
+  if (props.disableInRange)
     return false
-  if (pickerValue.value === '') 
+  if (pickerValue.value === '')
     return false
   let s, e
   if (Array.isArray(props.modelValue)) {
@@ -633,7 +633,7 @@ function setDate(date: Dayjs, close?: (ref?: Ref | HTMLElement) => void) {
             ),
           )
         }
-        if (close) 
+        if (close)
           close()
 
         applyValue.value = []
@@ -690,7 +690,7 @@ function setDate(date: Dayjs, close?: (ref?: Ref | HTMLElement) => void) {
       else {
         emit('update:modelValue', pickerValue.value)
       }
-      if (close) 
+      if (close)
         close()
 
       applyValue.value = []
@@ -711,7 +711,7 @@ function setDate(date: Dayjs, close?: (ref?: Ref | HTMLElement) => void) {
 // })
 
 function applyDate(close?: (ref?: Ref | HTMLElement) => void) {
-  if (applyValue.value.length < 1) 
+  if (applyValue.value.length < 1)
     return false
   let date
   if (asRange()) {
@@ -784,12 +784,12 @@ function applyDate(close?: (ref?: Ref | HTMLElement) => void) {
       emit('update:modelValue', pickerValue.value)
     }
   }
-  if (close) 
+  if (close)
     close()
 }
 
 function atMouseOver(date: Dayjs) {
-  if (!asRange()) 
+  if (!asRange())
     return false
   if (previous.value) {
     hoverValue.value = [previous.value, date]
@@ -801,7 +801,7 @@ function atMouseOver(date: Dayjs) {
 }
 
 function isBetweenRange(date: DatePickerDay) {
-  if (previous.value && props.autoApply) 
+  if (previous.value && props.autoApply)
     return false
   let s, e
   if (hoverValue.value.length > 1) {
@@ -1009,7 +1009,7 @@ function datepickerClasses(date: DatePickerDay) {
 function betweenRangeClasses(date: Dayjs) {
   let classes, s, e
   classes = ''
-  if (!asRange()) 
+  if (!asRange())
     return classes
   if (Array.isArray(props.modelValue)) {
     if (hoverValue.value.length > 1) {
@@ -1075,17 +1075,17 @@ function betweenRangeClasses(date: Dayjs) {
 
   if (s && e) {
     if (date.isSame(s, 'date')) {
-      if (e.isBefore(s)) 
+      if (e.isBefore(s))
         classes += ' rounded-r-full inset-0'
 
-      if (s.isBefore(e)) 
+      if (s.isBefore(e))
         classes += ' rounded-l-full inset-0'
     }
     else if (date.isSame(e, 'date')) {
-      if (e.isBefore(s)) 
+      if (e.isBefore(s))
         classes += ' rounded-l-full inset-0'
 
-      if (s.isBefore(e)) 
+      if (s.isBefore(e))
         classes += ' rounded-r-full inset-0'
     }
     else {
@@ -1184,7 +1184,7 @@ function setToToday(close?: (ref?: Ref | HTMLElement) => void) {
   const e = dayjs().format(props.formatter.date)
 
   emitShortcut(s, e)
-  if (close) 
+  if (close)
     close()
 }
 
@@ -1193,7 +1193,7 @@ function setToYesterday(close?: (ref?: Ref | HTMLElement) => void) {
   const e = dayjs().subtract(1, 'day').format(props.formatter.date)
 
   emitShortcut(s, e)
-  if (close) 
+  if (close)
     close()
 }
 
@@ -1204,7 +1204,7 @@ function setToLastDay(day: number, close?: (ref?: Ref | HTMLElement) => void) {
   const e = dayjs().format(props.formatter.date)
 
   emitShortcut(s, e)
-  if (close) 
+  if (close)
     close()
 }
 
@@ -1213,7 +1213,7 @@ function setToThisMonth(close?: (ref?: Ref | HTMLElement) => void) {
   const e = dayjs().date(dayjs().daysInMonth()).format(props.formatter.date)
 
   emitShortcut(s, e)
-  if (close) 
+  if (close)
     close()
 }
 
@@ -1222,7 +1222,7 @@ function setToLastMonth(close?: (ref?: Ref | HTMLElement) => void) {
   const e = dayjs().date(0).format(props.formatter.date)
 
   emitShortcut(s, e)
-  if (close) 
+  if (close)
     close()
 }
 
@@ -1235,7 +1235,7 @@ function setToCustomShortcut(
   const e = dayjs(dd).format(props.formatter.date)
 
   emitShortcut(s, e)
-  if (close) 
+  if (close)
     close()
 }
 
@@ -1342,7 +1342,7 @@ watchEffect(() => {
             datepicker.value.year.previous = s.year()
             datepicker.value.year.next = e.year()
           }
-          if (!props.autoApply) 
+          if (!props.autoApply)
             applyValue.value = [s, e]
         }
         else {
@@ -1378,7 +1378,7 @@ watchEffect(() => {
           datepicker.value.next = s.add(1, 'month')
           datepicker.value.year.previous = s.year()
           datepicker.value.year.next = s.add(1, 'year').year()
-          if (!props.autoApply) 
+          if (!props.autoApply)
             applyValue.value = [s]
         }
         else {
@@ -1403,7 +1403,7 @@ function getAbsoluteClass(open: boolean) {
   if (open && placement.value === null)
     placement.value = useVisibleViewport(VtdRef.value)
 
-  if (open && placement.value) 
+  if (open && placement.value)
     return 'place-right'
 
   return 'place-left'
@@ -1413,7 +1413,7 @@ function getAbsoluteParentClass(open: boolean) {
   if (open && placement.value === null)
     placement.value = useVisibleViewport(VtdRef.value)
 
-  if (placement.value) 
+  if (placement.value)
     return 'left-auto right-0'
 
   return 'left-0 right-auto'
@@ -1432,53 +1432,24 @@ provide(setToCustomShortcutKey, setToCustomShortcut)
 </script>
 
 <template>
-  <Popover
-    v-if="!props.noInput"
-    id="vtd"
-    v-slot="{ open }: { open: boolean }"
-    as="div"
-    class="relative w-full"
-  >
-    <PopoverOverlay
-      v-if="props.overlay && !props.disabled"
-      class="fixed inset-0 bg-black opacity-30"
-    />
+  <Popover v-if="!props.noInput" id="vtd" v-slot="{ open }: { open: boolean }" as="div" class="relative w-full">
+    <PopoverOverlay v-if="props.overlay && !props.disabled" class="fixed inset-0 bg-black opacity-30" />
 
     <PopoverButton as="label" class="relative block">
-      <slot
-        :value="pickerValue"
-        :placeholder="givenPlaceholder"
-        :clear="clearPicker"
-      >
+      <slot :value="pickerValue" :placeholder="givenPlaceholder" :clear="clearPicker">
         <input
-          ref="VtdInputRef"
-          v-bind="$attrs"
-          v-model="pickerValue"
-          type="text"
-          class="relative block w-full"
-          :disabled="props.disabled"
-          :class="[
+          ref="VtdInputRef" v-bind="$attrs" v-model="pickerValue" type="text" class="relative block w-full"
+          :disabled="props.disabled" :class="[
             props.disabled ? 'cursor-default opacity-50' : 'opacity-100',
             inputClasses
               || 'pl-3 pr-12 py-2.5 rounded-lg overflow-hidden border-solid text-sm text-vtd-secondary-700 placeholder-vtd-secondary-400 transition-colors bg-white border border-vtd-secondary-300 focus:border-vtd-primary-300 focus:ring focus:ring-vtd-primary-500 focus:ring-opacity-10 focus:outline-none dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700 dark:text-vtd-secondary-100 dark:placeholder-vtd-secondary-500 dark:focus:border-vtd-primary-500 dark:focus:ring-opacity-20',
-          ]"
-          autocomplete="off"
-          data-lpignore="true"
-          data-form-type="other"
-          :placeholder="givenPlaceholder"
+          ]" autocomplete="off" data-lpignore="true" data-form-type="other" :placeholder="givenPlaceholder"
           @keyup="keyUp"
         >
-        <div
-          class="absolute inset-y-0 right-0 inline-flex items-center rounded-md overflow-hidden"
-        >
+        <div class="absolute inset-y-0 right-0 inline-flex items-center rounded-md overflow-hidden">
           <button
-            type="button"
-            :disabled="props.disabled"
-            :class="
-              props.disabled ? 'cursor-default opacity-50' : 'opacity-100'
-            "
-            class="px-2 py-1 mr-1 focus:outline-none text-vtd-secondary-400 dark:text-opacity-70 rounded-md"
-            @click="
+            type="button" :disabled="props.disabled" :class="props.disabled ? 'cursor-default opacity-50' : 'opacity-100'
+            " class="px-2 py-1 mr-1 focus:outline-none text-vtd-secondary-400 dark:text-opacity-70 rounded-md" @click="
               props.disabled
                 ? false
                 : pickerValue
@@ -1486,51 +1457,37 @@ provide(setToCustomShortcutKey, setToCustomShortcut)
                   : VtdInputRef?.focus()
             "
           >
-            <svg
-              class="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                v-if="pickerValue"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1.5"
-                d="M6 18L18 6M6 6l12 12"
-              />
-              <path
-                v-else
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1.5"
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-              />
-            </svg>
+            <slot name="inputIcon" :value="pickerValue">
+              <svg
+                class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  v-if="pickerValue" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+                <path
+                  v-else stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
+              </svg>
+            </slot>
           </button>
         </div>
       </slot>
     </PopoverButton>
 
     <transition
-      enter-from-class="opacity-0 translate-y-3"
-      enter-to-class="opacity-100 translate-y-0"
+      enter-from-class="opacity-0 translate-y-3" enter-to-class="opacity-100 translate-y-0"
       enter-active-class="transform transition ease-out duration-200"
-      leave-active-class="transform transition ease-in duration-150"
-      leave-from-class="opacity-100 translate-y-0"
+      leave-active-class="transform transition ease-in duration-150" leave-from-class="opacity-100 translate-y-0"
       leave-to-class="opacity-0 translate-y-3"
     >
       <PopoverPanel
-        v-if="!props.disabled"
-        v-slot="{ close }: { close: (ref?: Ref | HTMLElement) => void }"
-        as="div"
+        v-if="!props.disabled" v-slot="{ close }: { close: (ref?: Ref | HTMLElement) => void }" as="div"
         class="relative z-50"
       >
-        <div
-          class="absolute z-50 top-full sm:mt-2.5"
-          :class="getAbsoluteParentClass(open)"
-        >
+        <div class="absolute z-50 top-full sm:mt-2.5" :class="getAbsoluteParentClass(open)">
           <div
             ref="VtdRef"
             class="fixed inset-0 z-50 overflow-y-auto sm:overflow-visible sm:static sm:z-auto bg-white dark:bg-vtd-secondary-800 sm:rounded-lg shadow-sm"
@@ -1541,51 +1498,37 @@ provide(setToCustomShortcutKey, setToCustomShortcut)
             >
               <div class="flex flex-wrap lg:flex-nowrap">
                 <VtdShortcut
-                  v-if="props.shortcuts"
-                  :shortcuts="props.shortcuts"
-                  :as-range="asRange()"
-                  :as-single="props.asSingle"
-                  :i18n="props.options.shortcuts"
-                  :close="close"
+                  v-if="props.shortcuts" :shortcuts="props.shortcuts" :as-range="asRange()"
+                  :as-single="props.asSingle" :i18n="props.options.shortcuts" :close="close"
                 />
                 <div class="relative flex flex-wrap sm:flex-nowrap p-1 w-full">
                   <div
                     v-if="asRange() && !props.asSingle"
                     class="hidden h-full absolute inset-0 sm:flex justify-center items-center"
                   >
-                    <div
-                      class="h-full border-r border-black/[.1] dark:border-vtd-secondary-700/[1]"
-                    />
+                    <div class="h-full border-r border-black/[.1] dark:border-vtd-secondary-700/[1]" />
                   </div>
                   <div
-                    class="relative"
-                    :class="{
+                    class="relative" :class="{
                       'mb-3 sm:mb-0 sm:mr-2 w-full md:w-1/2 lg:w-80':
                         asRange() && !props.asSingle,
                       'w-full': !asRange() && props.asSingle,
                     }"
                   >
-                    <VtdHeader
-                      :panel="panel.previous"
-                      :calendar="calendar.previous"
-                    />
+                    <VtdHeader :panel="panel.previous" :calendar="calendar.previous" />
                     <div class="px-0.5 sm:px-2">
                       <VtdMonth
-                        v-show="panel.previous.month"
-                        :months="months"
+                        v-show="panel.previous.month" :months="months"
                         @update-month="calendar.previous.setMonth"
                       />
                       <VtdYear
-                        v-show="panel.previous.year"
-                        :years="calendar.previous.years()"
+                        v-show="panel.previous.year" :years="calendar.previous.years()"
                         @update-year="calendar.previous.setYear"
                       />
                       <div v-show="panel.previous.calendar">
                         <VtdWeek :weeks="weeks" />
                         <VtdCalendar
-                          :calendar="calendar.previous"
-                          :weeks="weeks"
-                          :as-range="asRange()"
+                          :calendar="calendar.previous" :weeks="weeks" :as-range="asRange()"
                           @update-date="(date) => setDate(date, close)"
                         />
                       </div>
@@ -1596,30 +1539,17 @@ provide(setToCustomShortcutKey, setToCustomShortcut)
                     v-if="asRange() && !props.asSingle"
                     class="relative w-full md:w-1/2 lg:w-80 overflow-hidden mt-3 sm:mt-0 sm:ml-2"
                   >
-                    <VtdHeader
-                      as-prev-or-next
-                      :panel="panel.next"
-                      :calendar="calendar.next"
-                    />
+                    <VtdHeader as-prev-or-next :panel="panel.next" :calendar="calendar.next" />
                     <div class="px-0.5 sm:px-2">
-                      <VtdMonth
-                        v-show="panel.next.month"
-                        :months="months"
-                        @update-month="calendar.next.setMonth"
-                      />
+                      <VtdMonth v-show="panel.next.month" :months="months" @update-month="calendar.next.setMonth" />
                       <VtdYear
-                        v-show="panel.next.year"
-                        as-prev-or-next
-                        :years="calendar.next.years()"
+                        v-show="panel.next.year" as-prev-or-next :years="calendar.next.years()"
                         @update-year="calendar.next.setYear"
                       />
                       <div v-show="panel.next.calendar">
                         <VtdWeek :weeks="weeks" />
                         <VtdCalendar
-                          as-prev-or-next
-                          :calendar="calendar.next"
-                          :weeks="weeks"
-                          :as-range="asRange()"
+                          as-prev-or-next :calendar="calendar.next" :weeks="weeks" :as-range="asRange()"
                           @update-date="(date) => setDate(date, close)"
                         />
                       </div>
@@ -1628,40 +1558,31 @@ provide(setToCustomShortcutKey, setToCustomShortcut)
                 </div>
               </div>
               <div v-if="!props.autoApply">
-                <div
-                  class="mt-2 mx-2 py-1.5 border-t border-black/[.1] dark:border-vtd-secondary-700/[1]"
-                >
+                <div class="mt-2 mx-2 py-1.5 border-t border-black/[.1] dark:border-vtd-secondary-700/[1]">
                   <div class="mt-1.5 sm:flex sm:flex-row-reverse">
                     <button
                       type="button"
                       class="away-apply-picker w-full transition ease-out duration-300 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-vtd-primary-600 text-base font-medium text-white hover:bg-vtd-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-vtd-primary-500 sm:ml-3 sm:w-auto sm:text-sm dark:ring-offset-vtd-secondary-800 disabled:cursor-not-allowed"
-                      :disabled="
-                        props.asSingle
-                          ? applyValue.length < 1
-                          : applyValue.length < 2
-                      "
-                      @click="applyDate(close)"
-                      v-text="props.options.footer.apply"
+                      :disabled="props.asSingle
+                        ? applyValue.length < 1
+                        : applyValue.length < 2
+                      " @click="applyDate(close)" v-text="props.options.footer.apply"
                     />
                     <button
                       type="button"
                       class="mt-3 away-cancel-picker w-full transition ease-out duration-300 inline-flex justify-center rounded-md border border-vtd-secondary-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-vtd-secondary-700 hover:bg-vtd-secondary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-vtd-primary-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm dark:ring-offset-vtd-secondary-800"
-                      @click="close()"
-                      v-text="props.options.footer.cancel"
+                      @click="close()" v-text="props.options.footer.cancel"
                     />
                   </div>
                 </div>
               </div>
               <div v-else class="sm:hidden">
-                <div
-                  class="mt-2 mx-2 py-1.5 border-t border-black/[.1] dark:border-vtd-secondary-700/[1]"
-                >
+                <div class="mt-2 mx-2 py-1.5 border-t border-black/[.1] dark:border-vtd-secondary-700/[1]">
                   <div class="mt-1.5 sm:flex sm:flex-row-reverse">
                     <button
                       type="button"
                       class="away-cancel-picker w-full transition ease-out duration-300 inline-flex justify-center rounded-md border border-vtd-secondary-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-vtd-secondary-700 hover:bg-vtd-secondary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-vtd-primary-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm dark:ring-offset-vtd-secondary-800"
-                      @click="close()"
-                      v-text="props.options.footer.cancel"
+                      @click="close()" v-text="props.options.footer.cancel"
                     />
                   </div>
                 </div>
@@ -1678,10 +1599,7 @@ provide(setToCustomShortcutKey, setToCustomShortcut)
     >
       <div class="flex flex-wrap lg:flex-nowrap">
         <VtdShortcut
-          v-if="props.shortcuts"
-          :shortcuts="props.shortcuts"
-          :as-range="asRange()"
-          :as-single="props.asSingle"
+          v-if="props.shortcuts" :shortcuts="props.shortcuts" :as-range="asRange()" :as-single="props.asSingle"
           :i18n="props.options.shortcuts"
         />
         <div class="relative flex flex-wrap sm:flex-nowrap p-1 w-full">
@@ -1689,34 +1607,24 @@ provide(setToCustomShortcutKey, setToCustomShortcut)
             v-if="asRange() && !props.asSingle"
             class="hidden h-full absolute inset-0 sm:flex justify-center items-center"
           >
-            <div
-              class="h-full border-r border-black/[.1] dark:border-vtd-secondary-700/[1]"
-            />
+            <div class="h-full border-r border-black/[.1] dark:border-vtd-secondary-700/[1]" />
           </div>
           <div
-            class="relative w-full lg:w-80"
-            :class="{
+            class="relative w-full lg:w-80" :class="{
               'mb-3 sm:mb-0 sm:mr-2 md:w-1/2': asRange() && !props.asSingle,
             }"
           >
             <VtdHeader :panel="panel.previous" :calendar="calendar.previous" />
             <div class="px-0.5 sm:px-2">
-              <VtdMonth
-                v-show="panel.previous.month"
-                :months="months"
-                @update-month="calendar.previous.setMonth"
-              />
+              <VtdMonth v-show="panel.previous.month" :months="months" @update-month="calendar.previous.setMonth" />
               <VtdYear
-                v-show="panel.previous.year"
-                :years="calendar.previous.years()"
+                v-show="panel.previous.year" :years="calendar.previous.years()"
                 @update-year="calendar.previous.setYear"
               />
               <div v-show="panel.previous.calendar">
                 <VtdWeek :weeks="weeks" />
                 <VtdCalendar
-                  :calendar="calendar.previous"
-                  :weeks="weeks"
-                  :as-range="asRange()"
+                  :calendar="calendar.previous" :weeks="weeks" :as-range="asRange()"
                   @update-date="(date) => setDate(date)"
                 />
               </div>
@@ -1727,30 +1635,17 @@ provide(setToCustomShortcutKey, setToCustomShortcut)
             v-if="asRange() && !props.asSingle"
             class="relative w-full md:w-1/2 lg:w-80 overflow-hidden mt-3 sm:mt-0 sm:ml-2"
           >
-            <VtdHeader
-              as-prev-or-next
-              :panel="panel.next"
-              :calendar="calendar.next"
-            />
+            <VtdHeader as-prev-or-next :panel="panel.next" :calendar="calendar.next" />
             <div class="px-0.5 sm:px-2">
-              <VtdMonth
-                v-show="panel.next.month"
-                :months="months"
-                @update-month="calendar.next.setMonth"
-              />
+              <VtdMonth v-show="panel.next.month" :months="months" @update-month="calendar.next.setMonth" />
               <VtdYear
-                v-show="panel.next.year"
-                as-prev-or-next
-                :years="calendar.next.years()"
+                v-show="panel.next.year" as-prev-or-next :years="calendar.next.years()"
                 @update-year="calendar.next.setYear"
               />
               <div v-show="panel.next.calendar">
                 <VtdWeek :weeks="weeks" />
                 <VtdCalendar
-                  as-prev-or-next
-                  :calendar="calendar.next"
-                  :weeks="weeks"
-                  :as-range="asRange()"
+                  as-prev-or-next :calendar="calendar.next" :weeks="weeks" :as-range="asRange()"
                   @update-date="(date) => setDate(date)"
                 />
               </div>
@@ -1759,18 +1654,13 @@ provide(setToCustomShortcutKey, setToCustomShortcut)
         </div>
       </div>
       <div v-if="!props.autoApply">
-        <div
-          class="mt-2 mx-2 py-1.5 border-t border-black/[.1] dark:border-vtd-secondary-700/[1]"
-        >
+        <div class="mt-2 mx-2 py-1.5 border-t border-black/[.1] dark:border-vtd-secondary-700/[1]">
           <div class="mt-1.5 sm:flex sm:flex-row-reverse">
             <button
               type="button"
               class="away-apply-picker w-full transition ease-out duration-300 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-vtd-primary-600 text-base font-medium text-white hover:bg-vtd-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-vtd-primary-500 sm:ml-3 sm:w-auto sm:text-sm dark:ring-offset-vtd-secondary-800 disabled:cursor-not-allowed"
-              :disabled="
-                props.asSingle ? applyValue.length < 1 : applyValue.length < 2
-              "
-              @click="applyDate()"
-              v-text="props.options.footer.apply"
+              :disabled="props.asSingle ? applyValue.length < 1 : applyValue.length < 2
+              " @click="applyDate()" v-text="props.options.footer.apply"
             />
           </div>
         </div>
@@ -1789,11 +1679,9 @@ provide(setToCustomShortcutKey, setToCustomShortcut)
   content: "";
   @apply absolute top-0 w-4 h-4 bg-white shadow border border-black/[.1] dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700;
   transform: translate(50%, -50%) rotate(-45deg);
-  clip-path: polygon(
-    calc(var(--vtd-datepicker) * -1) calc(var(--vtd-datepicker) * -1),
-    calc(100% + var(--vtd-datepicker)) calc(var(--vtd-datepicker) * -1),
-    calc(100% + var(--vtd-datepicker)) calc(100% + var(--vtd-datepicker))
-  );
+  clip-path: polygon(calc(var(--vtd-datepicker) * -1) calc(var(--vtd-datepicker) * -1),
+      calc(100% + var(--vtd-datepicker)) calc(var(--vtd-datepicker) * -1),
+      calc(100% + var(--vtd-datepicker)) calc(100% + var(--vtd-datepicker)));
 }
 
 .vtd-datepicker.place-left::before {
