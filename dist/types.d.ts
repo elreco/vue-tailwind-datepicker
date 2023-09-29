@@ -131,7 +131,7 @@ declare const _default: {
         }>;
         $root: ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}, {}, string, {}>, {}, {}> | null;
         $parent: ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}, {}, string, {}>, {}, {}> | null;
-        $emit: (event: "update:modelValue" | "selectMonth" | "selectYear" | "selectRightMonth" | "selectRightYear" | "clickPrev" | "clickNext" | "clickRightPrev" | "clickRightNext", ...args: any[]) => void;
+        $emit: ((event: "update:modelValue", ...args: any[]) => void) & ((event: "selectMonth", ...args: any[]) => void) & ((event: "selectYear", ...args: any[]) => void) & ((event: "selectRightMonth", ...args: any[]) => void) & ((event: "selectRightYear", ...args: any[]) => void) & ((event: "clickPrev", ...args: any[]) => void) & ((event: "clickNext", ...args: any[]) => void) & ((event: "clickRightPrev", ...args: any[]) => void) & ((event: "clickRightNext", ...args: any[]) => void);
         $el: any;
         $options: ComponentOptionsBase<Readonly<ExtractPropTypes<{
             shortcuts: {
@@ -254,7 +254,17 @@ declare const _default: {
             onClickRightNext?: ((...args: any[]) => any) | undefined;
         }, {
             clearPicker: () => void;
-        }, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, ("update:modelValue" | "selectMonth" | "selectYear" | "selectRightMonth" | "selectRightYear" | "clickPrev" | "clickNext" | "clickRightPrev" | "clickRightNext")[], string, {
+        }, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
+            "update:modelValue": (...args: any[]) => void;
+            selectMonth: (...args: any[]) => void;
+            selectYear: (...args: any[]) => void;
+            selectRightMonth: (...args: any[]) => void;
+            selectRightYear: (...args: any[]) => void;
+            clickPrev: (...args: any[]) => void;
+            clickNext: (...args: any[]) => void;
+            clickRightPrev: (...args: any[]) => void;
+            clickRightNext: (...args: any[]) => void;
+        }, string, {
             shortcuts: boolean | (() => {
                 label: string;
                 atClick: () => Date[];
@@ -559,7 +569,17 @@ declare const _default: {
     onClickRightNext?: ((...args: any[]) => any) | undefined;
 }, {
     clearPicker: () => void;
-}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, ("update:modelValue" | "selectMonth" | "selectYear" | "selectRightMonth" | "selectRightYear" | "clickPrev" | "clickNext" | "clickRightPrev" | "clickRightNext")[], "update:modelValue" | "selectMonth" | "selectYear" | "selectRightMonth" | "selectRightYear" | "clickPrev" | "clickNext" | "clickRightPrev" | "clickRightNext", {
+}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
+    "update:modelValue": (...args: any[]) => void;
+    selectMonth: (...args: any[]) => void;
+    selectYear: (...args: any[]) => void;
+    selectRightMonth: (...args: any[]) => void;
+    selectRightYear: (...args: any[]) => void;
+    clickPrev: (...args: any[]) => void;
+    clickNext: (...args: any[]) => void;
+    clickRightPrev: (...args: any[]) => void;
+    clickRightNext: (...args: any[]) => void;
+}, string, {
     shortcuts: boolean | (() => {
         label: string;
         atClick: () => Date[];
@@ -604,6 +624,9 @@ declare const _default: {
             value: string;
             placeholder: string;
             clear: () => void;
+        }): any;
+        inputIcon?(_: {
+            value: string;
         }): any;
     };
 });
