@@ -29,6 +29,7 @@ declare const _default: {
                 atClick: () => Date[];
             }[]) | undefined;
             i18n?: string | undefined;
+            weekNumber?: boolean | undefined;
             disabled?: boolean | undefined;
             disableDate?: boolean | ((date: Date) => boolean) | undefined;
             formatter?: {
@@ -147,6 +148,10 @@ declare const _default: {
             i18n: {
                 type: PropType<string>;
                 default: string;
+            };
+            weekNumber: {
+                type: PropType<boolean>;
+                default: boolean;
             };
             disabled: {
                 type: PropType<boolean>;
@@ -270,6 +275,7 @@ declare const _default: {
                 atClick: () => Date[];
             }[]);
             i18n: string;
+            weekNumber: boolean;
             disabled: boolean;
             disableDate: boolean | ((date: Date) => boolean);
             formatter: {
@@ -337,6 +343,10 @@ declare const _default: {
         i18n: {
             type: PropType<string>;
             default: string;
+        };
+        weekNumber: {
+            type: PropType<boolean>;
+            default: boolean;
         };
         disabled: {
             type: PropType<boolean>;
@@ -463,6 +473,10 @@ declare const _default: {
         type: PropType<string>;
         default: string;
     };
+    weekNumber: {
+        type: PropType<boolean>;
+        default: boolean;
+    };
     disabled: {
         type: PropType<boolean>;
         default: boolean;
@@ -585,6 +599,7 @@ declare const _default: {
         atClick: () => Date[];
     }[]);
     i18n: string;
+    weekNumber: boolean;
     disabled: boolean;
     disableDate: boolean | ((date: Date) => boolean);
     formatter: {
