@@ -362,6 +362,18 @@ const dateValue = ref([])
 </template>
 ```
 
+## Week number
+
+If you want to show week number in the calendar
+
+<DemoLayout>
+  <VueTailwindDatePicker
+    week-number
+    v-model="dateValue16"
+  />
+</DemoLayout>
+
+
 ## Shortcuts
 
 Display or not the dates shortcuts, default value is true.
@@ -556,7 +568,7 @@ const options = ref({
   shortcuts: {
     today: 'Hari ini',
     yesterday: 'Kemarin',
-    past: period => `${period  } hari terakhir`,
+    past: period => `${period} hari terakhir`,
     currentMonth: 'Bulan ini',
     pastMonth: 'Bulan lalu',
   },

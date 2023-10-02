@@ -13,6 +13,7 @@ import customParseFormat from 'dayjs/plugin/customParseFormat'
 import isToday from 'dayjs/plugin/isToday'
 import isBetween from 'dayjs/plugin/isBetween'
 import duration from 'dayjs/plugin/duration'
+import weekOfYear from 'dayjs/plugin/weekOfYear'
 import type { Ref } from 'vue'
 import {
   computed,
@@ -25,6 +26,7 @@ import {
   watch,
   watchEffect,
 } from 'vue'
+import { localesMap } from './utils'
 import VtdHeader from './components/Header.vue'
 import VtdShortcut from './components/Shortcut.vue'
 import VtdCalendar from './components/Calendar.vue'
@@ -67,6 +69,7 @@ interface Props {
   }
   startFrom?: Date
   weekdaysSize?: string
+  weekNumber?: boolean
   options?: {
     shortcuts: {
       today: string
@@ -106,6 +109,7 @@ const props = withDefaults(defineProps<Props>(), {
   }),
   startFrom: () => new Date(),
   weekdaysSize: 'short',
+  weekNumber: false,
   options: () => ({
     shortcuts: {
       today: 'Today',
@@ -146,18 +150,13 @@ const {
 
 const { useVisibleViewport } = useDom()
 
-const localesMap = Object.fromEntries(
-  Object.entries(import.meta.glob('./locale/*.js')).map(
-    ([path, loadLocale]) => [path.match(/([\w-]*)\.js$/)?.[1], loadLocale],
-  ),
-) as Record<string, () => Promise<{ default: Dayjs['localeData'] }>>
-
 dayjs.extend(localeData)
 dayjs.extend(localizedFormat)
 dayjs.extend(customParseFormat)
 dayjs.extend(isToday)
 dayjs.extend(isBetween)
 dayjs.extend(duration)
+dayjs.extend(weekOfYear)
 
 const VtdRef = ref(null)
 const VtdInputRef = ref<HTMLInputElement | null>(null)
@@ -224,14 +223,14 @@ const calendar = computed(() => {
                       hoverValue.value[1],
                       'date',
                       '()',
-                    ) ||
-                      v.isBetween(
+                    )
+                      || v.isBetween(
                         hoverValue.value[1],
                         hoverValue.value[0],
                         'date',
                         '(]',
-                      )) &&
-                    previous.month() === v.month()
+                      ))
+                    && previous.month() === v.month()
                   )
                 }
                 return false
@@ -284,8 +283,8 @@ const calendar = computed(() => {
         emit('selectMonth', datepicker.value.previous)
         nextTick(() => {
           if (
-            datepicker.value.next.isSame(datepicker.value.previous, 'month') ||
-            datepicker.value.next.isBefore(datepicker.value.previous)
+            datepicker.value.next.isSame(datepicker.value.previous, 'month')
+            || datepicker.value.next.isBefore(datepicker.value.previous)
           )
             datepicker.value.next = datepicker.value.previous.add(1, 'month')
 
@@ -304,8 +303,8 @@ const calendar = computed(() => {
         emit('selectYear', datepicker.value.previous)
         nextTick(() => {
           if (
-            datepicker.value.next.isSame(datepicker.value.previous, 'month') ||
-            datepicker.value.next.isBefore(datepicker.value.previous)
+            datepicker.value.next.isSame(datepicker.value.previous, 'month')
+            || datepicker.value.next.isBefore(datepicker.value.previous)
           )
             datepicker.value.next = datepicker.value.previous.add(1, 'month')
 
@@ -338,14 +337,14 @@ const calendar = computed(() => {
                       hoverValue.value[1],
                       'date',
                       '()',
-                    ) ||
-                      v.isBetween(
+                    )
+                      || v.isBetween(
                         hoverValue.value[1],
                         hoverValue.value[0],
                         'date',
                         '(]',
-                      )) &&
-                    next.month() === v.month()
+                      ))
+                    && next.month() === v.month()
                   )
                 }
                 return false
@@ -398,8 +397,8 @@ const calendar = computed(() => {
         emit('selectRightMonth', datepicker.value.next)
         nextTick(() => {
           if (
-            datepicker.value.previous.isSame(datepicker.value.next, 'month') ||
-            datepicker.value.previous.isAfter(datepicker.value.next)
+            datepicker.value.previous.isSame(datepicker.value.next, 'month')
+            || datepicker.value.previous.isAfter(datepicker.value.next)
           ) {
             datepicker.value.previous = datepicker.value.next.subtract(
               1,
@@ -423,8 +422,8 @@ const calendar = computed(() => {
         emit('selectRightYear', datepicker.value.next)
         nextTick(() => {
           if (
-            datepicker.value.previous.isSame(datepicker.value.next, 'month') ||
-            datepicker.value.previous.isAfter(datepicker.value.next)
+            datepicker.value.previous.isSame(datepicker.value.next, 'month')
+            || datepicker.value.previous.isAfter(datepicker.value.next)
           ) {
             datepicker.value.previous = datepicker.value.next.subtract(
               1,
@@ -975,8 +974,8 @@ function datepickerClasses(date: DatePickerDay) {
         ? 'bg-vtd-primary-500 text-white font-bold rounded-l-full disabled:cursor-not-allowed'
         : 'bg-vtd-primary-500 text-white font-bold rounded-r-full disabled:cursor-not-allowed'
       if (s.isSame(e, 'date')) {
-        classes =
-          'bg-vtd-primary-500 text-white font-bold rounded-full disabled:cursor-not-allowed'
+        classes
+          = 'bg-vtd-primary-500 text-white font-bold rounded-full disabled:cursor-not-allowed'
       }
     }
     if (date.isSame(e, 'date')) {
@@ -984,15 +983,15 @@ function datepickerClasses(date: DatePickerDay) {
         ? 'bg-vtd-primary-500 text-white font-bold rounded-r-full disabled:cursor-not-allowed'
         : 'bg-vtd-primary-500 text-white font-bold rounded-l-full disabled:cursor-not-allowed'
       if (s.isSame(e, 'date')) {
-        classes =
-          'bg-vtd-primary-500 text-white font-bold rounded-full disabled:cursor-not-allowed'
+        classes
+          = 'bg-vtd-primary-500 text-white font-bold rounded-full disabled:cursor-not-allowed'
       }
     }
   }
   else if (s) {
     if (date.isSame(s, 'date') && !off) {
-      classes =
-        'bg-vtd-primary-500 text-white font-bold rounded-full disabled:cursor-not-allowed'
+      classes
+        = 'bg-vtd-primary-500 text-white font-bold rounded-full disabled:cursor-not-allowed'
     }
   }
 
@@ -1095,19 +1094,19 @@ function forceEmit(s: string, e: string) {
   if (
     dayjs
       .duration(datepicker.value.next.diff(datepicker.value.previous))
-      .get('months') === 2 ||
-    (dayjs
+      .get('months') === 2
+    || (dayjs
       .duration(datepicker.value.next.diff(datepicker.value.previous))
-      .get('months') === 1 &&
-      dayjs
+      .get('months') === 1
+      && dayjs
         .duration(datepicker.value.next.diff(datepicker.value.previous))
         .get('days') === 7)
   )
     datepicker.value.next = datepicker.value.next.subtract(1, 'month')
 
   if (
-    datepicker.value.next.isSame(datepicker.value.previous, 'month') ||
-    datepicker.value.next.isBefore(datepicker.value.previous)
+    datepicker.value.next.isSame(datepicker.value.previous, 'month')
+    || datepicker.value.next.isBefore(datepicker.value.previous)
   )
     datepicker.value.next = datepicker.value.previous.add(1, 'month')
 }
@@ -1266,7 +1265,7 @@ watchEffect(() => {
       await localesMap[locale]()
       dayjs.locale(locale)
     }
-    
+
     let s, e
     if (asRange()) {
       if (Array.isArray(modelValueCloned)) {
@@ -1384,14 +1383,13 @@ watchEffect(() => {
         datepicker.value.year.next = datepicker.value.next.year()
       }
     }
-    const days =
-        props.weekdaysSize === 'min'
-          ? dayjs.weekdaysMin()
-          : dayjs.weekdaysShort()
+    const days
+      = props.weekdaysSize === 'min'
+        ? dayjs.weekdaysMin()
+        : dayjs.weekdaysShort()
     datepicker.value.weeks = isFirstMonday() ? shuffleWeekdays(days) : days
-    datepicker.value.months =
-        props.formatter.month === 'MMM' ? dayjs.monthsShort() : dayjs.months()
-    
+    datepicker.value.months
+      = props.formatter.month === 'MMM' ? dayjs.monthsShort() : dayjs.months()
   })
 })
 
@@ -1414,7 +1412,6 @@ function getAbsoluteParentClass(open: boolean) {
 
   return 'left-0 right-auto'
 }
-
 
 provide(isBetweenRangeKey, isBetweenRange)
 provide(betweenRangeClassesKey, betweenRangeClasses)
@@ -1526,7 +1523,7 @@ provide(setToCustomShortcutKey, setToCustomShortcut)
                         <VtdWeek :weeks="weeks" />
                         <VtdCalendar
                           :calendar="calendar.previous" :weeks="weeks" :as-range="asRange()"
-                          @update-date="(date) => setDate(date, close)"
+                          :week-number="weekNumber" @update-date="(date) => setDate(date, close)"
                         />
                       </div>
                     </div>
@@ -1547,7 +1544,7 @@ provide(setToCustomShortcutKey, setToCustomShortcut)
                         <VtdWeek :weeks="weeks" />
                         <VtdCalendar
                           as-prev-or-next :calendar="calendar.next" :weeks="weeks" :as-range="asRange()"
-                          @update-date="(date) => setDate(date, close)"
+                          :week-number="weekNumber" @update-date="(date) => setDate(date, close)"
                         />
                       </div>
                     </div>
@@ -1621,7 +1618,7 @@ provide(setToCustomShortcutKey, setToCustomShortcut)
               <div v-show="panel.previous.calendar">
                 <VtdWeek :weeks="weeks" />
                 <VtdCalendar
-                  :calendar="calendar.previous" :weeks="weeks" :as-range="asRange()"
+                  :calendar="calendar.previous" :weeks="weeks" :as-range="asRange()" :week-number="weekNumber"
                   @update-date="(date) => setDate(date)"
                 />
               </div>
@@ -1643,7 +1640,7 @@ provide(setToCustomShortcutKey, setToCustomShortcut)
                 <VtdWeek :weeks="weeks" />
                 <VtdCalendar
                   as-prev-or-next :calendar="calendar.next" :weeks="weeks" :as-range="asRange()"
-                  @update-date="(date) => setDate(date)"
+                  :week-number="weekNumber" @update-date="(date) => setDate(date)"
                 />
               </div>
             </div>
