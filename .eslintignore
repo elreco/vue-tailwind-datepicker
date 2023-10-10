@@ -1,3 +1,4 @@
 dist
 node_modules
-src/locale/*
+docs/.vitepress/cache
+docs/.vitepress/dist
