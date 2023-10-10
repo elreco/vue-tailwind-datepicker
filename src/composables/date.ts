@@ -37,7 +37,7 @@ export default function useDate() {
     date: Dayjs,
     { disableDate }: { disableDate: boolean | ((date: Date) => boolean) },
   ) => {
-    if (typeof disableDate === 'function') 
+    if (typeof disableDate === 'function')
       return disableDate(date.toDate())
     else return false
   }

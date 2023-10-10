@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
 import { ref } from 'vue'
+import type { Dayjs } from 'dayjs'
 import VueTailwindDatePicker from './VueTailwindDatePicker.vue'
 
 const dateValue = ref({
@@ -11,11 +12,11 @@ const dateValue = ref({
 const currentLocale = ref('es')
 const locales = ['en', 'es', 'de']
 
-function onClickSomething(e: Event) {
+function onClickSomething(e: Dayjs) {
   console.log(e)
 }
 
-function onSelectSomething(e: Event) {
+function onSelectSomething(e: Dayjs) {
   console.log(e)
 }
 </script>
@@ -32,24 +33,13 @@ function onSelectSomething(e: Event) {
       </select>
     </label>
     <div class="grid grid-rows-2 gap-4">
-      <VueTailwindDatePicker
-        v-model="dateValue"
-        :i18n="currentLocale"
-        @select-month="onSelectSomething($event)"
-        @select-year="onSelectSomething($event)"
-        @select-right-month="onSelectSomething($event)"
-        @select-right-year="onSelectSomething($event)"
-        @click-prev="onClickSomething($event)"
-        @click-next="onClickSomething($event)"
-        @click-right-prev="onClickSomething($event)"
-        @click-right-next="onClickSomething($event)"
-      />
+      <VueTailwindDatePicker v-model="dateValue" :i18n="currentLocale" @select-month="onSelectSomething($event)"
+        @select-year="onSelectSomething($event)" @select-right-month="onSelectSomething($event)"
+        @select-right-year="onSelectSomething($event)" @click-prev="onClickSomething($event)"
+        @click-next="onClickSomething($event)" @click-right-prev="onClickSomething($event)"
+        @click-right-next="onClickSomething($event)" />
 
-      <VueTailwindDatePicker
-        v-model="dateValue.startDate"
-        as-single
-        :i18n="currentLocale"
-      />
+      <VueTailwindDatePicker v-model="dateValue.startDate" as-single :i18n="currentLocale" />
     </div>
   </div>
 </template>
