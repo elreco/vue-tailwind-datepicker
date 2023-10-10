@@ -32,21 +32,21 @@
 
 # Events
 
-## select:month
+## selectMonth
 
 Changed month event from dropdown for left/single calendar.
 
 <DemoLayout>
   <VueTailwindDatePicker
     v-model="dateValue1"
-    @select:month="onSelectSomething($event, 'left')"
+    @select-month="onSelectSomething($event, 'left')"
   />
 </DemoLayout>
 <DemoLayout>
   <VueTailwindDatePicker
     v-model="dateValue2"
     as-single
-    @select:month="onSelectSomething($event, 'single')"
+    @select-month="onSelectSomething($event, 'single')"
   />
 </DemoLayout>
 
@@ -63,12 +63,12 @@ const onSelectSomething = (newDate) => {
 <template>
   <vue-tailwind-datepicker
     v-model="dateValue"
-    @select:month="onSelectSomething($event)"
+    @select-month="onSelectSomething($event)"
   />
   <vue-tailwind-datepicker
     v-model="dateValue"
     as-single
-    @select:month="onSelectSomething($event)"
+    @select-month="onSelectSomething($event)"
   />
 </template>
 ```
@@ -77,21 +77,21 @@ const onSelectSomething = (newDate) => {
 The same works with `no-input` prop.
 :::
 
-## select:year
+## selectYear
 
 Changed year event from dropdown for left/single calendar.
 
 <DemoLayout>
   <VueTailwindDatePicker
     v-model="dateValue3"
-    @select:year="onSelectSomething($event, 'single')"
+    @select-year="onSelectSomething($event, 'single')"
   />
 </DemoLayout>
 <DemoLayout>
   <VueTailwindDatePicker
     v-model="dateValue4"
     as-single
-    @select:year="onSelectSomething($event, 'single')"
+    @select-year="onSelectSomething($event, 'single')"
   />
 </DemoLayout>
 
@@ -108,12 +108,12 @@ const onSelectSomething = (newDate) => {
 <template>
   <vue-tailwind-datepicker
     v-model="dateValue"
-    @select:year="onSelectSomething($event)"
+    @select-year="onSelectSomething($event)"
   />
   <vue-tailwind-datepicker
     v-model="dateValue"
     as-single
-    @select:year="onSelectSomething($event)"
+    @select-year="onSelectSomething($event)"
   />
 </template>
 ```
@@ -122,14 +122,14 @@ const onSelectSomething = (newDate) => {
 The same works with `no-input` prop.
 :::
 
-## select:right:month
+## selectRightMonth
 
 Changed month event from dropdown for right calendar.
 
 <DemoLayout>
   <VueTailwindDatePicker
     v-model="dateValue5"
-    @select:right:month="onSelectSomething($event, 'right')"
+    @select-right-month="onSelectSomething($event, 'right')"
   />
 </DemoLayout>
 
@@ -146,7 +146,7 @@ const onClickSomething = (newDate) => {
 <template>
   <vue-tailwind-datepicker
     v-model="dateValue"
-    @select:right:month="onSelectSomething($event)"
+    @select-right-month="onSelectSomething($event)"
   />
 </template>
 ```
@@ -155,14 +155,14 @@ const onClickSomething = (newDate) => {
 The same works with `no-input` prop.
 :::
 
-## select:right:year
+## selectRightYear
 
 Changed year event from dropdown for right calendar.
 
 <DemoLayout>
   <VueTailwindDatePicker
     v-model="dateValue6"
-    @select:right:year="onSelectSomething($event, 'right')"
+    @select-right-year="onSelectSomething($event, 'right')"
   />
 </DemoLayout>
 
@@ -179,7 +179,7 @@ const onSelectSomething = (newDate) => {
 <template>
   <vue-tailwind-datepicker
     v-model="dateValue"
-    @select:right:year="onSelectSomething($event)"
+    @select-right-year="onSelectSomething($event)"
   />
 </template>
 ```
@@ -188,21 +188,21 @@ const onSelectSomething = (newDate) => {
 The same works with `no-input` prop.
 :::
 
-## click:prev
+## clickPrev
 
 Click previous button event for left/single calendar.
 
 <DemoLayout>
   <VueTailwindDatePicker
     v-model="dateValue7"
-    @click:prev="onClickSomething($event, 'left')"
+    @click-prev="onClickSomething($event, 'left')"
   />
 </DemoLayout>
 <DemoLayout>
   <VueTailwindDatePicker
     v-model="dateValue8"
     as-single
-    @click:prev="onClickSomething($event, 'single')"
+    @click-prev="onClickSomething($event, 'single')"
   />
 </DemoLayout>
 
@@ -219,12 +219,12 @@ const onClickSomething = (newDate) => {
 <template>
   <vue-tailwind-datepicker
     v-model="dateValue"
-    @click:prev="onClickSomething($event)"
+    @click-prev="onClickSomething($event)"
   />
   <vue-tailwind-datepicker
     v-model="dateValue"
     as-single
-    @click:prev="onClickSomething($event)"
+    @click-prev="onClickSomething($event)"
   />
 </template>
 ```
@@ -233,21 +233,21 @@ const onClickSomething = (newDate) => {
 The same works with `no-input` prop.
 :::
 
-## click:next
+## clickNext
 
 Click next button event for left/single calendar.
 
 <DemoLayout>
   <VueTailwindDatePicker
     v-model="dateValue9"
-    @click:next="onClickSomething($event, 'left')"
+    @click-next="onClickSomething($event, 'left')"
   />
 </DemoLayout>
 <DemoLayout>
   <VueTailwindDatePicker
     v-model="dateValue10"
     as-single
-    @click:next="onClickSomething($event, 'single')"
+    @click-next="onClickSomething($event, 'single')"
   />
 </DemoLayout>
 
@@ -264,12 +264,12 @@ const onClickSomething = (newDate) => {
 <template>
   <vue-tailwind-datepicker
     v-model="dateValue"
-    @click:next="onClickSomething($event)"
+    @click-next="onClickSomething($event)"
   />
   <vue-tailwind-datepicker
     v-model="dateValue"
     as-single
-    @click:next="onClickSomething($event)"
+    @click-next="onClickSomething($event)"
   />
 </template>
 ```
@@ -278,14 +278,14 @@ const onClickSomething = (newDate) => {
 The same works with `no-input` prop.
 :::
 
-## click:right:prev
+## clickRightPrev
 
 Click previous button event for right calendar.
 
 <DemoLayout>
   <VueTailwindDatePicker
     v-model="dateValue11"
-    @click:right:prev="onClickSomething($event, 'right')"
+    @click-right-prev="onClickSomething($event, 'right')"
   />
 </DemoLayout>
 
@@ -302,7 +302,7 @@ const onClickSomething = (newDate) => {
 <template>
   <vue-tailwind-datepicker
     v-model="dateValue"
-    @click:right:prev="onClickSomething($event)"
+    @click-right-prev="onClickSomething($event)"
   />
 </template>
 ```
@@ -311,14 +311,14 @@ const onClickSomething = (newDate) => {
 The same works with `no-input` prop.
 :::
 
-## click:right:next
+## clickRightNext
 
 Click next button event for right calendar.
 
 <DemoLayout>
   <VueTailwindDatePicker
     v-model="dateValue12"
-    @click:right:next="onClickSomething($event, 'right')"
+    @click-right-next="onClickSomething($event, 'right')"
   />
 </DemoLayout>
 
@@ -335,7 +335,7 @@ const onClickSomething = (newDate) => {
 <template>
   <vue-tailwind-datepicker
     v-model="dateValue"
-    @click:right:next="onClickSomething($event)"
+    @click-right-next="onClickSomething($event)"
   />
 </template>
 ```
