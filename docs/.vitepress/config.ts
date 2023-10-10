@@ -1,9 +1,14 @@
+import { defineConfig } from 'vitepress'
 import { version } from '../../package.json'
 
-export default {
+export default defineConfig({
   title: 'Vue Tailwind Datepicker',
+  lastUpdated: true,
   description: 'Components, composables and configurations for Vue 3',
   themeConfig: {
+    search: {
+      provider: 'local'
+    },
     /* logo: 'https://github.com/elreco/vue-tailwind-datepicker/blob/main/docs/logo.png?raw=true', */
     socialLinks: [{ icon: 'github', link: 'https://github.com/elreco/vue-tailwind-datepicker' }],
     footer: {
@@ -42,5 +47,11 @@ export default {
         ]
       }
     ]
+  },
+  vite: {
+    optimizeDeps: {
+      include: ['@headlessui/vue', 'dayjs'],
+      exclude: []
+    },
   }
-}
+});
