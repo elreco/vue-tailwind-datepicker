@@ -39,12 +39,11 @@
   ],
   "contributors": [],
   "scripts": {
-    "dev": "ts-node --transpileOnly exec.ts && vite",
+    "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 4173",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "locale": "ts-node --transpileOnly exec.ts && rm -rf ./dist/locale && cp -r ./src/locale ./dist/locale",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
@@ -56,8 +55,7 @@
     "vue": "^3.3.4"
   },
   "dependencies": {
-    "@vueuse/core": "^10.4.1",
-    "ts-node": "^10.9.1",
+    "@vueuse/core": "^10.5.0",
     "vite-plugin-css-injected-by-js": "^3.3.0"
   },
   "devDependencies": {
@@ -65,21 +63,21 @@
     "@headlessui/vue": "^1.7.16",
     "@tailwindcss/forms": "^0.5.6",
     "@types/fs-extra": "^11.0.2",
-    "@types/node": "^20.7.1",
-    "@vitejs/plugin-vue": "^4.3.4",
+    "@types/node": "^20.8.4",
+    "@vitejs/plugin-vue": "^4.4.0",
     "autoprefixer": "^10.4.16",
     "dayjs": "^1.11.10",
     "esbuild": "^0.19.4",
-    "eslint": "^8.50.0",
+    "eslint": "^8.51.0",
     "fs-extra": "^11.1.1",
-    "postcss": "^8.4.30",
+    "postcss": "^8.4.31",
     "postcss-prefix-selector": "^1.16.0",
-    "postcss-preset-env": "^9.1.4",
+    "postcss-preset-env": "^9.2.0",
     "tailwindcss": "^3.3.3",
-    "vite": "^4.4.9",
+    "vite": "^4.4.11",
     "vite-plugin-dts": "3.6.0",
     "vitepress": "^1.0.0-rc.20",
     "vue": "^3.3.4",
-    "vue-tsc": "^1.8.15"
+    "vue-tsc": "^1.8.18"
   }
 }

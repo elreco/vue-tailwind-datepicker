@@ -1,13 +1,10 @@
 {
-  "ts-node": {
-    "esm": true
-  },
   "compilerOptions": {
     "target": "ESNext",
     "lib": ["DOM", "ESNext"],
     "jsx": "preserve",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"]
@@ -28,7 +25,6 @@
     "node_modules",
     "cypress",
     "postcss.config.cjs",
-    "src/locale/*",
     "tailwind.config.ts"
   ]
 }
