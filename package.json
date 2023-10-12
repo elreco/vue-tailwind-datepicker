@@ -51,11 +51,6 @@
     "typecheck": "vue-tsc --noEmit",
     "commit": "cz"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
   "peerDependencies": {
     "dayjs": "^1.11.10",
     "tailwindcss": "^3.3.3",
