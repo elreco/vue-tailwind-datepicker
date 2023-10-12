@@ -51,6 +51,11 @@
     "typecheck": "vue-tsc --noEmit",
     "commit": "cz"
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "peerDependencies": {
     "dayjs": "^1.11.10",
     "tailwindcss": "^3.3.3",
@@ -63,6 +68,8 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.43.1",
+    "@commitlint/cli": "^17.7.2",
+    "@commitlint/config-conventional": "^17.7.0",
     "@headlessui/vue": "^1.7.16",
     "@tailwindcss/forms": "^0.5.6",
     "@types/fs-extra": "^11.0.2",
@@ -75,6 +82,7 @@
     "esbuild": "^0.19.4",
     "eslint": "^8.50.0",
     "fs-extra": "^11.1.1",
+    "husky": "^8.0.3",
     "postcss": "^8.4.30",
     "postcss-prefix-selector": "^1.16.0",
     "postcss-preset-env": "^9.1.4",
