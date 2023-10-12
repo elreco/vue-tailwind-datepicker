@@ -24,4 +24,4 @@ export default defineConfig({
     },
   },
   plugins: [vue(), cssInjectedByJsPlugin(), dts({ rollupTypes: true })],
-});
+})

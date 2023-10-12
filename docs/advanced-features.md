@@ -18,8 +18,8 @@
         atClick: () => {
           const date = new Date();
           return [
-            new Date(date.setDate(date.getDate() + 1)), 
-            date
+            new Date(date.setDate(date.getDate() - 14)), 
+            new Date()
           ];
         }
       },

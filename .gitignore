@@ -27,9 +27,6 @@ coverage
 *.sln
 *.sw?
 
-# days js locales
-src/locale
-
 # vitepress
 docs/.vitepress/cache
 docs/.vitepress/dist
