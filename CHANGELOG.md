@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/elreco/vue-tailwind-datepicker/compare/v1.6.0...v1.6.1) (2023-10-12)
+
+
+### Bug Fixes
+
+* **version:** fix version ([edc239c](https://github.com/elreco/vue-tailwind-datepicker/commit/edc239c3a268a60318b99ee6baa89e451397e5ea))
+
 # [1.6.0](https://github.com/elreco/vue-tailwind-datepicker/compare/v1.5.4...v1.6.0) (2023-10-12)
 
 
