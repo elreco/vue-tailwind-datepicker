@@ -1,3 +1,15 @@
+# [1.6.0](https://github.com/elreco/vue-tailwind-datepicker/compare/v1.5.4...v1.6.0) (2023-10-12)
+
+
+### Bug Fixes
+
+* **shortcuts:** update css to fix visual glitch when picker use as-single use-range at the same time ([90c96ff](https://github.com/elreco/vue-tailwind-datepicker/commit/90c96ffda97cd03cb1be26bfa71f1da63d246476))
+
+
+### Features
+
+* **typing:** add event typing  and refactor locale loading ([2445527](https://github.com/elreco/vue-tailwind-datepicker/commit/244552703323873f93683abde217039e8a902cb2))
+
 ## [1.5.4](https://github.com/elreco/vue-tailwind-datepicker/compare/v1.5.3...v1.5.4) (2023-10-12)
 
 
