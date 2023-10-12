@@ -48,7 +48,8 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
-    "typecheck": "vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit",
+    "commit": "cz"
   },
   "peerDependencies": {
     "dayjs": "^1.11.10",
@@ -68,6 +69,8 @@
     "@types/node": "^20.7.1",
     "@vitejs/plugin-vue": "^4.3.4",
     "autoprefixer": "^10.4.16",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
     "dayjs": "^1.11.10",
     "esbuild": "^0.19.4",
     "eslint": "^8.50.0",
@@ -81,5 +84,10 @@
     "vitepress": "^1.0.0-rc.20",
     "vue": "^3.3.4",
     "vue-tsc": "^1.8.15"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
