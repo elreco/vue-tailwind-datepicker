@@ -7,5 +7,3 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: wagoid/commitlint-github-action@v5
-        with:
-          configFile: commitlint.config.cjs
