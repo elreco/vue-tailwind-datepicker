@@ -7,13 +7,8 @@
     A Datepicker component for Vue 3 using Tailwind and dayjs.
 </p>
 
-#### Powered by
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-<p>
-    <a href="https://nftcanyon.io" target="_blank">
-      <img alt="Vue Tailwind Datepicker" width="100" style="border-radius: 100%;" src="https://www.nftcanyon.io/_next/image?url=%2Flogo-dark.png&w=128&q=75">
-    </a>
-</p>
 
 ## Documentation
 

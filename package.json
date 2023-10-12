@@ -48,7 +48,8 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
-    "typecheck": "vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit",
+    "commit": "cz"
   },
   "peerDependencies": {
     "dayjs": "^1.11.10",
@@ -62,16 +63,21 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.43.1",
+    "@commitlint/cli": "^17.7.2",
+    "@commitlint/config-conventional": "^17.7.0",
     "@headlessui/vue": "^1.7.16",
     "@tailwindcss/forms": "^0.5.6",
     "@types/fs-extra": "^11.0.2",
     "@types/node": "^20.7.1",
     "@vitejs/plugin-vue": "^4.3.4",
     "autoprefixer": "^10.4.16",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
     "dayjs": "^1.11.10",
     "esbuild": "^0.19.4",
     "eslint": "^8.50.0",
     "fs-extra": "^11.1.1",
+    "husky": "^8.0.3",
     "postcss": "^8.4.30",
     "postcss-prefix-selector": "^1.16.0",
     "postcss-preset-env": "^9.1.4",
@@ -81,5 +87,10 @@
     "vitepress": "^1.0.0-rc.20",
     "vue": "^3.3.4",
     "vue-tsc": "^1.8.15"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
