@@ -68,6 +68,10 @@ const formatter = ref({
 
 All notable changes to this project will be documented in the [Releases Page](https://github.com/elreco/vue-tailwind-datepicker/releases).
 
+## Sponsor
+
+- [tailwindai.dev](https://www.tailwindai.dev)
+
 ## License
 
 The [MIT](LICENSE) License. Please [see](http://opensource.org/licenses/MIT) for more information.
