@@ -97,8 +97,6 @@ export default {
     '~/plugins/vue-tailwind-datepicker.js'
   ],
 }
-
 ```
 
 4. Now, you can use the <vue-tailwind-datepicker> component in any of your Nuxt pages or components.
-
