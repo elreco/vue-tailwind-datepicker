@@ -13,7 +13,7 @@ export default defineConfig({
     socialLinks: [{ icon: 'github', link: 'https://github.com/elreco/vue-tailwind-datepicker' }],
     footer: {
       message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2022 Alexandre Le Corre'
+      copyright: `Copyright © ${new Date().getFullYear()} Alexandre Le Corre`
     },
     sidebar: [
       {
