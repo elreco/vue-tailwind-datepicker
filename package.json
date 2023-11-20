@@ -101,7 +101,7 @@
     "tailwindcss": "^3.3.3",
     "vite": "^4.4.11",
     "vite-plugin-dts": "3.6.0",
-    "vitepress": "^1.0.0-rc.20",
+    "vitepress": "^1.0.0-rc.29",
     "vue": "^3.3.4",
     "vue-tsc": "^1.8.15"
   },

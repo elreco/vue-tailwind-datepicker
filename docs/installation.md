@@ -99,4 +99,4 @@ export default {
 }
 ```
 
-4. Now, you can use the <vue-tailwind-datepicker> component in any of your Nuxt pages or components.
+4. Now, you can use the `<vue-tailwind-datepicker>` component in any of your Nuxt pages or components.
