@@ -28,7 +28,8 @@
   "exports": {
     ".": {
       "import": "./dist/vue-tailwind-datepicker.js",
-      "require": "./dist/vue-tailwind-datepicker.umd.cjs"
+      "require": "./dist/vue-tailwind-datepicker.umd.cjs",
+      "types": "./dist/types.d.ts"
     }
   },
   "main": "./dist/vue-tailwind-datepicker.umd.cjs",
