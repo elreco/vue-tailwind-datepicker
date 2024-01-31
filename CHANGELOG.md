@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/elreco/vue-tailwind-datepicker/compare/v1.6.1...v1.6.2) (2024-01-31)
+
+
+### Bug Fixes
+
+* export types ([5f6173c](https://github.com/elreco/vue-tailwind-datepicker/commit/5f6173c6c248d56b9a88ce54ba9fd3ee25ac8316))
+
 ## [1.6.1](https://github.com/elreco/vue-tailwind-datepicker/compare/v1.6.0...v1.6.1) (2023-10-12)
 
 
