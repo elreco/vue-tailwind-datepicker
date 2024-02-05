@@ -1,3 +1,10 @@
+## [1.6.5](https://github.com/elreco/vue-tailwind-datepicker/compare/v1.6.4...v1.6.5) (2024-02-05)
+
+
+### :repeat: Chore
+
+* update gh token ([ea501c7](https://github.com/elreco/vue-tailwind-datepicker/commit/ea501c7878594ab1d656de89fe5102074dfe847d))
+
 ## [1.6.3](https://github.com/elreco/vue-tailwind-datepicker/compare/v1.6.2...v1.6.3) (2024-02-05)
 
 
