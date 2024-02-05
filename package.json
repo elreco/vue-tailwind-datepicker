@@ -1,7 +1,7 @@
 {
   "name": "vue-tailwind-datepicker",
   "type": "module",
-  "version": "1.6.5",
+  "version": "1.6.3",
   "description": "A date range picker component for Vue.js 3 using Tailwind CSS",
   "author": {
     "name": "elreco",
@@ -156,9 +156,12 @@
           }
         }
       ],
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      "@semantic-release/git"
+      [
+        "@semantic-release/github",
+        {
+          "assets": []
+        }
+      ]
     ]
   },
   "peerDependencies": {
