@@ -1,3 +1,10 @@
+## [1.6.3](https://github.com/elreco/vue-tailwind-datepicker/compare/v1.6.2...v1.6.3) (2024-02-05)
+
+
+### :repeat: Chore
+
+* update release ([c325818](https://github.com/elreco/vue-tailwind-datepicker/commit/c3258189611781a7353e52d038f096bc57da4189))
+
 ## [1.6.2](https://github.com/elreco/vue-tailwind-datepicker/compare/v1.6.1...v1.6.2) (2024-01-31)
 
 
