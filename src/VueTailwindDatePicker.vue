@@ -26,7 +26,7 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import { localesMap } from './utils'
+import 'dayjs/locale/en'
 import VtdHeader from './components/Header.vue'
 import VtdShortcut from './components/Shortcut.vue'
 import VtdCalendar from './components/Calendar.vue'
@@ -1261,11 +1261,7 @@ watchEffect(() => {
   const locale = props.i18n
   const modelValueCloned = props.modelValue
   nextTick(async () => {
-    if (locale in localesMap) {
-      const localeData = await localesMap[locale]()
-      dayjs.locale(localeData, undefined, true)
-      dayjs.locale(locale)
-    }
+    dayjs.locale(locale)
 
     let s, e
     if (asRange()) {
