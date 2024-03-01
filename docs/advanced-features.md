@@ -167,7 +167,7 @@ This means you only import the specific locale you need directly into your proje
 
 <DemoLayout>
   <VueTailwindDatePicker
-    i18n="id"
+    i18n="fr"
     :auto-apply="false"
     :options="options"
     v-model="dateValue5"
