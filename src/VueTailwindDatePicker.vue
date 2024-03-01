@@ -1257,6 +1257,9 @@ watchEffect(() => {
   }
 })
 
+dayjs.locale(props.i18n)
+watch(() => props.i18n, () => dayjs.locale(props.i18n))
+
 watchEffect(() => {
   const locale = props.i18n
   const modelValueCloned = props.modelValue
