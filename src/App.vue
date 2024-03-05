@@ -3,9 +3,6 @@ import dayjs from 'dayjs'
 import { ref } from 'vue'
 import type { Dayjs } from 'dayjs'
 import VueTailwindDatePicker from './VueTailwindDatePicker.vue'
-import 'dayjs/locale/fr'
-import 'dayjs/locale/de'
-import 'dayjs/locale/es'
 
 const dateValue = ref({
   startDate: dayjs().format('YYYY-MM-DD HH:mm:ss'),
@@ -13,7 +10,7 @@ const dateValue = ref({
 })
 
 const currentLocale = ref('es')
-const locales = ['en', 'es', 'de', 'fr']
+const locales = ['en', 'es', 'de']
 
 function onClickSomething(e: Dayjs) {
   console.log(e)

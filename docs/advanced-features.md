@@ -18,7 +18,7 @@
         atClick: () => {
           const date = new Date();
           return [
-            new Date(date.setDate(date.getDate() - 14)),
+            new Date(date.setDate(date.getDate() - 14)), 
             new Date()
           ];
         }
@@ -159,10 +159,7 @@ const customShortcuts = () => {
 
 ## Localization (i18n)
 
-Vue Tailwind Datepicker now supports on-the-fly locale importing, extending to day.js. <br>
-This means you only import the specific locale you need directly into your project, reducing unnecessary load of unused locales.
-<br>
-<br>
+Vue Tailwind Datepicker extend to day.js<br>
 [List of supported locales](https://github.com/iamkun/dayjs/tree/dev/src/locale)
 
 <DemoLayout>
@@ -177,8 +174,6 @@ This means you only import the specific locale you need directly into your proje
 ```vue
 <script setup>
 import { ref } from "vue";
-// Import the specific locale from day.js
-import 'dayjs/locale/fr'  // Replace 'fr' with your desired locale
 const dateValue = ref([]);
 const options = ref({
   shortcuts: {
@@ -197,7 +192,7 @@ const options = ref({
 
 <template>
   <vue-tailwind-datepicker
-    i18n="fr"
+    i18n="id"
     :auto-apply="false"
     :options="options"
     v-model="dateValue"

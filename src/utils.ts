@@ -9,3 +9,10 @@ export function injectStrict<T>(key: InjectionKey<T>, fallback?: T) {
 
   return resolved
 }
+
+export const localesMap = Object.fromEntries(
+  Object.entries(import.meta.glob('../node_modules/dayjs/esm/locale/*.js', { import: 'default' })).map(
+    ([path, loadLocale]) => [path.match(/([\w-]*)\.js$/)?.[1], loadLocale],
+  ),
+) as Record<string, () => Promise<ILocale>>
+
