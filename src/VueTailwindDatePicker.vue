@@ -466,7 +466,7 @@ function asRange() {
 }
 
 function inRangeDate(date: Dayjs) {
-  if (props.disableInRange)
+  if (props.disableInRange || typeof props.disableDate === 'function')
     return false
   if (pickerValue.value === '')
     return false
