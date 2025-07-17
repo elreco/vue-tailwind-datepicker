@@ -1608,6 +1608,9 @@ provide(setToCustomShortcutKey, setToCustomShortcut)
 </template>
 
 <style>
+@import "tailwindcss";
+@import "./index.css";
+
 .vtd-datepicker-overlay.open::before {
   @apply block opacity-50;
 }
