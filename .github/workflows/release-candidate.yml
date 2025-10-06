@@ -1,0 +1,52 @@
+name: Release Candidate
+on:
+  push:
+    branches:
+      - develop
+      - next
+      - beta
+      - alpha
+
+permissions:
+  contents: read
+
+jobs:
+  release-candidate:
+    name: Release Candidate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm clean-install
+      - name: Build
+        run: npm run build
+      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
+        run: npm audit signatures
+      - name: Release Candidate
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          HUSKY: 0
+        run: |
+          if [[ "${{ github.ref_name }}" == "develop" ]]; then
+            npx semantic-release --branches develop --tag-format 'v${version}-dev.${timestamp}'
+          elif [[ "${{ github.ref_name }}" == "next" ]]; then
+            npx semantic-release --branches next --tag-format 'v${version}-next.${timestamp}'
+          elif [[ "${{ github.ref_name }}" == "beta" ]]; then
+            npx semantic-release --branches beta --tag-format 'v${version}-beta.${timestamp}'
+          elif [[ "${{ github.ref_name }}" == "alpha" ]]; then
+            npx semantic-release --branches alpha --tag-format 'v${version}-alpha.${timestamp}'
+          fi
