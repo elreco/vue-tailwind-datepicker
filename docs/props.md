@@ -98,7 +98,7 @@ You can apply apply your own input classes using Tailwind CSS.
 
 <DemoLayout>
   <VueTailwindDatePicker
-    input-classes="text-sm bg-red-100 border-red-200 rounded-sm text-slate-800 font-medium dark:bg-red-800 dark:text-slate-800 border border-solid dark:border-red-200"
+    input-classes="text-sm bg-red-100 border-red-200 rounded-xs text-slate-800 font-medium dark:bg-red-800 dark:text-slate-800 border border-solid dark:border-red-200"
     v-model="dateValue15"
   ></VueTailwindDatePicker>
 </DemoLayout>
@@ -439,17 +439,17 @@ Two slot are available, a global one that surround the full input and a smaller 
         <div class="flex-1">
           <button
             type="button"
-            class="block w-full bg-gray-50 text-gray-400 hover:text-gray-900 leading-6 py-3 sm:px-6 border border-gray-200 rounded-xl items-center justify-center space-x-2 sm:space-x-4 focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-gray-300 focus:outline-none transition ease-out duration-300"
+            class="block w-full bg-gray-50 text-gray-400 hover:text-gray-900 leading-6 py-3 sm:px-6 border border-gray-200 rounded-xl items-center justify-center space-x-2 sm:space-x-4 focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-gray-300 focus:outline-hidden transition ease-out duration-300"
           >
             <span class="text-gray-900">
               {{ value || placeholder }}
             </span>
           </button>
         </div>
-        <div class="flex-shrink-0">
+        <div class="shrink-0">
           <button
             type="button"
-            class="ml-4 block px-3 flex-none bg-indigo-50 text-indigo-400 hover:text-indigo-900 leading-6 py-3 sm:px-6 border border-indigo-200 rounded-xl items-center justify-center space-x-2 sm:space-x-4 focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-indigo-300 focus:outline-none transition ease-out duration-300"
+            class="ml-4 block px-3 flex-none bg-indigo-50 text-indigo-400 hover:text-indigo-900 leading-6 py-3 sm:px-6 border border-indigo-200 rounded-xl items-center justify-center space-x-2 sm:space-x-4 focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-indigo-300 focus:outline-hidden transition ease-out duration-300"
             @click="clear"
           >
             <svg
@@ -490,17 +490,17 @@ const dateValue = ref([])
         <div class="flex-1">
           <button
             type="button"
-            class="block w-full bg-gray-50 text-gray-400 hover:text-gray-900 leading-6 py-3 sm:px-6 border border-gray-200 rounded-xl items-center justify-center space-x-2 sm:space-x-4 focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-gray-300 focus:outline-none transition ease-out duration-300"
+            class="block w-full bg-gray-50 text-gray-400 hover:text-gray-900 leading-6 py-3 sm:px-6 border border-gray-200 rounded-xl items-center justify-center space-x-2 sm:space-x-4 focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-gray-300 focus:outline-hidden transition ease-out duration-300"
           >
             <span class="text-gray-900">
               {{ value || placeholder }}
             </span>
           </button>
         </div>
-        <div class="flex-shrink-0">
+        <div class="shrink-0">
           <button
             type="button"
-            class="ml-4 block px-3 flex-none bg-indigo-50 text-indigo-400 hover:text-indigo-900 leading-6 py-3 sm:px-6 border border-indigo-200 rounded-xl items-center justify-center space-x-2 sm:space-x-4 focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-indigo-300 focus:outline-none transition ease-out duration-300"
+            class="ml-4 block px-3 flex-none bg-indigo-50 text-indigo-400 hover:text-indigo-900 leading-6 py-3 sm:px-6 border border-indigo-200 rounded-xl items-center justify-center space-x-2 sm:space-x-4 focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-indigo-300 focus:outline-hidden transition ease-out duration-300"
             @click="clear"
           >
             <svg

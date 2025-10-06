@@ -1,3 +1,42 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@plugin "@tailwindcss/forms";
+
+@theme {
+    --color-light-blue-50: var(--color-sky-50);
+    --color-light-blue-100: var(--color-sky-100);
+    --color-light-blue-200: var(--color-sky-200);
+    --color-light-blue-300: var(--color-sky-300);
+    --color-light-blue-400: var(--color-sky-400);
+    --color-light-blue-500: var(--color-sky-500);
+    --color-light-blue-600: var(--color-sky-600);
+    --color-light-blue-700: var(--color-sky-700);
+    --color-light-blue-800: var(--color-sky-800);
+    --color-light-blue-900: var(--color-sky-900);
+    --color-light-blue-950: var(--color-sky-950);
+
+    --color-vtd-primary-50: var(--color-sky-50);
+    --color-vtd-primary-100: var(--color-sky-100);
+    --color-vtd-primary-200: var(--color-sky-200);
+    --color-vtd-primary-300: var(--color-sky-300);
+    --color-vtd-primary-400: var(--color-sky-400);
+    --color-vtd-primary-500: var(--color-sky-500);
+    --color-vtd-primary-600: var(--color-sky-600);
+    --color-vtd-primary-700: var(--color-sky-700);
+    --color-vtd-primary-800: var(--color-sky-800);
+    --color-vtd-primary-900: var(--color-sky-900);
+    --color-vtd-primary-950: var(--color-sky-950);
+
+    --color-vtd-secondary-50: var(--color-gray-50);
+    --color-vtd-secondary-100: var(--color-gray-100);
+    --color-vtd-secondary-200: var(--color-gray-200);
+    --color-vtd-secondary-300: var(--color-gray-300);
+    --color-vtd-secondary-400: var(--color-gray-400);
+    --color-vtd-secondary-500: var(--color-gray-500);
+    --color-vtd-secondary-600: var(--color-gray-600);
+    --color-vtd-secondary-700: var(--color-gray-700);
+    --color-vtd-secondary-800: var(--color-gray-800);
+    --color-vtd-secondary-900: var(--color-gray-900);
+    --color-vtd-secondary-950: var(--color-gray-950);
+}
+
