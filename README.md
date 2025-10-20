@@ -70,7 +70,7 @@ All notable changes to this project will be documented in the [Releases Page](ht
 
 ## Sponsor
 
-- [tailwindai.dev](https://www.tailwindai.dev)
+- [www.ekinox.app](https://www.ekinox.app)
 
 ## License
 
