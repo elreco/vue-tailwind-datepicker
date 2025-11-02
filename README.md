@@ -70,7 +70,7 @@ All notable changes to this project will be documented in the [Releases Page](ht
 
 ## Sponsor
 
-- [www.ekinox.app](https://www.ekinox.app)
+- [www.coderocket.app](https://www.coderocket.app)
 
 ## License
 
