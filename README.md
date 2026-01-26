@@ -68,8 +68,10 @@ const formatter = ref({
 
 All notable changes to this project will be documented in the [Releases Page](https://github.com/elreco/vue-tailwind-datepicker/releases).
 
-## Sponsor
+## Sponsors
 
+
+- [Open Source AI Tools](https://ai.coderocket.app)
 - [www.coderocket.app](https://www.coderocket.app)
 
 ## License
