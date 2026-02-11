@@ -49,7 +49,7 @@ import {
   setToYesterdayKey,
 } from './keys'
 
-interface Props {
+export interface Props {
   noInput?: boolean
   overlay?: boolean
   asSingle?: boolean

@@ -1,0 +1,21 @@
+{
+  "name": "vue-tailwind-datepicker-docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev .",
+    "build": "vitepress build .",
+    "serve": "vitepress serve ."
+  },
+  "devDependencies": {
+    "@headlessui/vue": "1.7.23",
+    "@tailwindcss/postcss": "^4.1.18",
+    "@vueuse/core": "^10.5.0",
+    "dayjs": "^1.11.19",
+    "postcss-prefix-selector": "^2.1.1",
+    "postcss-preset-env": "^11.1.3",
+    "tailwindcss": "^4.1.18",
+    "vitepress": "^1.6.4",
+    "vue": "^3.5.28"
+  }
+}
