@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Dark utilities should react to either the consumer's `.dark` toggle
+    or the component's internal `.vtd-dark` class (used by colorMode). */
+@custom-variant dark (&:where(.dark, .dark *, .vtd-dark, .vtd-dark *));
+
 @plugin "@tailwindcss/forms";
 
 @theme {

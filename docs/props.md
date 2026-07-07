@@ -20,6 +20,8 @@
   const dateValue15 = ref([])
   const dateValue16 = ref([])
   const dateValue17 = ref([])
+  const dateValue18 = ref([])
+  const dateValue19 = ref([])
   const formatter = ref({
     date: 'DD MMM YYYY',
     month: 'MMM'
@@ -255,6 +257,42 @@ const dateValue = ref([])
 
 <template>
   <vue-tailwind-datepicker v-model="dateValue" no-input />
+</template>
+```
+
+## Color mode
+
+Control how datepicker pick dark/light look, via `colorMode` prop. By default `colorMode` is `auto`: follow nearest ancestor `.dark` class (same as your Tailwind dark-mode toggle) or OS `prefers-color-scheme` if no ancestor toggle. Use `dark` or `light` to force appearance regardless of ancestor class or OS setting.
+
+<DemoLayout>
+  <VueTailwindDatePicker
+    color-mode="dark"
+    v-model="dateValue18"
+  ></VueTailwindDatePicker>
+</DemoLayout>
+
+```vue
+<script setup>
+import { ref } from 'vue'
+
+const dateValue = ref([])
+</script>
+
+<template>
+  <vue-tailwind-datepicker v-model="dateValue" color-mode="dark" />
+</template>
+```
+
+<DemoLayout>
+  <VueTailwindDatePicker
+    color-mode="light"
+    v-model="dateValue19"
+  ></VueTailwindDatePicker>
+</DemoLayout>
+
+```vue
+<template>
+  <vue-tailwind-datepicker v-model="dateValue" color-mode="light" />
 </template>
 ```
 

@@ -37,3 +37,5 @@ Light mode color system using custom color `vtd-primary`.
 ## Dark mode
 
 Dark mode color system using color palette `vtd-secondary`. Vue Tailwind Datepicker work it well with Tailwind CSS `dark` mode configuration.
+
+By default (`colorMode="auto"`), datepicker follow nearest ancestor `.dark` class, matching your own Tailwind dark-mode toggle. Use `colorMode="dark"` or `colorMode="light"` to force appearance regardless of ancestor class or OS `prefers-color-scheme`. See [Props > Color mode](./props.md#color-mode) for demo.

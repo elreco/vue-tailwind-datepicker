@@ -19,6 +19,8 @@ import {
   computed,
   isProxy,
   nextTick,
+  onBeforeUnmount,
+  onMounted,
   provide,
   reactive,
   ref,
@@ -52,6 +54,14 @@ import {
 export interface Props {
   noInput?: boolean
   overlay?: boolean
+  /**
+   * Controls how the datepicker resolves its dark/light appearance.
+   * - 'auto' (default): follows the nearest ancestor `.dark` class, same
+   *   as the consumer's own Tailwind dark-mode toggle.
+   * - 'light' / 'dark': forces the appearance regardless of any ancestor
+   *   `.dark` class or the OS `prefers-color-scheme`.
+   */
+  colorMode?: 'auto' | 'light' | 'dark'
   asSingle?: boolean
   useRange?: boolean
   placeholder?: string
@@ -94,6 +104,7 @@ export interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  colorMode: 'auto',
   placeholder: '',
   i18n: 'en',
   inputClasses: '',
@@ -160,6 +171,74 @@ dayjs.extend(weekOfYear)
 
 const VtdRef = ref(null)
 const VtdInputRef = ref<HTMLInputElement | null>(null)
+const VtdRootRef = ref<HTMLElement | { $el: HTMLElement } | null>(null)
+
+// Template refs resolve to a raw HTMLElement for plain tags (the noInput
+// branch) but to a component instance (with `.$el`) for the <Popover>
+// wrapper - normalize both to the actual DOM node.
+const getRootEl = (): HTMLElement | null => {
+  const root = VtdRootRef.value
+  if (!root) return null
+  return '$el' in root ? root.$el : root
+}
+
+// colorMode resolution: 'light'/'dark' force the appearance; 'auto' tracks
+// the nearest ancestor `.dark` class (mirrors the consumer's own Tailwind
+// dark-mode toggle instead of Tailwind v4's default prefers-color-scheme
+// media variant, which ignores any class-based toggle entirely).
+const ancestorIsDark = ref(false)
+const systemPrefersDark = ref(false)
+const colorModeObservers: MutationObserver[] = []
+let colorSchemeMedia: MediaQueryList | null = null
+
+const updateSystemPrefersDark = () => {
+  if (typeof window === 'undefined' || !window.matchMedia)
+    return
+
+  systemPrefersDark.value = window.matchMedia('(prefers-color-scheme: dark)').matches
+}
+
+const updateAncestorIsDark = () => {
+  ancestorIsDark.value = !!getRootEl()?.closest('.dark')
+}
+
+const isDark = computed(() => {
+  if (props.colorMode === 'light') return false
+  if (props.colorMode === 'dark') return true
+  return ancestorIsDark.value || systemPrefersDark.value
+})
+
+onMounted(() => {
+  updateSystemPrefersDark()
+  if (props.colorMode !== 'auto') return
+
+  updateAncestorIsDark()
+
+  if (window.matchMedia) {
+    colorSchemeMedia = window.matchMedia('(prefers-color-scheme: dark)')
+    colorSchemeMedia.addEventListener('change', updateSystemPrefersDark)
+  }
+
+  // Watch every ancestor's class attribute: .dark can be toggled anywhere
+  // up the tree, not just on <html>/<body>.
+  let el: HTMLElement | null = getRootEl()?.parentElement ?? null
+  while (el) {
+    const observer = new MutationObserver(updateAncestorIsDark)
+    observer.observe(el, { attributes: true, attributeFilter: ['class'] })
+    colorModeObservers.push(observer)
+    el = el.parentElement
+  }
+})
+
+onBeforeUnmount(() => {
+  if (colorSchemeMedia) {
+    colorSchemeMedia.removeEventListener('change', updateSystemPrefersDark)
+    colorSchemeMedia = null
+  }
+
+  colorModeObservers.forEach(observer => observer.disconnect())
+  colorModeObservers.length = 0
+})
 const placement = ref<boolean | null>(null)
 const givenPlaceholder = ref('')
 const selection = ref<Dayjs | null>(null)
@@ -1430,7 +1509,8 @@ provide(setToCustomShortcutKey, setToCustomShortcut)
 </script>
 
 <template>
-  <Popover v-if="!props.noInput" id="vtd" v-slot="{ open }: { open: boolean }" as="div" class="relative w-full">
+  <Popover v-if="!props.noInput" ref="VtdRootRef" id="vtd" v-slot="{ open }: { open: boolean }" as="div"
+    class="relative w-full" :class="{ 'vtd-dark': isDark }">
     <PopoverOverlay v-if="props.overlay && !props.disabled" class="fixed inset-0 bg-black opacity-30" />
 
     <PopoverButton as="label" class="relative block">
@@ -1550,7 +1630,7 @@ provide(setToCustomShortcutKey, setToCustomShortcut)
       </PopoverPanel>
     </transition>
   </Popover>
-  <div v-else-if="displayDatepicker" class="flex">
+  <div v-else-if="displayDatepicker" ref="VtdRootRef" class="flex" :class="{ 'vtd-dark': isDark }">
     <div
       class="bg-white rounded-lg shadow-sm border border-black/[.1] px-3 py-3 sm:px-4 sm:py-4 dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700/[1]">
       <div class="flex flex-wrap lg:flex-nowrap">
