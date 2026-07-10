@@ -17,6 +17,17 @@ $ npm install vue-tailwind-datepicker
 $ yarn add vue-tailwind-datepicker
 ```
 
+## Import CSS
+
+::: warning
+⚠️ Since v3, styles are no longer auto-injected. You **must** import the stylesheet yourself.
+:::
+
+```js
+// main.js
+import "vue-tailwind-datepicker/style.css";
+```
+
 ## How it works
 
 Setup the component globally
