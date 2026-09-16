@@ -4,9 +4,9 @@ A date and date range picker for Vue 3, styled with Tailwind CSS.
 
 ## CodeRocket UI pilot
 
-[CodeRocket UI](https://coderocket-ui.netlify.app/) is the next chapter of this repository: a new MIT Vue library for dates and time, with an optional Availability Pro extension. It is developed independently in [`coderocket/`](./coderocket/) and has its own versions and releases. The existing datepicker below keeps its current API and package.
+[CodeRocket UI](https://ui.coderocket.app/) is the next chapter of this repository: a new MIT Vue library for dates and time, with an optional Availability Pro extension. It is developed independently in [`coderocket/`](./coderocket/) and has its own versions and releases. The existing datepicker below keeps its current API and package.
 
-[Read the announcement](./coderocket/ANNOUNCEMENT.md) · [New documentation](https://coderocket-ui.netlify.app/docs/)
+[Read the announcement](./coderocket/ANNOUNCEMENT.md) · [New documentation](https://ui.coderocket.app/docs/)
 
 ## Maintained package
 

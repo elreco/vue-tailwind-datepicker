@@ -21,4 +21,4 @@ The editor requires `modelValue` and `today`. Optional props: `locale` (default 
 
 No booking storage, payment processing or calendar-provider integration is included. Your application persists schedules and decides how users book appointments.
 
-[See pricing and request a license](https://coderocket-ui.netlify.app/#contact).
+[See pricing and request a license](https://ui.coderocket.app/#contact).

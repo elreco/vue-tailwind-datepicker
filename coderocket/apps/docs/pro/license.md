@@ -10,4 +10,4 @@ The purchased archive includes the full applicable license. MIT dependencies and
 
 This page describes the launch offer. Your quote identifies the purchasing entity, developer allowance and start of the update period. Contact us before purchasing if your team or redistribution needs exceed this offer.
 
-[Discuss your project](https://coderocket-ui.netlify.app/#contact).
+[Discuss your project](https://ui.coderocket.app/#contact).

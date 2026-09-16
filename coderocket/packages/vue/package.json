@@ -9,7 +9,7 @@
     "url": "git+https://github.com/elreco/vue-tailwind-datepicker.git",
     "directory": "coderocket/packages/vue"
   },
-  "homepage": "https://coderocket-ui.netlify.app",
+  "homepage": "https://ui.coderocket.app",
   "files": [
     "dist",
     "README.md",

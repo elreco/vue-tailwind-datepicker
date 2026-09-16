@@ -18,7 +18,7 @@ export default defineConfig({
     siteTitle: 'CodeRocket UI',
     search: { provider: 'local' },
     nav: [
-      { text: 'Website', link: 'https://coderocket-ui.netlify.app/' },
+      { text: 'Website', link: 'https://ui.coderocket.app/' },
       { text: 'Original datepicker', link: 'https://vue-tailwind-datepicker.com/' },
     ],
     socialLinks: [{ icon: 'github', link: 'https://github.com/elreco/vue-tailwind-datepicker' }],

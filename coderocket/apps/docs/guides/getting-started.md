@@ -43,7 +43,7 @@ Download the [Vue example](https://github.com/elreco/vue-tailwind-datepicker/tre
 The first npm publication is awaiting owner verification. You can already install the exact public pilot archive:
 
 ```sh
-npm install https://coderocket-ui.netlify.app/downloads/coderocketapp-vue-0.1.0.tgz
+npm install https://ui.coderocket.app/downloads/coderocketapp-vue-0.1.0.tgz
 ```
 
-The package name and imports stay `@coderocketapp/vue`. [Markdown for coding assistants](https://coderocket-ui.netlify.app/llms-full.txt).
+The package name and imports stay `@coderocketapp/vue`. [Markdown for coding assistants](https://ui.coderocket.app/llms-full.txt).

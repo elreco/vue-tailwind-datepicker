@@ -7,7 +7,7 @@ const time = ref<string | null>('09:30')
 const locale = ref('en-GB')
 const copied = ref(false)
 const npmReleased = import.meta.env.VITE_NPM_RELEASED === 'true'
-const installCommand = npmReleased ? 'npm install @coderocketapp/vue' : 'npm install https://coderocket-ui.netlify.app/downloads/coderocketapp-vue-0.1.0.tgz'
+const installCommand = npmReleased ? 'npm install @coderocketapp/vue' : 'npm install https://ui.coderocket.app/downloads/coderocketapp-vue-0.1.0.tgz'
 const demoHeight = ref(1280)
 const demoUrl = import.meta.env.VITE_PRO_DEMO_URL || ''
 const demoOrigin = demoUrl ? new URL(demoUrl).origin : ''

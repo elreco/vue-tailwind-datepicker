@@ -50,7 +50,7 @@ See `ANNOUNCEMENT.md` for the prepared transition announcement.
 
 ## Pilot deployment status
 
-The working site is https://coderocket-ui.netlify.app/ and the separately built demo is https://coderocket-availability-pro.netlify.app/. The custom `ui.coderocket.app` domain awaits access to its Cloudflare DNS (OVH is the registrar, not the authoritative DNS provider). Do not modify OVH nameservers.
+The public site is https://ui.coderocket.app/ and the separately built demo is https://coderocket-availability-pro.netlify.app/. Cloudflare hosts the DNS: `ui` is a DNS-only CNAME to `coderocket-ui.netlify.app`; Netlify manages the HTTPS certificate and renewal. The original Netlify address remains available. OVH is the registrar; its nameservers and all other subdomains stay unchanged.
 
 Private GitHub Actions is currently blocked by the account billing/spending status. All 22 Pro tests, including real Redis concurrency checks, and five browser checks have passed locally. Public GitHub CI passes. AI calls remain disabled until owner-controlled OpenAI/Upstash credentials and the monthly budget approval are configured.
 

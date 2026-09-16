@@ -10,8 +10,8 @@ Availability Pro is an optional commercial extension for recurring availability,
 
 The initial release is a pilot. We are looking for teams building real scheduling features to try the integration and help shape what comes next.
 
-- Documentation and examples: https://coderocket-ui.netlify.app/docs/
-- Pro demo and launch offer: https://coderocket-ui.netlify.app/#availability
+- Documentation and examples: https://ui.coderocket.app/docs/
+- Pro demo and launch offer: https://ui.coderocket.app/#availability
 - Original datepicker: https://vue-tailwind-datepicker.com/
 
 Thank you to everyone who has contributed to the datepicker. Its existing MIT license and original attributions are preserved.
