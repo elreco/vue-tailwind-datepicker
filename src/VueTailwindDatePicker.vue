@@ -21,6 +21,7 @@ import {
   nextTick,
   onBeforeUnmount,
   onMounted,
+  onServerPrefetch,
   provide,
   reactive,
   ref,
@@ -1337,141 +1338,147 @@ watchEffect(() => {
 dayjs.locale(props.i18n)
 watch(() => props.i18n, () => dayjs.locale(props.i18n))
 
-watchEffect(() => {
-  const locale = props.i18n
-  const modelValueCloned = props.modelValue
-  nextTick(async () => {
-    if (locale in localesMap) {
-      const localeData = await localesMap[locale]()
-      dayjs.locale(localeData, undefined, true)
-      dayjs.locale(locale)
+async function updateFromModel(locale: string, modelValueCloned: Props['modelValue']) {
+  if (locale in localesMap) {
+    const localeData = await localesMap[locale]()
+    dayjs.locale(localeData, undefined, true)
+    dayjs.locale(locale)
+  }
+
+  let s, e
+  if (asRange()) {
+    if (Array.isArray(modelValueCloned)) {
+      if (modelValueCloned.length > 0) {
+        const [start, end] = modelValueCloned
+        s = dayjs(start, props.formatter.date, true)
+        e = dayjs(end, props.formatter.date, true)
+      }
     }
-
-    let s, e
-    if (asRange()) {
-      if (Array.isArray(modelValueCloned)) {
-        if (modelValueCloned.length > 0) {
-          const [start, end] = modelValueCloned
-          s = dayjs(start, props.formatter.date, true)
-          e = dayjs(end, props.formatter.date, true)
+    else if (typeof modelValueCloned === 'object') {
+      if (!isProxy(modelValueCloned)) {
+        try {
+          Object.keys(modelValueCloned)
+        }
+        catch (e) {
+          console.warn(
+            '[Vue Tailwind Datepicker]: It looks like you want to use Object as the argument %cv-model',
+            'font-style: italic; color: #42b883;',
+            ', but you pass it undefined or null.',
+          )
+          console.warn(
+            '[Vue Tailwind Datepicker]: We has replace with %c{ startDate: \'\', endDate: \'\' }',
+            'font-style: italic; color: #42b883;',
+            ', but you can replace manually.',
+          )
+          emit('update:modelValue', {
+            startDate: '',
+            endDate: '',
+          })
         }
       }
-      else if (typeof modelValueCloned === 'object') {
-        if (!isProxy(modelValueCloned)) {
-          try {
-            Object.keys(modelValueCloned)
-          }
-          catch (e) {
-            console.warn(
-              '[Vue Tailwind Datepicker]: It looks like you want to use Object as the argument %cv-model',
-              'font-style: italic; color: #42b883;',
-              ', but you pass it undefined or null.',
-            )
-            console.warn(
-              '[Vue Tailwind Datepicker]: We has replace with %c{ startDate: \'\', endDate: \'\' }',
-              'font-style: italic; color: #42b883;',
-              ', but you can replace manually.',
-            )
-            emit('update:modelValue', {
-              startDate: '',
-              endDate: '',
-            })
-          }
-        }
-        if (modelValueCloned) {
-          const [start, end] = Object.values(modelValueCloned)
-          s = start && dayjs(start, props.formatter.date, true)
-          e = end && dayjs(end, props.formatter.date, true)
-        }
-      }
-      else {
-        if (modelValueCloned) {
-          const [start, end] = modelValueCloned.split(props.separator)
-          s = dayjs(start, props.formatter.date, true)
-          e = dayjs(end, props.formatter.date, true)
-        }
-      }
-
-      if (s && e) {
-        pickerValue.value = useToValueFromArray(
-          {
-            previous: s,
-            next: e,
-          },
-          props,
-        )
-        if (e.isBefore(s, 'month')) {
-          datepicker.value.previous = e
-          datepicker.value.next = s
-          datepicker.value.year.previous = e.year()
-          datepicker.value.year.next = s.year()
-        }
-        else if (e.isSame(s, 'month')) {
-          datepicker.value.previous = s
-          datepicker.value.next = e.add(1, 'month')
-          datepicker.value.year.previous = s.year()
-          datepicker.value.year.next = s.add(1, 'year').year()
-        }
-        else {
-          datepicker.value.previous = s
-          datepicker.value.next = e
-          datepicker.value.year.previous = s.year()
-          datepicker.value.year.next = e.year()
-        }
-        if (!props.autoApply)
-          applyValue.value = [s, e]
-      }
-      else {
-        datepicker.value.previous = dayjs(props.startFrom)
-        datepicker.value.next = dayjs(props.startFrom).add(1, 'month')
-        datepicker.value.year.previous = datepicker.value.previous.year()
-        datepicker.value.year.next = datepicker.value.next.year()
+      if (modelValueCloned) {
+        const [start, end] = Object.values(modelValueCloned)
+        s = start && dayjs(start, props.formatter.date, true)
+        e = end && dayjs(end, props.formatter.date, true)
       }
     }
     else {
-      if (Array.isArray(modelValueCloned)) {
-        if (modelValueCloned.length > 0) {
-          const [start] = modelValueCloned
-          s = dayjs(start, props.formatter.date, true)
-        }
-      }
-      else if (typeof modelValueCloned === 'object') {
-        if (modelValueCloned) {
-          const [start] = Object.values(modelValueCloned)
-          s = dayjs(start, props.formatter.date, true)
-        }
-      }
-      else {
-        if (modelValueCloned.length) {
-          const [start] = modelValueCloned.split(props.separator)
-          s = dayjs(start, props.formatter.date, true)
-        }
-      }
-
-      if (s && s.isValid()) {
-        pickerValue.value = useToValueFromString(s, props)
-        datepicker.value.previous = s
-        datepicker.value.next = s.add(1, 'month')
-        datepicker.value.year.previous = s.year()
-        datepicker.value.year.next = s.add(1, 'year').year()
-        if (!props.autoApply)
-          applyValue.value = [s]
-      }
-      else {
-        datepicker.value.previous = dayjs(props.startFrom)
-        datepicker.value.next = dayjs(props.startFrom).add(1, 'month')
-        datepicker.value.year.previous = datepicker.value.previous.year()
-        datepicker.value.year.next = datepicker.value.next.year()
+      if (modelValueCloned) {
+        const [start, end] = modelValueCloned.split(props.separator)
+        s = dayjs(start, props.formatter.date, true)
+        e = dayjs(end, props.formatter.date, true)
       }
     }
-    const days
-      = props.weekdaysSize === 'min'
-        ? dayjs.weekdaysMin()
-        : dayjs.weekdaysShort()
-    datepicker.value.weeks = isFirstMonday() ? shuffleWeekdays(days) : days
-    datepicker.value.months
-      = props.formatter.month === 'MMM' ? dayjs.monthsShort() : dayjs.months()
-  })
+
+    if (s && e) {
+      pickerValue.value = useToValueFromArray(
+        {
+          previous: s,
+          next: e,
+        },
+        props,
+      )
+      if (e.isBefore(s, 'month')) {
+        datepicker.value.previous = e
+        datepicker.value.next = s
+        datepicker.value.year.previous = e.year()
+        datepicker.value.year.next = s.year()
+      }
+      else if (e.isSame(s, 'month')) {
+        datepicker.value.previous = s
+        datepicker.value.next = e.add(1, 'month')
+        datepicker.value.year.previous = s.year()
+        datepicker.value.year.next = s.add(1, 'year').year()
+      }
+      else {
+        datepicker.value.previous = s
+        datepicker.value.next = e
+        datepicker.value.year.previous = s.year()
+        datepicker.value.year.next = e.year()
+      }
+      if (!props.autoApply)
+        applyValue.value = [s, e]
+    }
+    else {
+      datepicker.value.previous = dayjs(props.startFrom)
+      datepicker.value.next = dayjs(props.startFrom).add(1, 'month')
+      datepicker.value.year.previous = datepicker.value.previous.year()
+      datepicker.value.year.next = datepicker.value.next.year()
+    }
+  }
+  else {
+    if (Array.isArray(modelValueCloned)) {
+      if (modelValueCloned.length > 0) {
+        const [start] = modelValueCloned
+        s = dayjs(start, props.formatter.date, true)
+      }
+    }
+    else if (typeof modelValueCloned === 'object') {
+      if (modelValueCloned) {
+        const [start] = Object.values(modelValueCloned)
+        s = dayjs(start, props.formatter.date, true)
+      }
+    }
+    else {
+      if (modelValueCloned.length) {
+        const [start] = modelValueCloned.split(props.separator)
+        s = dayjs(start, props.formatter.date, true)
+      }
+    }
+
+    if (s && s.isValid()) {
+      pickerValue.value = useToValueFromString(s, props)
+      datepicker.value.previous = s
+      datepicker.value.next = s.add(1, 'month')
+      datepicker.value.year.previous = s.year()
+      datepicker.value.year.next = s.add(1, 'year').year()
+      if (!props.autoApply)
+        applyValue.value = [s]
+    }
+    else {
+      datepicker.value.previous = dayjs(props.startFrom)
+      datepicker.value.next = dayjs(props.startFrom).add(1, 'month')
+      datepicker.value.year.previous = datepicker.value.previous.year()
+      datepicker.value.year.next = datepicker.value.next.year()
+    }
+  }
+  const days
+    = props.weekdaysSize === 'min'
+      ? dayjs.weekdaysMin()
+      : dayjs.weekdaysShort()
+  datepicker.value.weeks = isFirstMonday() ? shuffleWeekdays(days) : days
+  datepicker.value.months
+    = props.formatter.month === 'MMM' ? dayjs.monthsShort() : dayjs.months()
+}
+
+// Await translations and model initialization before server rendering completes.
+onServerPrefetch(() => updateFromModel(props.i18n, props.modelValue))
+
+watchEffect(() => {
+  const locale = props.i18n
+  const modelValue = props.modelValue
+  if (typeof window !== 'undefined')
+    void nextTick(() => updateFromModel(locale, modelValue))
 })
 
 function getAbsoluteClass(open: boolean) {

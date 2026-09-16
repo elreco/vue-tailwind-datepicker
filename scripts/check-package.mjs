@@ -28,4 +28,11 @@ for (const value of ['', [], { startDate: '2026-09-16', endDate: '2026-09-18' }]
   }) }))
   assert.ok(html.includes('<input'), 'The picker must render on the server without browser globals')
 }
+const localizedHtml = await renderToString(createSSRApp({ render: () => h(esm.default, {
+  modelValue: '2026-09-16',
+  asSingle: true,
+  i18n: 'fr',
+  formatter: { date: 'YYYY-MM-DD', month: 'MMM' },
+}) }))
+assert.ok(localizedHtml.includes('value="2026-09-16"'), 'SSR must await locale loading and populate the selected date')
 console.log(`Package verified: ${pkg.name}; ESM, CommonJS, types, CSS and locales are present.`)
