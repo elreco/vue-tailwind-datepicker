@@ -1,7 +1,8 @@
-import { defineConfig } from 'vitepress'
+import type { UserConfig } from 'vitepress'
 import { version } from '../../package.json'
 
-export default defineConfig({
+export default {
+  base: process.env.DOCS_BASE || '/',
   title: 'Vue Tailwind Datepicker',
   lastUpdated: true,
   description: 'Components, composables and configurations for Vue 3',
@@ -54,4 +55,4 @@ export default defineConfig({
       exclude: []
     },
   }
-});
+} satisfies UserConfig

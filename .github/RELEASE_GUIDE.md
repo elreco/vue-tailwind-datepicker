@@ -1,75 +1,72 @@
-# Release Guide
+# Release guide
 
-This project uses automated releases via GitHub Actions and semantic-release.
+The maintained npm package is `@coderocketapp/vue-tailwind-datepicker`.
+It is separate from the previous unscoped package. Keep its MIT attribution when publishing.
 
-## How it works
+## Local checks
 
-### Automatic releases on `main` branch
-Every push to the `main` branch triggers the release workflow:
-1. **Build verification**: The project is built and tested
-2. **Commit analysis**: semantic-release analyzes commit messages
-3. **Version determination**: Based on conventional commit types
-4. **Release creation**: Automatic version bump, changelog, and NPM publication
+Use Node 22.14+ or Node 24, then run:
 
-### Commit message format
-Use conventional commits to control releases:
-
-```bash
-feat: add new calendar navigation
-# → Creates a minor version (1.7.4 → 1.8.0)
-
-fix: resolve date parsing issue
-# → Creates a patch version (1.7.4 → 1.7.5)
-
-feat!: change API structure
-# → Creates a major version (1.7.4 → 2.0.0)
-
-docs: update installation guide
-# → Creates a patch version (configured in package.json)
-
-chore: update dependencies
-# → No release (use "no-release" type to skip)
+```sh
+npm ci
+npm run typecheck
+npm run check:package
+npm ci --prefix docs
+npm run docs:build
 ```
 
-### Release types mapping
-- `feat:` → **minor** version
-- `fix:` → **patch** version
-- `BREAKING CHANGE:` or `!` → **major** version
-- `docs:`, `style:`, `refactor:`, `perf:`, `test:`, `ci:`, `build:`, `chore:` → **patch** version
+`npm ci` also builds the library through `prepare`. `check:package` verifies
+that the npm archive includes the JavaScript entry points, declarations,
+stylesheet, locale chunks and license, and that ESM and CommonJS imports work.
 
-## Workflow process
+## First publication from a new npm account
 
-1. **Make your changes** on a feature branch
-2. **Create a PR** with conventional commit messages
-3. **Merge to main** - The release workflow automatically:
-   - Builds the project
-   - Determines the next version number
-   - Updates `package.json` and `CHANGELOG.md`
-   - Creates a Git tag and GitHub release
-   - Publishes to NPM using the configured `NPM_TOKEN`
+The npm account must own the package scope. Authenticate using `npm login`,
+check the account with `npm whoami`, and publish the verified build with
+`npm publish --access public`. Complete npm's 2FA check when prompted.
 
-## Manual override (if needed)
+Create the matching `v<version>` Git tag on the source commit of a manual release
+before running semantic-release again.
 
-If you need to skip a release for a particular commit:
-```bash
-git commit -m "chore: update docs
+## GitHub trusted publishing
 
-[skip release]"
-```
+In the npm package settings, configure a GitHub Actions trusted publisher:
+
+- Organization or user: `elreco`
+- Repository: `vue-tailwind-datepicker`
+- Workflow filename: `release.yml`
+- Environment: leave empty (the workflow does not use a GitHub environment)
+- Allow direct publication, not only staged publication
+
+The workflow runs on GitHub-hosted runners with Node 24 and npm 11+.
+`id-token: write` allows npm's short-lived OIDC authentication and provenance.
+No `NPM_TOKEN` repository or environment secret is used.
+
+## Subsequent releases
+
+Every push to `main` runs checks, builds the documentation and uses
+semantic-release to publish a stable version. The workflow can also be run manually.
+
+- `feat:` creates a minor release.
+- `fix:` creates a patch release.
+- A breaking change creates a major release.
+- The extra patch rules in `package.json` cover refactors, tests, styles,
+  performance, CI, build changes, chores and `docs(README):`.
+- `no-release:` skips publication when no other releasable commits are present.
+
+Pre-release branches use the same workflow and trusted publisher:
+`develop` publishes on `dev`; `next`, `beta` and `alpha` publish on their respective channels.
+Tags use semantic-release's standard `v<version>` format.
+
+semantic-release creates the npm release, Git tag and GitHub release. Version
+and changelog changes are made in the release workspace, not committed back to
+`main`; npm and Git tags are the source of truth for the published version.
 
 ## Troubleshooting
 
-### NPM publication fails
-- Verify `NPM_TOKEN` is set in repository secrets
-- Check NPM registry permissions
-- Ensure package name is available
+For authentication failures, check the npm trusted publisher's exact repository
+and workflow filename, npm version, runner type and `id-token` permission.
+A local npm login does not configure GitHub Actions authentication.
 
-### Build fails
-- Check build logs in GitHub Actions
-- Verify all dependencies are properly declared
-- Run `npm run build` locally to test
-
-### No release created
-- Verify commit messages follow conventional format
-- Check if commits since last release warrant a new version
-- Review semantic-release logs in GitHub Actions
+For packaging failures, run `npm run build` followed by `npm run check:package`.
+Do not publish a package missing its CSS, declarations or locale chunks.

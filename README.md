@@ -1,95 +1,77 @@
 # Vue Tailwind Datepicker
 
-<p align="center">
-    <a href="https://vue-tailwind-datepicker.com" target="_blank">
-      <img alt="Vue Tailwind Datepicker" width="100" style="border-radius: 100%;" src="https://github.com/elreco/vue-tailwind-datepicker/blob/main/docs/logo.png?raw=true">
-    </a><br><br>
-    A Datepicker component for Vue 3 using Tailwind and dayjs.
-</p>
+A date and date range picker for Vue 3, styled with Tailwind CSS.
 
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+## Maintained package
 
+The maintained package is now **`@coderocketapp/vue-tailwind-datepicker`**.
+The previous `vue-tailwind-datepicker` package remains available, but updates are
+published under the new name. Existing installations do not migrate automatically.
 
-## Documentation
-
-Go to [full documentation](https://vue-tailwind-datepicker.com)
-
-## Installation
-
-⚠️ Vue Tailwind Datepicker uses Tailwind CSS (with the @tailwindcss/forms plugin) & Day.js under the hood, **you must install those packages** before.
-You can follow [this tutorial](https://dev.to/elreco/add-a-tailwind-datepicker-to-your-vue-3-application-57j2).
-
-### Install via npm
-
-```
-npm install vue-tailwind-datepicker
+```sh
+npm uninstall vue-tailwind-datepicker
+npm install @coderocketapp/vue-tailwind-datepicker dayjs
 ```
 
-### Install via yarn
+For a new application, only the install command is needed. Vue 3 is required.
+The package includes compiled CSS; an application does not need to configure
+Tailwind or the forms plugin to display the picker.
 
-```
-yarn add vue-tailwind-datepicker
-```
-
-### Import CSS
-
-⚠️ Styles are no longer auto-injected. You **must** import the stylesheet yourself:
-
-```js
-import "vue-tailwind-datepicker/style.css";
-```
-
-## Simple Usage
-
-How it works,
+## Usage
 
 ```vue
 <script setup>
-import { ref } from "vue";
-import VueTailwindDatepicker from "vue-tailwind-datepicker";
+import { ref } from 'vue'
+import VueTailwindDatepicker from '@coderocketapp/vue-tailwind-datepicker'
+import '@coderocketapp/vue-tailwind-datepicker/style.css'
 
-const dateValue = ref([]);
-const formatter = ref({
-  date: "DD MMM YYYY",
-  month: "MMM",
-});
+const dateValue = ref('')
+const formatter = { date: 'YYYY-MM-DD', month: 'MMM' }
 </script>
 
 <template>
-  <div>
-    <vue-tailwind-datepicker :formatter="formatter" v-model="dateValue" />
-  </div>
+  <VueTailwindDatepicker v-model="dateValue" :formatter="formatter" i18n="en" />
 </template>
 ```
 
-## Theming options
+Import the stylesheet once in your application. To select one date, add `as-single`.
+The component also supports arrays and objects as values, custom shortcuts,
+disabled dates, translations, inline calendars and explicit Apply/Cancel buttons.
 
-**Light Mode**
+Use `color-mode="light"` or `color-mode="dark"` to force the appearance.
+`color-mode="auto"` follows a dark ancestor or the system preference.
 
-![Light Mode](https://github.com/elreco/vue-tailwind-datepicker/blob/main/docs/light.png?raw=true)
+## Documentation
 
-**Dark Mode**
+[Installation](docs/installation.md) · [Props](docs/props.md) ·
+[Events](docs/events.md) · [Theming](docs/theming-options.md)
 
-![Dark Mode](https://github.com/elreco/vue-tailwind-datepicker/blob/main/docs/dark.png?raw=true)
+[Documentation website](https://elreco.github.io/vue-tailwind-datepicker/) ·
+[GitHub releases](https://github.com/elreco/vue-tailwind-datepicker/releases)
 
-## Changelog
+## Local development
 
-All notable changes to this project will be documented in the [Releases Page](https://github.com/elreco/vue-tailwind-datepicker/releases).
+Use Node.js 22.14+ (Node 24 is used in CI).
 
-## Sponsors
+```sh
+npm ci
+npm run dev
+```
 
+The playground is available at the address printed by Vite.
 
-- [Open Source AI Tools](https://ai.coderocket.app)
-- [www.coderocket.app](https://www.coderocket.app)
+```sh
+npm run typecheck
+npm run build
+npm run check:package
+npm run docs:install
+npm run docs:dev
+npm run docs:build
+```
 
-## License
+See the [release guide](.github/RELEASE_GUIDE.md) for npm publishing and GitHub Actions.
 
-The [MIT](LICENSE) License. Please [see](http://opensource.org/licenses/MIT) for more information.
+## License and credits
 
-## Thanks to
-
-- [kenhyuwa](https://github.com/kenhyuwa)
-- [Vue](https://v3.vuejs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [day.js](https://day.js.org/)
-- and other support...
+[MIT](LICENSE). Based on the original work by [Kenhyuwa](https://github.com/kenhyuwa),
+with contributions from the Vue Tailwind Datepicker community.

@@ -1,14 +1,14 @@
 {
-  "name": "vue-tailwind-datepicker",
+  "name": "@coderocketapp/vue-tailwind-datepicker",
   "type": "module",
-  "version": "1.7.4",
+  "version": "1.8.0",
   "description": "A date range picker component for Vue.js 3 using Tailwind CSS",
   "author": {
     "name": "elreco",
     "email": "alexandre@heypongo.com",
     "url": "https://github.com/elreco"
   },
-  "homepage": "https://vue-tailwind-datepicker.com",
+  "homepage": "https://elreco.github.io/vue-tailwind-datepicker/",
   "repository": {
     "type": "git",
     "url": "https://github.com/elreco/vue-tailwind-datepicker.git"
@@ -41,8 +41,8 @@
   ],
   "contributors": [],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "vite --configLoader runner",
+    "build": "vite build --configLoader runner",
     "preview": "vite preview --port 4173",
     "prepare": "npm run build",
     "lint": "eslint",
@@ -51,11 +51,30 @@
     "docs:build": "npm --prefix docs run build",
     "docs:serve": "npm --prefix docs run serve",
     "typecheck": "vue-tsc --noEmit",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "check:package": "node scripts/check-package.mjs",
+    "docs:install": "npm ci --prefix docs"
   },
   "release": {
     "branches": [
-      "main"
+      "main",
+      {
+        "name": "develop",
+        "prerelease": "dev",
+        "channel": "dev"
+      },
+      {
+        "name": "next",
+        "prerelease": true
+      },
+      {
+        "name": "beta",
+        "prerelease": true
+      },
+      {
+        "name": "alpha",
+        "prerelease": true
+      }
     ],
     "plugins": [
       "@semantic-release/changelog",
@@ -162,7 +181,9 @@
       [
         "@semantic-release/github",
         {
-          "assets": []
+          "assets": [],
+          "successComment": false,
+          "failComment": false
         }
       ]
     ]
@@ -204,5 +225,15 @@
     "vite-plugin-dts": "^4.5.4",
     "vue": "^3.5.28",
     "vue-tsc": "^3.2.4"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
   }
 }

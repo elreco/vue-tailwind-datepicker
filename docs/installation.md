@@ -1,113 +1,92 @@
 # Installation
 
-::: warning
-⚠️ Vue Tailwind Datepicker uses Tailwind CSS (with the @tailwindcss/forms plugin) & Day.js under the hood, **you must install those packages** before.
-You can follow [this tutorial](https://dev.to/elreco/add-a-tailwind-datepicker-to-your-vue-3-application-57j2).
-:::
+## Maintained package
 
-## Install via npm
+New releases are published as **`@coderocketapp/vue-tailwind-datepicker`**.
+The old `vue-tailwind-datepicker` name does not receive these releases automatically.
 
-```
-$ npm install vue-tailwind-datepicker
-```
+If you used the old package, remove it first:
 
-## Install via yarn
-
-```
-$ yarn add vue-tailwind-datepicker
+```sh
+npm uninstall vue-tailwind-datepicker
 ```
 
-## Import CSS
+Install the maintained package in your Vue 3 application:
 
-::: warning
-⚠️ Since v3, styles are no longer auto-injected. You **must** import the stylesheet yourself.
-:::
-
-```js
-// main.js
-import "vue-tailwind-datepicker/style.css";
+```sh
+npm install @coderocketapp/vue-tailwind-datepicker dayjs
 ```
 
-## How it works
+Or with Yarn:
 
-Setup the component globally
-
-```js
-// main.js
-import { createApp } from "vue";
-import App from "@/App.vue";
-import VueTailwindDatepicker from "vue-tailwind-datepicker";
-// ...
-
-const app = createApp(App);
-
-app.use(VueTailwindDatepicker);
-app.mount("#app");
+```sh
+yarn add @coderocketapp/vue-tailwind-datepicker dayjs
 ```
 
-Setup as a single component
+## Import the stylesheet
+
+Import the compiled stylesheet once, for example in `main.ts`:
+
+```ts
+import '@coderocketapp/vue-tailwind-datepicker/style.css'
+```
+
+The stylesheet is included in the package. You do not need a Tailwind build,
+content configuration or `@tailwindcss/forms` in the consuming application.
+See [Theming](./theming-options.md) to customize the colors.
+
+## Use a component
 
 ```vue
-<!-- SFC file -->
 <script setup>
-import { ref } from "vue";
-import VueTailwindDatepicker from "vue-tailwind-datepicker";
+import { ref } from 'vue'
+import VueTailwindDatepicker from '@coderocketapp/vue-tailwind-datepicker'
 
-const dateValue = ref([]);
+const dateValue = ref('')
+const formatter = { date: 'YYYY-MM-DD', month: 'MMM' }
 </script>
 
 <template>
-  <vue-tailwind-datepicker v-model="dateValue" />
+  <VueTailwindDatepicker v-model="dateValue" :formatter="formatter" />
 </template>
 ```
 
-## Add Tailwind CSS configuration
+Add `as-single` for a single date. For a date range returned as an array, initialize
+`dateValue` with `ref([])` instead. During migration, update package import paths,
+including the CSS import; component names and props are unchanged.
 
-```js
-// tailwind.config.js
-const colors = require("tailwindcss/colors");
+## Global registration
 
-module.exports = {
-  content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
-    "./node_modules/vue-tailwind-datepicker/**/*.js",
-  ],
-  theme: {
-    extend: {
-      colors: {
-        "vtd-primary": colors.sky, // Light mode Datepicker color
-        "vtd-secondary": colors.gray, // Dark mode Datepicker color
-      },
-    },
-  },
-  plugins: [require("@tailwindcss/forms")],
-};
+```ts
+import { createApp } from 'vue'
+import App from './App.vue'
+import VueTailwindDatepicker from '@coderocketapp/vue-tailwind-datepicker'
+import '@coderocketapp/vue-tailwind-datepicker/style.css'
+
+createApp(App).use(VueTailwindDatepicker).mount('#app')
 ```
 
-## Setup in Nuxt3
+## Nuxt
 
-1. Install Vue Tailwind Datepicker along with Tailwind CSS and Day.js.
+Add the stylesheet to `nuxt.config.ts`:
 
-2. Create a plugin for Vue Tailwind Datepicker in the plugins directory of your Nuxt project. For example, vue-tailwind-datepicker.js:
-
-```js
-import { defineNuxtPlugin } from '#app'
-import VueTailwindDatepicker from 'vue-tailwind-datepicker'
-
-export default defineNuxtPlugin((nuxtApp) => {
-  nuxtApp.vueApp.component('VueTailwindDatepicker', VueTailwindDatepicker)
+```ts
+export default defineNuxtConfig({
+  css: ['@coderocketapp/vue-tailwind-datepicker/style.css'],
 })
 ```
 
-3. Register the plugin in your nuxt.config.js:
+Import the component in the page or component where it is used:
 
-```js
-export default {
-  plugins: [
-    '~/plugins/vue-tailwind-datepicker.js'
-  ],
-}
+```vue
+<script setup>
+import { ref } from 'vue'
+import VueTailwindDatepicker from '@coderocketapp/vue-tailwind-datepicker'
+
+const dateValue = ref('')
+</script>
+
+<template>
+  <VueTailwindDatepicker v-model="dateValue" />
+</template>
 ```
-
-4. Now, you can use the `<vue-tailwind-datepicker>` component in any of your Nuxt pages or components.

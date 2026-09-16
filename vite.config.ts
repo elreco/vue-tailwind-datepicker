@@ -1,4 +1,4 @@
-import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import dts from "vite-plugin-dts";
@@ -7,7 +7,7 @@ import dts from "vite-plugin-dts";
 export default defineConfig({
   build: {
     lib: {
-      entry: path.resolve(__dirname, "src/entry.ts"),
+      entry: fileURLToPath(new URL('./src/entry.ts', import.meta.url)),
       name: "VueTailwindDatepicker",
       fileName: "vue-tailwind-datepicker",
     },

@@ -1,8 +1,17 @@
 name: Release
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
+      - develop
+      - next
+      - beta
+      - alpha
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
 
 permissions:
   contents: read # for checkout
@@ -15,7 +24,7 @@ jobs:
       contents: write # to be able to publish a GitHub release
       issues: write # to be able to comment on released issues
       pull-requests: write # to be able to comment on released pull requests
-      id-token: write # to enable use of OIDC for npm provenance
+      id-token: write # npm trusted publishing
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,17 +33,25 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "lts/*"
+          node-version: "24"
           cache: 'npm'
-      - name: Install dependencies
+          cache-dependency-path: |
+            package-lock.json
+            docs/package-lock.json
+      - name: Install dependencies and build
         run: npm clean-install
-      - name: Build
-        run: npm run build
+      - name: Check types and published files
+        run: |
+          npm run typecheck
+          npm run check:package
+      - name: Build documentation
+        run: |
+          npm ci --prefix docs
+          npm run docs:build
       - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
         run: npm audit signatures
       - name: Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           HUSKY: 0
         run: npx semantic-release

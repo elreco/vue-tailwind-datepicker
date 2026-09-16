@@ -9,8 +9,8 @@ const dateValue = ref({
   endDate: dayjs().format('YYYY-MM-DD HH:mm:ss'),
 })
 
-const currentLocale = ref('es')
-const locales = ['en', 'es', 'de']
+const currentLocale = ref('fr')
+const locales = ['en', 'fr', 'es', 'de']
 
 function onClickSomething(e: Dayjs) {
   console.log(e)
@@ -29,7 +29,6 @@ function onSelectSomething(e: Dayjs) {
         <option v-for="locale in locales" :key="locale" :value="locale">
           {{ locale }}
         </option>
-        >
       </select>
     </label>
     <div class="grid grid-rows-2 gap-4">

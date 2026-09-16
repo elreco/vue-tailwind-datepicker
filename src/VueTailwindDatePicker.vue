@@ -94,7 +94,7 @@ export interface Props {
     }
   }
   modelValue:
-  | [Date, Date]
+  | Array<Date | string | Dayjs>
   | { start: Date | string; end: Date | string }
   | {
     startDate: Date | string
@@ -210,8 +210,6 @@ const isDark = computed(() => {
 
 onMounted(() => {
   updateSystemPrefersDark()
-  if (props.colorMode !== 'auto') return
-
   updateAncestorIsDark()
 
   if (window.matchMedia) {

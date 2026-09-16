@@ -1,41 +1,42 @@
 # Theming options
 
-Theme of Vue Tailwind Datepicker is customizable, so you can customize your theme with any color you want, via Tailwind CSS configuration. And all will work well.
+Import the package stylesheet before your application overrides:
 
-Just modify your `main.css` to includes the plugin directive for `@tailwindcss/forms` and your `tailwind.config.js` file
+```ts
+import '@coderocketapp/vue-tailwind-datepicker/style.css'
+import './app.css'
+```
+
+## Colors
+
+The compiled stylesheet uses CSS variables for its two color palettes:
+`--color-vtd-primary-*` and `--color-vtd-secondary-*` (shades 50 through 950).
+Override them globally or on a wrapper around one picker. For example:
+
 ```css
-@plugin "@tailwindcss/forms";
-
-/* Your tailwindconfig file */
-@config "../../tailwind.config.js"
+.my-datepicker {
+  --color-vtd-primary-100: #dbeafe;
+  --color-vtd-primary-500: #3b82f6;
+  --color-vtd-primary-600: #2563eb;
+  --color-vtd-primary-700: #1d4ed8;
+}
 ```
 
-```js
-const colors = require("tailwindcss/colors");
-
-module.exports = {
-  content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
-    "./node_modules/vue-tailwind-datepicker/**/*.js",
-  ],
-  theme: {
-    extend: {
-      colors: {
-        "vtd-primary": colors.sky,
-        "vtd-secondary": colors.gray,
-      },
-    },
-  },
-};
+```vue
+<div class="my-datepicker">
+  <VueTailwindDatepicker v-model="dateValue" />
+</div>
 ```
 
-## Light mode
+Override the remaining shades when you need to replace the entire palette.
+Tailwind's `content` configuration is not needed for the prebuilt stylesheet.
 
-Light mode color system using custom color `vtd-primary`.
+## Light and dark mode
 
-## Dark mode
+- `color-mode="light"` forces a light picker.
+- `color-mode="dark"` forces a dark picker.
+- `color-mode="auto"` (default) uses a dark appearance if an ancestor has a
+  `.dark` class or the operating system prefers dark mode.
 
-Dark mode color system using color palette `vtd-secondary`. Vue Tailwind Datepicker work it well with Tailwind CSS `dark` mode configuration.
-
-By default (`colorMode="auto"`), datepicker follow nearest ancestor `.dark` class, matching your own Tailwind dark-mode toggle. Use `colorMode="dark"` or `colorMode="light"` to force appearance regardless of ancestor class or OS `prefers-color-scheme`. See [Props > Color mode](./props.md#color-mode) for demo.
+Use an explicit mode when your application has its own light/dark preference.
+See [Props > Color mode](./props.md#color-mode) for examples.

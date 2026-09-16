@@ -9,7 +9,8 @@
 # Demo
 
 ::: tip
-You can also test it with [the playground](https://stackblitz.com/edit/vue-tailwind-datepicker?file=src/components/Playground.vue)!
+Install `@coderocketapp/vue-tailwind-datepicker` to use this maintained version.
+See the [installation guide](./installation.md) for the stylesheet and migration instructions.
 :::
 
 <DemoLayout>
@@ -20,7 +21,7 @@ You can also test it with [the playground](https://stackblitz.com/edit/vue-tailw
 
 ```vue
 <script setup>
-import VueTailwindDatePicker from "vue-tailwind-datepicker";
+import VueTailwindDatePicker from "@coderocketapp/vue-tailwind-datepicker";
 import { ref } from "vue";
 
 const dateValue = ref("");

@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
-/* Dark utilities should react to either the consumer's `.dark` toggle
-    or the component's internal `.vtd-dark` class (used by colorMode). */
-@custom-variant dark (&:where(.dark, .dark *, .vtd-dark, .vtd-dark *));
+/* The component resolves ancestor/system preferences and explicit overrides.
+   Using only its resolved class lets colorMode="light" override a dark ancestor. */
+@custom-variant dark (&:where(.vtd-dark, .vtd-dark *));
 
 @plugin "@tailwindcss/forms";
 
@@ -43,4 +43,3 @@
     --color-vtd-secondary-900: var(--color-gray-900);
     --color-vtd-secondary-950: var(--color-gray-950);
 }
-
