@@ -1,0 +1,14 @@
+{
+  "name": "@coderocketapp/docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev .",
+    "build": "vitepress build ."
+  },
+  "dependencies": {
+    "@coderocketapp/vue": "0.1.0",
+    "vue": "3.5.42",
+    "vitepress": "1.6.4"
+  }
+}

@@ -1,0 +1,9 @@
+node_modules
+**/dist
+**/.vitepress/cache
+package-lock.json
+test-results
+playwright-report
+artifacts
+deliveries
+vendor

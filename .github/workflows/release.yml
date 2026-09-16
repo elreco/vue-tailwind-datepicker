@@ -2,6 +2,9 @@ name: Release
 on:
   workflow_dispatch:
   push:
+    paths-ignore:
+      - "coderocket/**"
+      - ".github/workflows/coderocket-*.yml"
     branches:
       - main
       - develop

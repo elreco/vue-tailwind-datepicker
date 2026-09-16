@@ -21,6 +21,8 @@
     "skipLibCheck": true
   },
   "exclude": [
+    "coderocket",
+    ".private",
     "dist",
     "node_modules",
     "cypress",

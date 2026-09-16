@@ -80,7 +80,7 @@
       "@semantic-release/changelog",
       "@semantic-release/npm",
       [
-        "@semantic-release/commit-analyzer",
+        "./.github/release/legacy-analyzer.cjs",
         {
           "releaseRules": [
             {
@@ -124,7 +124,7 @@
         }
       ],
       [
-        "@semantic-release/release-notes-generator",
+        "./.github/release/legacy-notes.cjs",
         {
           "preset": "conventionalcommits",
           "presetConfig": {
