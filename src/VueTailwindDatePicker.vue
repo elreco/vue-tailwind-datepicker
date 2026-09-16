@@ -1696,7 +1696,7 @@ provide(setToCustomShortcutKey, setToCustomShortcut)
 .vtd-datepicker::before {
   --vtd-datepicker: 0px;
   content: "";
-  @apply absolute top-0 w-4 h-4 bg-white shadow border border-black/[.1] dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700;
+  @apply absolute top-0 w-4 h-4 bg-white shadow border border-black/[.1];
   transform: translate(50%, -50%) rotate(-45deg);
   clip-path: polygon(calc(var(--vtd-datepicker) * -1) calc(var(--vtd-datepicker) * -1),
       calc(100% + var(--vtd-datepicker)) calc(var(--vtd-datepicker) * -1),
@@ -1704,10 +1704,14 @@ provide(setToCustomShortcutKey, setToCustomShortcut)
 }
 
 .vtd-datepicker.place-left::before {
-  @apply left-1 dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700;
+  @apply left-1;
 }
 
 .vtd-datepicker.place-right::before {
-  @apply right-5 dark:bg-vtd-secondary-800 dark:border-vtd-secondary-700;
+  @apply right-5;
+}
+
+.vtd-dark .vtd-datepicker::before {
+  @apply bg-vtd-secondary-800 border-vtd-secondary-700;
 }
 </style>
