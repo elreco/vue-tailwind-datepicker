@@ -47,3 +47,9 @@ Do not overwrite any pre-existing DNS record for this subdomain without checking
 The launch offer is €299 excl. VAT for five developers, perpetual use of acquired versions and twelve months of updates/bug support. Validate demand with three paying pilot customers before expanding into resource planning, monthly recurrences or calendar integrations. No automated outreach or sales platform is included.
 
 See `ANNOUNCEMENT.md` for the prepared transition announcement.
+
+## Pilot deployment status
+
+The working site is https://coderocket-ui.netlify.app/ and the separately built demo is https://coderocket-availability-pro.netlify.app/. The custom `ui.coderocket.app` domain awaits access to its Cloudflare DNS (OVH is the registrar, not the authoritative DNS provider). Do not modify OVH nameservers.
+
+Private GitHub Actions is currently blocked by the account billing/spending status. All 22 Pro tests, including real Redis concurrency checks, and five browser checks have passed locally. Public GitHub CI passes. AI calls remain disabled until owner-controlled OpenAI/Upstash credentials and the monthly budget approval are configured.
