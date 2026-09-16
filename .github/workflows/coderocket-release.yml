@@ -1,0 +1,41 @@
+name: CodeRocket release
+on:
+  push:
+    tags: ['coderocket-v*']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: coderocket-release
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: startsWith(github.ref, 'refs/tags/coderocket-v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    defaults:
+      run:
+        working-directory: coderocket
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          registry-url: https://registry.npmjs.org
+          cache: npm
+          cache-dependency-path: coderocket/package-lock.json
+      - run: npm ci
+      - name: Verify tag matches package version
+        run: node -e "const p=require('./packages/vue/package.json');if(process.env.GITHUB_REF_NAME!=='coderocket-v'+p.version)process.exit(1)"
+      - run: npm run build && npm run typecheck && npm test && npm run check:package
+      - name: Publish through npm trusted publishing
+        run: npm publish -w @coderocketapp/vue --access public --provenance
+      - name: Prepare downloadable package
+        run: mkdir -p artifacts && npm pack -w @coderocketapp/vue --pack-destination artifacts
+      - uses: actions/upload-artifact@v7
+        with:
+          name: coderocket-vue
+          path: coderocket/artifacts/*.tgz
+          retention-days: 90

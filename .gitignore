@@ -12,6 +12,13 @@ node_modules
 dist
 dist-ssr
 coverage
+.private/
+.env
+.env.*
+!.env.example
+.netlify/
+playwright-report/
+test-results/
 *.local
 
 /cypress/videos/
@@ -30,3 +37,7 @@ coverage
 # vitepress
 docs/.vitepress/cache
 docs/.vitepress/dist
+
+# CodeRocket documentation and release artifacts
+coderocket/apps/docs/.vitepress/cache/
+coderocket/artifacts/

@@ -1,0 +1,172 @@
+@layer theme, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+@source './components';
+@layer components {
+  .cr-ui {
+    --cr-accent: #245b47;
+    --cr-accent-soft: #e8f0e9;
+    --cr-surface: #fff;
+    --cr-text: #202922;
+    --cr-muted: #667168;
+    --cr-border: #dbe1da;
+    --cr-radius: 10px;
+    font-family: var(--cr-font, ui-sans-serif, system-ui, sans-serif);
+    color: var(--cr-text);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .cr-ui *,
+  .cr-ui *::before,
+  .cr-ui *::after {
+    box-sizing: border-box;
+  }
+  .cr-ui button,
+  .cr-ui input,
+  .cr-ui select {
+    font: inherit;
+  }
+  .cr-field {
+    display: grid;
+    gap: 8px;
+    min-width: 0;
+  }
+  .cr-label {
+    font-weight: 550;
+    font-size: 13px;
+  }
+  .cr-input {
+    @apply transition-colors;
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    width: 100%;
+    border: 1px solid var(--cr-border);
+    border-radius: var(--cr-radius);
+    padding: 10px 13px;
+    background: var(--cr-surface);
+    color: var(--cr-text);
+    text-align: left;
+  }
+  .cr-trigger {
+    justify-content: space-between;
+    gap: 16px;
+    cursor: pointer;
+  }
+  .cr-input:hover:not(:disabled) {
+    border-color: var(--cr-accent);
+  }
+  .cr-ui :focus-visible {
+    outline: 3px solid var(--cr-accent);
+    outline-offset: 3px;
+  }
+  .cr-ui [disabled],
+  .cr-ui [data-disabled] {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  .cr-popover {
+    background: var(--cr-surface);
+    border: 1px solid var(--cr-border);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 12px 40px #142b191a;
+    z-index: 100;
+    width: min(320px, calc(100vw - 24px));
+  }
+  .cr-calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .cr-calendar-heading {
+    font-size: 14px;
+    font-weight: 650;
+  }
+  .cr-icon-button {
+    border: 1px solid var(--cr-border);
+    background: var(--cr-surface);
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--cr-text);
+  }
+  .cr-calendar-grid {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 2px;
+    table-layout: fixed;
+  }
+  .cr-weekday {
+    color: var(--cr-muted);
+    font-size: 11px;
+    font-weight: 500;
+    height: 30px;
+    text-align: center;
+  }
+  .cr-cell {
+    padding: 0;
+    text-align: center;
+  }
+  .cr-day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    aspect-ratio: 1;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--cr-text);
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .cr-day:hover {
+    background: var(--cr-accent-soft);
+  }
+  .cr-day[data-outside-view] {
+    color: var(--cr-muted);
+  }
+  .cr-day[data-selected],
+  .cr-day[data-highlighted] {
+    background: var(--cr-accent-soft);
+    color: var(--cr-accent);
+  }
+  .cr-day[data-selection-start],
+  .cr-day[data-selection-end],
+  .cr-day[data-selected]:not([data-highlighted]) {
+    background: var(--cr-accent);
+    color: white;
+  }
+  .cr-day[data-today] {
+    box-shadow: inset 0 0 0 1px var(--cr-accent);
+  }
+  .cr-text-button {
+    display: block;
+    border: 0;
+    background: transparent;
+    color: var(--cr-accent);
+    cursor: pointer;
+    padding: 12px 4px 0;
+    font-size: 12px;
+    text-decoration: underline;
+  }
+  .cr-time {
+    gap: 2px;
+  }
+  .cr-time-segment {
+    padding: 2px;
+    border-radius: 3px;
+  }
+  .cr-time-segment:focus {
+    background: var(--cr-accent-soft);
+    outline: 2px solid var(--cr-accent);
+  }
+  .cr-time-icon {
+    margin-left: auto;
+    color: var(--cr-muted);
+  }
+}

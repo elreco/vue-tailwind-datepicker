@@ -1,0 +1,35 @@
+name: CodeRocket checks
+on:
+  pull_request:
+  push:
+    branches: [main, 'codex/coderocket-ui']
+    paths: ['coderocket/**', '.github/release/**', '.github/workflows/coderocket-ci.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: coderocket
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: coderocket/package-lock.json
+      - run: npm ci
+      - run: npm run build
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run check:package
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: coderocket-browser-results
+          path: coderocket/test-results
+          retention-days: 7

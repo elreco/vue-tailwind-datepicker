@@ -1,0 +1,49 @@
+{
+  "name": "@coderocketapp/vue",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Accessible Vue components for dates and time. Headless logic, ready-to-use styles.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elreco/vue-tailwind-datepicker.git",
+    "directory": "coderocket/packages/vue"
+  },
+  "homepage": "https://ui.coderocket.app",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./headless": {
+      "types": "./dist/headless.d.ts",
+      "import": "./dist/headless.js"
+    },
+    "./core": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.js"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "scripts": {
+    "build": "vite build --configLoader runner"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
+  "dependencies": {
+    "@internationalized/date": "3.12.4",
+    "reka-ui": "2.10.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

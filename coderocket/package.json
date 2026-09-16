@@ -1,0 +1,45 @@
+{
+  "name": "coderocket-workspace",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build:lib && npm run build -w @coderocketapp/site && npm run build -w @coderocketapp/docs && node scripts/copy-docs.mjs",
+    "build:lib": "npm run build -w @coderocketapp/vue",
+    "dev": "npm run dev -w @coderocketapp/site",
+    "typecheck": "node scripts/typecheck.cjs --noEmit -p packages/vue/tsconfig.json && node scripts/typecheck.cjs --noEmit -p apps/site/tsconfig.json",
+    "test": "vitest run",
+    "test:browser": "playwright test",
+    "check:package": "node scripts/check-package.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.63.0",
+    "@tailwindcss/vite": "4.3.3",
+    "@types/node": "^22.0.0",
+    "@typescript/typescript6": "^6.0.2",
+    "@vitejs/plugin-vue": "6.0.9",
+    "@vue/server-renderer": "3.5.42",
+    "@vue/test-utils": "2.5.1",
+    "jsdom": "^26.1.0",
+    "tailwindcss": "4.3.3",
+    "typescript": "7.0.2",
+    "vite": "8.3.0",
+    "vite-plugin-dts": "5.1.0",
+    "vitest": "5.0.1",
+    "vue": "3.5.42",
+    "vue-tsc": "3.3.11"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "overrides": {
+    "vitepress": {
+      "vite": "7.3.6",
+      "@vitejs/plugin-vue": "6.0.8"
+    }
+  }
+}
