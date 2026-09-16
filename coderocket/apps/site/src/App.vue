@@ -6,6 +6,8 @@ const range = ref<DateRangeValue | null>({ start: '2026-10-19', end: '2026-10-23
 const time = ref<string | null>('09:30')
 const locale = ref('en-GB')
 const copied = ref(false)
+const npmReleased = import.meta.env.VITE_NPM_RELEASED === 'true'
+const installCommand = npmReleased ? 'npm install @coderocketapp/vue' : 'npm install https://coderocket-ui.netlify.app/downloads/coderocketapp-vue-0.1.0.tgz'
 const demoHeight = ref(1280)
 const demoUrl = import.meta.env.VITE_PRO_DEMO_URL || ''
 const demoOrigin = demoUrl ? new URL(demoUrl).origin : ''
@@ -21,7 +23,7 @@ onMounted(() => window.addEventListener('message', resize))
 onUnmounted(() => window.removeEventListener('message', resize))
 async function copyInstall() {
   try {
-    await navigator.clipboard.writeText('npm install @coderocketapp/vue')
+    await navigator.clipboard.writeText(installCommand)
     copied.value = true
     setTimeout(() => (copied.value = false), 2000)
   } catch {
@@ -64,10 +66,10 @@ const data = computed(() => JSON.stringify({ date: date.value, time: time.value 
           @click="copyInstall"
           :aria-label="copied ? 'Install command copied' : 'Copy npm install command'"
         >
-          <span aria-hidden="true">$</span><code>npm install @coderocketapp/vue</code
+          <span aria-hidden="true">$</span><code>{{ npmReleased ? installCommand : 'Install the 0.1 pilot' }}</code
           ><span class="copy-hint">{{ copied ? 'Copied' : 'Copy' }}</span>
         </button>
-        <p class="hero-footnote">Open source foundations. A little less work for you.</p>
+        <p class="hero-footnote">Open source foundations. A little less work for you. <a v-if="!npmReleased" href="/downloads/coderocketapp-vue-0.1.0.tgz">Download the pilot archive ↗</a></p>
       </div>
       <div class="hero-demo">
         <div class="demo-window-top">

@@ -36,4 +36,14 @@ Labels should describe the field. Provide a label even if you replace the trigge
 
 ## Complete applications
 
-Download the [Vue example](https://github.com/elreco/vue-tailwind-datepicker/tree/main/coderocket/examples/vue) or the [Nuxt example](https://github.com/elreco/vue-tailwind-datepicker/tree/main/coderocket/examples/nuxt). Each includes its package manifest, application and build configuration. Neither requires Tailwind.
+Download the [Vue example](https://github.com/elreco/vue-tailwind-datepicker/tree/codex/coderocket-ui/coderocket/examples/vue) or the [Nuxt example](https://github.com/elreco/vue-tailwind-datepicker/tree/codex/coderocket-ui/coderocket/examples/nuxt). Each includes its package manifest, application and build configuration. Neither requires Tailwind.
+
+## Pilot archive (available now)
+
+The first npm publication is awaiting owner verification. You can already install the exact public pilot archive:
+
+```sh
+npm install https://coderocket-ui.netlify.app/downloads/coderocketapp-vue-0.1.0.tgz
+```
+
+The package name and imports stay `@coderocketapp/vue`. [Markdown for coding assistants](https://coderocket-ui.netlify.app/llms-full.txt).

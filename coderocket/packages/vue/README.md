@@ -20,6 +20,6 @@ Also exports `CrDateRangePicker`, `CrTimePicker`, ISO model types and date-forma
 
 Headless primitives: `@coderocketapp/vue/headless`. Pure date helpers: `@coderocketapp/vue/core`.
 
-[Documentation](https://coderocket-ui.netlify.app/docs/) · [Source](https://github.com/elreco/vue-tailwind-datepicker/tree/main/coderocket)
+[Documentation](https://coderocket-ui.netlify.app/docs/) · [Source](https://github.com/elreco/vue-tailwind-datepicker/tree/codex/coderocket-ui/coderocket)
 
 This is the new CodeRocket API, separate from `@coderocketapp/vue-tailwind-datepicker`. Version 0.1 is a pilot; pin dependencies while evaluating.

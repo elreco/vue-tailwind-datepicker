@@ -53,3 +53,5 @@ See `ANNOUNCEMENT.md` for the prepared transition announcement.
 The working site is https://coderocket-ui.netlify.app/ and the separately built demo is https://coderocket-availability-pro.netlify.app/. The custom `ui.coderocket.app` domain awaits access to its Cloudflare DNS (OVH is the registrar, not the authoritative DNS provider). Do not modify OVH nameservers.
 
 Private GitHub Actions is currently blocked by the account billing/spending status. All 22 Pro tests, including real Redis concurrency checks, and five browser checks have passed locally. Public GitHub CI passes. AI calls remain disabled until owner-controlled OpenAI/Upstash credentials and the monthly budget approval are configured.
+
+While npm verification is pending, the build serves an installable MIT archive under `/downloads/`. Once npm publication is verified, set `VITE_NPM_RELEASED=true` in the public Netlify project and update the installation notice. Rendered documentation also exposes its authored Markdown and `/llms-full.txt`.
