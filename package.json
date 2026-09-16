@@ -44,6 +44,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 4173",
+    "prepare": "npm run build",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "docs:dev": "npm --prefix docs run dev",
