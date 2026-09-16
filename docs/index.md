@@ -3,14 +3,14 @@ layout: home
 
 hero:
   name: Vue Tailwind Datepicker
-  tagline: A Datepicker component for Vue 3 using Tailwind and dayjs.
+  tagline: Now published as @coderocketapp/vue-tailwind-datepicker. A datepicker for Vue 3, styled with Tailwind CSS.
   image:
     src: https://github.com/elreco/vue-tailwind-datepicker/blob/main/docs/logo.png?raw=true
     alt: Vue Tailwind Datepicker
   actions:
     - theme: brand
-      text: Get Started
-      link: /installation
+      text: Install or migrate
+      link: /installation#maintained-package
     - theme: alt
       text: View on GitHub
       link: https://github.com/elreco/vue-tailwind-datepicker
