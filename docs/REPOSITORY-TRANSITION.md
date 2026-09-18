@@ -6,6 +6,8 @@ The existing datepicker version tags remain historical references. The branch `l
 
 The repository was renamed from `elreco/vue-tailwind-datepicker` to `elreco/coderocket-ui` on 18 September 2026, preserving its 248 stars, issues and history. GitHub redirects the old repository URL. The legacy documentation remains at https://vue-tailwind-datepicker.com; the root Netlify configuration builds the nested legacy documentation only. The hosted CodeRocket UI app deploys from its separate private repository.
 
+Netlify first applies the root `build.base`, then reads the nested legacy `netlify.toml`. Keep both build commands aligned. Its initial dependency detection can install the root pnpm workspace, which excludes the legacy project. The explicit build command therefore runs `npm ci` for the legacy package and `docs/` before building the docs. Both use their frozen npm lockfiles; the legacy `.nvmrc` selects Node 24. The package's dependencies are needed because documentation previews import its Vue source directly.
+
 The old workflows are kept under `legacy/vue-tailwind-datepicker/.github/workflows` for provenance. GitHub does not run that nested directory as repository workflows. The only active root workflow validates the public core. There is no active npm publisher and no automatic datepicker release.
 
 The legacy package remains on npm under `@coderocketapp/vue-tailwind-datepicker`. Do not unpublish it or rename its installed API as part of this repository change. Future CodeRocket package publication requires a separate reviewed release and naming decision.

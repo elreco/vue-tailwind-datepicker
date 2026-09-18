@@ -2,7 +2,9 @@
 # The hosted CodeRocket UI application is deployed from its separate private repository.
 [build]
   base = "legacy/vue-tailwind-datepicker"
-  command = "npm ci --prefix docs && npm run docs:build"
+  # Netlify detects the pnpm workspace at the repository root. The frozen
+  # project is outside that workspace, so install both of its npm projects.
+  command = "npm ci --no-audit --no-fund && npm ci --prefix docs --no-audit --no-fund && npm run docs:build"
   publish = "docs/.vitepress/dist"
 
 [build.environment]
