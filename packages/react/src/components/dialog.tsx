@@ -1,0 +1,49 @@
+"use client";
+import { Dialog as Base } from "@base-ui/react/dialog";
+import type { ReactNode } from "react";
+import { usePortalContainer } from "./utils";
+export function Dialog({
+  trigger,
+  title,
+  description,
+  children,
+  open,
+  onOpenChange,
+  size = "default",
+}: {
+  size?: "default" | "wide";
+  trigger?: ReactNode;
+  title: string;
+  description?: string;
+  children: ReactNode;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}) {
+  const container = usePortalContainer();
+  return (
+    <Base.Root open={open} onOpenChange={onOpenChange}>
+      {trigger != null && (
+        <Base.Trigger className="cr-button" data-variant="outline">
+          {trigger}
+        </Base.Trigger>
+      )}
+      <Base.Portal container={container}>
+        <Base.Backdrop className="cr-backdrop" />
+        <Base.Viewport className="cr-modal-viewport" data-kind="dialog">
+          <Base.Popup className="cr-modal cr-dialog" data-size={size}>
+            <Base.Title className="cr-modal-title">{title}</Base.Title>
+            {description && (
+              <Base.Description className="cr-description">
+                {description}
+              </Base.Description>
+            )}
+            <div className="cr-modal-content">{children}</div>
+            <Base.Close className="cr-button" data-variant="secondary">
+              Close
+            </Base.Close>
+          </Base.Popup>
+        </Base.Viewport>
+      </Base.Portal>
+    </Base.Root>
+  );
+}

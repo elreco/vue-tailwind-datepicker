@@ -3,9 +3,9 @@ layout: home
 
 hero:
   name: Vue Tailwind Datepicker
-  tagline: Now published as @coderocketapp/vue-tailwind-datepicker. A datepicker for Vue 3, styled with Tailwind CSS.
+  tagline: A frozen Vue 3 datepicker. Existing npm releases remain available; maintenance has ended.
   image:
-    src: https://github.com/elreco/vue-tailwind-datepicker/blob/main/docs/logo.png?raw=true
+    src: /logo.png
     alt: Vue Tailwind Datepicker
   actions:
     - theme: brand
@@ -13,7 +13,7 @@ hero:
       link: /installation#maintained-package
     - theme: alt
       text: View on GitHub
-      link: https://github.com/elreco/vue-tailwind-datepicker
+      link: https://github.com/elreco/coderocket-ui/tree/main/legacy/vue-tailwind-datepicker
     - theme: alt
       text: Live demo
       link: /demo

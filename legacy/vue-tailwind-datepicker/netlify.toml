@@ -1,0 +1,7 @@
+[build]
+  command = "npm ci --prefix docs && npm run docs:build"
+  publish = "docs/.vitepress/dist"
+
+[build.environment]
+  NODE_VERSION = "24"
+  DOCS_BASE = "/"
