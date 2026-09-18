@@ -1,9 +1,10 @@
 # Installation
 
-## Maintained package
+## Frozen package {#maintained-package}
 
-New releases are published as **`@coderocketapp/vue-tailwind-datepicker`**.
-The old `vue-tailwind-datepicker` name does not receive these releases automatically.
+**This package is no longer maintained.** The existing release remains available as
+**`@coderocketapp/vue-tailwind-datepicker`**. No new fixes, features or releases are
+planned. The old `vue-tailwind-datepicker` name also remains available.
 
 If you used the old package, remove it first:
 
@@ -11,7 +12,7 @@ If you used the old package, remove it first:
 npm uninstall vue-tailwind-datepicker
 ```
 
-Install the maintained package in your Vue 3 application:
+Install the frozen package in your Vue 3 application:
 
 ```sh
 npm install @coderocketapp/vue-tailwind-datepicker dayjs

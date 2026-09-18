@@ -9,7 +9,7 @@
 # Demo
 
 ::: tip
-Install `@coderocketapp/vue-tailwind-datepicker` to use this maintained version.
+Install `@coderocketapp/vue-tailwind-datepicker` to use this frozen version. It is no longer maintained.
 See the [installation guide](./installation.md) for the stylesheet and migration instructions.
 :::
 

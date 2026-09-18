@@ -1,77 +1,85 @@
-# Vue Tailwind Datepicker
+# CodeRocket UI
 
-A date and date range picker for Vue 3, styled with Tailwind CSS.
+**A component library you can make your own — and give to your coding agents.**
 
-## Maintained package
+Define a design system, compose React interfaces from shared components, and keep editable code in your own application. This repository contains the open-source components, design-system engine, specifications, CLI and MCP client used by [CodeRocket UI](https://ui.coderocket.app).
 
-The maintained package is now **`@coderocketapp/vue-tailwind-datepicker`**.
-The previous `vue-tailwind-datepicker` package remains available, but updates are
-published under the new name. Existing installations do not migrate automatically.
+[Try the interactive demo](https://ui.coderocket.app/#live-preview) · [Read the documentation](https://ui.coderocket.app/docs) · [Discuss a pilot](https://ui.coderocket.app/contact)
 
-```sh
-npm uninstall vue-tailwind-datepicker
-npm install @coderocketapp/vue-tailwind-datepicker dayjs
-```
+## From Vue Tailwind Datepicker to CodeRocket UI
 
-For a new application, only the install command is needed. Vue 3 is required.
-The package includes compiled CSS; an application does not need to configure
-Tailwind or the forms plugin to display the picker.
+This is the same repository, with its stars, issues and Git history. The project is expanding from a Vue datepicker into tools for building a coherent component library.
 
-## Usage
+**CodeRocket UI supports React today.** It is not a drop-in update to the Vue datepicker. Vue, Svelte and SolidJS renderers are planned, without a promised release date.
 
-```vue
-<script setup>
-import { ref } from 'vue'
-import VueTailwindDatepicker from '@coderocketapp/vue-tailwind-datepicker'
-import '@coderocketapp/vue-tailwind-datepicker/style.css'
+**Vue Tailwind Datepicker is frozen and no longer maintained.** Its existing npm package, `@coderocketapp/vue-tailwind-datepicker`, remains available. Its source, MIT attribution, changelog and documentation are preserved in [`legacy/vue-tailwind-datepicker`](legacy/vue-tailwind-datepicker). Existing applications do not need to migrate because this repository changed its name. No new fixes or releases are planned for the legacy package.
 
-const dateValue = ref('')
-const formatter = { date: 'YYYY-MM-DD', month: 'MMM' }
-</script>
+Read the [transition announcement](ANNOUNCEMENT.md) and [legacy documentation](https://vue-tailwind-datepicker.com).
 
-<template>
-  <VueTailwindDatepicker v-model="dateValue" :formatter="formatter" i18n="en" />
-</template>
-```
+## What is open source?
 
-Import the stylesheet once in your application. To select one date, add `as-single`.
-The component also supports arrays and objects as values, custom shortcuts,
-disabled dates, translations, inline calendars and explicit Apply/Cancel buttons.
+| Package                                 | What it provides                                                                                      |
+| --------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| [`@coderocket/react`](packages/react)   | 48 React components, accessible primitives based on Base UI, compiled CSS and a composition renderer. |
+| [`@coderocket/blocks`](packages/blocks) | 26 interface blocks with typed callbacks for your own application logic.                              |
+| [`@coderocket/engine`](packages/engine) | A versioned design-system model, token validation, theme generation and reviewed token import.        |
+| [`@coderocket/specs`](packages/specs)   | Component and block specifications, plus validated composition schemas.                               |
+| [`@coderocket/shared`](packages/shared) | Types and a read-only registry client shared by the integration tools.                                |
+| [`@coderocket/cli`](packages/cli)       | Local import analysis and installation/sync from a saved library, preserving local changes.           |
+| [`@coderocket/mcp`](packages/mcp)       | A read-only MCP server that gives an agent your saved rules and component sources.                    |
 
-Use `color-mode="light"` or `color-mode="dark"` to force the appearance.
-`color-mode="auto"` follows a dark ancestor or the system preference.
+These packages are MIT licensed. They are currently experimental: review and test them in your application's context. Authentication, payments, email delivery and uploads are not bundled backends; blocks expose callbacks that you connect yourself.
 
-## Documentation
+The hosted Studio, its accounts, database, AI-provider integration and operating infrastructure are separate. They are not included in this repository. Using the React components or engine locally does not require an account or an AI provider. The CLI's registry commands and MCP client need a saved library and a connection token from the Studio, or a compatible registry server.
 
-[Installation](docs/installation.md) · [Props](docs/props.md) ·
-[Events](docs/events.md) · [Theming](docs/theming-options.md)
+## Build from source
 
-[Documentation website](https://elreco.github.io/vue-tailwind-datepicker/) ·
-[GitHub releases](https://github.com/elreco/vue-tailwind-datepicker/releases)
-
-## Local development
-
-Use Node.js 22.14+ (Node 24 is used in CI).
+Use Node.js 24 or newer and pnpm 12.4.2. This repository is the source distribution; package names in the workspace do not imply a public npm release.
 
 ```sh
-npm ci
-npm run dev
+git clone https://github.com/elreco/coderocket-ui.git
+cd coderocket-ui
+pnpm install --frozen-lockfile
+pnpm check
 ```
 
-The playground is available at the address printed by Vite.
+`pnpm check` typechecks the workspace, builds JavaScript/CSS/declarations into each package's `dist/` directory, and runs the unit tests. It does not contact the hosted Studio or an AI provider. The legacy Vue project uses its own npm lockfiles and is outside the pnpm workspace.
+
+### Use the components
+
+In a pnpm workspace consumer, add `@coderocket/react` as a workspace dependency and import its compiled styles once:
+
+```tsx
+import { Button, ThemeScope } from "@coderocket/react";
+import "@coderocket/react/styles.css";
+
+export function App() {
+  return (
+    <ThemeScope>
+      <Button onClick={() => console.log("Saved locally")}>Save changes</Button>
+    </ThemeScope>
+  );
+}
+```
+
+React 19.3 and Base UI 1.8 are the versions used by this source release. Tailwind is optional. See [development and integration](docs/DEVELOPMENT.md) for tokens, local packages and a standalone example.
+
+### Use the CLI or MCP
+
+After the build:
 
 ```sh
-npm run typecheck
-npm run build
-npm run check:package
-npm run docs:install
-npm run docs:dev
-npm run docs:build
+node packages/cli/dist/index.mjs --help
 ```
 
-See the [release guide](.github/RELEASE_GUIDE.md) for npm publishing and GitHub Actions.
+Follow the [CLI guide](packages/cli/README.md) for local imports and safe installation, or the [MCP guide](packages/mcp/README.md) for the eight read-only tools. Neither tool writes connection tokens into project files. Generated source is project data and must be reviewed before it is applied.
 
-## License and credits
+## Help shape the pilot
 
-[MIT](LICENSE). Based on the original work by [Kenhyuwa](https://github.com/kenhyuwa),
-with contributions from the Vue Tailwind Datepicker community.
+The hosted Studio is free during early access. We are looking for developers and teams to try it on a real project, show us what fails, and discuss a focused integration pilot. No subscription or paid plan is activated by creating an account.
+
+[Contact us voluntarily](https://ui.coderocket.app/contact) with your framework, your project and the problem you want to solve. GitHub stars and historical datepicker usage are not treated as permission to contact you. We will not automatically email existing users.
+
+## Contributing and licensing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md), [the roadmap](docs/ROADMAP.md), [MIT license](LICENSE) and [third-party notices](THIRD_PARTY_NOTICES.md). New component work belongs in the active packages. The legacy datepicker is kept as an unmaintained reference.
